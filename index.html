@@ -1,0 +1,1921 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#ffffff">
+<meta name="apple-mobile-web-app-title" content="Ayas Depo">
+<title>Ayas Depo Takip</title>
+<link rel="icon" type="image/png" href="data:image/png;base64,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">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<script>
+  // >>> Google Apps Script "Web uygulaması URL"si buraya (…/exec ile biter) <<<
+  var API_URL = 'https://script.google.com/macros/s/AKfycbwDSdY2A2buzyBXf2xGvf1X3xAEBMjSwGSjSWVbcGl74FEVLd8XFpUr9QcPkehPLgTF/exec';
+</script>
+<script src="https://cdn.jsdelivr.net/npm/zxing-wasm@3.1.6/dist/iife/reader/index.js"></script>
+<style>
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  body { font-family: -apple-system, Roboto, Arial, sans-serif; margin: 0; background: #f2f4f7; color: #1d2433; font-size: 16px; }
+  header { background: #fff; color: #1d2433; padding: 8px 14px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 5; border-bottom: 3px solid #254ba0; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+  header .marka { display: flex; align-items: center; gap: 10px; cursor: pointer; -webkit-user-select: none; user-select: none; }
+  header .marka img { height: 34px; display: block; }
+  header .marka span { font-size: 12px; font-weight: 700; color: #254ba0; border-left: 1px solid #cdd3dd; padding-left: 10px; line-height: 1.2; letter-spacing: .3px; }
+  header small { color: #5b6475; font-size: 12px; }
+  header button { background: none; border: 0; color: #254ba0; font-size: 20px; padding: 0 0 0 10px; }
+  #girisLogo { display: block; width: 78%; max-width: 300px; margin: 6px auto 18px; }
+  main { padding: 12px; max-width: 640px; margin: 0 auto; }
+  .kart { background: #fff; border-radius: 12px; padding: 12px; margin-bottom: 12px; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+  label { display: block; font-size: 13px; color: #5b6475; margin: 8px 0 4px; }
+  input[type=text], input[type=number], input[type=password], select { width: 100%; padding: 12px; font-size: 16px; border: 1px solid #cdd3dd; border-radius: 8px; background: #fff; color: #1d2433; }
+  .mod { display: flex; gap: 6px; }
+  .mod button { flex: 1; padding: 12px 4px; font-size: 14px; font-weight: 700; border: 2px solid #cdd3dd; border-radius: 10px; background: #fff; color: #5b6475; }
+  .mod button small { font-weight: 400; font-size: 11px; }
+  .mod button.secili[data-m="GİRİŞ"] { background: #1e8e3e; border-color: #1e8e3e; color: #fff; }
+  .mod button.secili[data-m="TRANSFER"] { background: #e37400; border-color: #e37400; color: #fff; }
+  .mod button.secili[data-m="ÇIKIŞ"] { background: #d93025; border-color: #d93025; color: #fff; }
+  .mod button.secili[data-m="SAYIM"] { background: #7b1fa2; border-color: #7b1fa2; color: #fff; }
+  .farklar { margin-top: 6px; font-size: 14px; }
+  .farklar div { padding: 2px 0; }
+  .mod button:disabled:not(.secili) { opacity: .4; }
+  .satir { display: flex; gap: 8px; align-items: flex-end; }
+  .satir > div { flex: 1; }
+  .ok-isaret { flex: 0 0 auto !important; padding-bottom: 12px; font-size: 20px; color: #5b6475; }
+  .btn { width: 100%; padding: 14px; font-size: 16px; font-weight: 700; border: 0; border-radius: 10px; background: #254ba0; color: #fff; margin-top: 8px; }
+  .btn.ikincil { background: #e8eef7; color: #254ba0; }
+  .btn.dar { width: auto; margin-top: 0; padding: 12px 16px; }
+  .btn:disabled { background: #a8b3c4; color: #fff; }
+  /* Tam ekran kamera */
+  #kameraKutu { position: fixed; inset: 0; z-index: 50; background: #000; display: none; }
+  #ayarKutu { position: fixed; inset: 0; z-index: 70; background: rgba(0,0,0,.55); display: none; align-items: center; justify-content: center; padding: 16px; }
+  #ayarKutu.acik { display: flex; }
+  #ayarKutu .kart { max-width: 420px; width: 100%; max-height: 90vh; overflow: auto; margin: 0; }
+  body:not(.silYetki) .silbtn:not(.duzbtn), body:not(.silYetki) #fisSilBtn { display: none !important; }
+  body:not(.duzeltYetki) .duzbtn { display: none !important; }
+  body:not(.svKabulYetki) .depoBtn { display: none !important; }
+  body:not(.svSilYetki) .svSilBtn, body:not(.svSilYetki) .svKayitSil { display: none !important; }
+  body:not(.yonetici) .yonetimBtn { display: none !important; }
+  .mod button.yetkisiz { display: none; }
+  .pKart summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .pKart summary::-webkit-details-marker { display: none; }
+  .pKart summary small { display: block; color: #5b6475; font-size: 12px; margin-top: 2px; }
+  .pGrup { font-size: 12px; font-weight: 700; color: #254ba0; margin: 10px 0 2px; text-transform: uppercase; letter-spacing: .3px; }
+  .pSablon { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0 2px; }
+  .pSablon button { padding: 8px 12px; border: 1px solid #c9d3ea; border-radius: 20px; background: #e8eef7; color: #254ba0; font-size: 13px; font-weight: 700; }
+  .rozetK { font-size: 11px; padding: 2px 8px; border-radius: 10px; background: #e6f4ea; color: #137333; white-space: nowrap; }
+  .rozetK.kapali { background: #fce8e6; color: #b3261e; }
+  #okutmaYokNot { display: none; }
+  body.okutmaYok #uygulama > :not(#okutmaYokNot) { display: none !important; }
+  body.okutmaYok #okutmaYokNot { display: block; }
+  .pKart { border: 1px solid #dfe4ec; border-radius: 10px; padding: 10px; margin-bottom: 10px; }
+  .pKart.kapali { opacity: .6; }
+  .pKart .ikili { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .pKart .ikili input { margin: 0; }
+  .pYetki { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
+  .pYetki label { display: flex; align-items: center; gap: 6px; margin: 0; padding: 8px 10px; border: 1px solid #cdd3dd; border-radius: 20px; font-size: 14px; color: #1d2433; }
+  .pYetki input { width: 18px; height: 18px; margin: 0; }
+  #urunSecKutu { position: fixed; inset: 0; z-index: 70; background: rgba(0,0,0,.55); display: none; align-items: center; justify-content: center; padding: 16px; }
+  #urunSecKutu.acik { display: flex; }
+  #urunSecKutu .kart { max-width: 480px; width: 100%; max-height: 85vh; overflow: auto; margin: 0; }
+  #urunSecKutu .secBtn { display: block; width: 100%; text-align: left; padding: 12px; margin: 6px 0; border: 1px solid #c9d3ea; border-radius: 10px; background: #fff; font-size: 15px; cursor: pointer; }
+  #urunSecKutu .secBtn small { display: block; color: #5b6475; font-size: 12px; margin-top: 2px; }
+  #kameraKutu.acik { display: block; }
+  #video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  #cerceve { position: absolute; left: 6%; right: 6%; top: 50%; height: 26vh; transform: translateY(-50%); border: 3px solid rgba(255,255,255,.9); border-radius: 12px; box-shadow: 0 0 0 4000px rgba(0,0,0,.45); transition: border-color .15s; }
+  #cerceve.okundu { border-color: #34d058; }
+  #cerceve.hata { border-color: #ff5a4f; }
+  #kameraUst { position: absolute; top: 0; left: 0; right: 0; padding: calc(env(safe-area-inset-top) + 10px) 14px 10px; display: flex; justify-content: space-between; align-items: center; color: #fff; font-weight: 700; background: linear-gradient(rgba(0,0,0,.6), transparent); }
+  #kameraUst button { background: rgba(255,255,255,.2); color: #fff; border: 0; border-radius: 20px; padding: 10px 16px; font-size: 16px; font-weight: 700; }
+  #kameraIpucu { position: absolute; top: calc(50% + 13vh + 14px); left: 0; right: 0; text-align: center; color: #fff; font-size: 15px; text-shadow: 0 1px 2px #000; padding: 0 16px; }
+  #kameraMesaj { position: absolute; left: 12px; right: 12px; top: calc(50% - 13vh - 64px); padding: 10px 12px; border-radius: 10px; font-size: 15px; font-weight: 600; text-align: center; display: none; }
+  #kameraMesaj.ok { display: block; background: #e6f4ea; color: #137333; }
+  #kameraMesaj.hata { display: block; background: #fce8e6; color: #b3261e; }
+  #kameraAlt { position: absolute; bottom: 0; left: 0; right: 0; padding: 14px 16px calc(env(safe-area-inset-bottom) + 18px); background: linear-gradient(transparent, rgba(0,0,0,.7)); color: #fff; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+  #kameraAlt label { color: #fff; margin: 0; display: flex; align-items: center; gap: 8px; font-size: 15px; }
+  #kameraAlt input { width: 22px; height: 22px; }
+  #kameraSayac { font-size: 14px; opacity: .9; }
+  .mesaj { padding: 10px 12px; border-radius: 8px; margin-top: 8px; font-size: 15px; display: none; }
+  .mesaj.ok { background: #e6f4ea; color: #137333; display: block; }
+  .mesaj.hata { background: #fce8e6; color: #b3261e; display: block; }
+  .mesaj.bilgi { background: #e8f0fe; color: #174ea6; display: block; }
+  table { width: 100%; border-collapse: collapse; }
+  td { padding: 8px 4px; border-bottom: 1px solid #edf0f4; vertical-align: middle; }
+  td.ad { font-size: 14px; }
+  td.ad small { color: #5b6475; display: block; }
+  td.ad .uyari { color: #b3261e; font-weight: 600; display: block; }
+  td.adet input { width: 70px; padding: 8px; text-align: center; }
+  td.sil button { border: 0; background: none; color: #b3261e; font-size: 22px; padding: 4px 8px; }
+  .toplam { text-align: right; font-weight: 700; margin-top: 8px; }
+  .bos { color: #8a93a3; text-align: center; padding: 16px 0; }
+  .gizli { display: none !important; }
+  #girisEkrani { max-width: 420px; margin: 40px auto; }
+  /* Raporlar */
+  .sekmeler { display: flex; gap: 6px; margin-bottom: 8px; }
+  .sekmeler button { flex: 1; min-width: 0; padding: 10px 2px; font-size: 13px; font-weight: 700; border: 2px solid #cdd3dd; border-radius: 10px; background: #fff; color: #5b6475; }
+  .sekmeler button.secili { background: #254ba0; border-color: #254ba0; color: #fff; }
+  .filtre { display: flex; gap: 6px; margin-bottom: 8px; }
+  .filtre input[type=text] { flex: 1; }
+  .filtre select { width: auto; flex: 0 0 auto; }
+  .filtre label { margin: 0; display: flex; align-items: center; gap: 6px; font-size: 13px; white-space: nowrap; }
+  .rsatir { padding: 9px 2px; border-bottom: 1px solid #edf0f4; font-size: 14px; }
+  .rsatir .ust { display: flex; justify-content: space-between; gap: 8px; }
+  .rsatir .alt { color: #5b6475; font-size: 12px; margin-top: 2px; }
+  .rsatir .musteri { color: #7b1fa2; font-size: 12px; margin-top: 2px; }
+  .rsatir.bitti { background: #fde2e1; border-left: 5px solid #d93025; padding-left: 8px; }
+  .rsatir.kritik { background: #fff4cc; border-left: 5px solid #f2b705; padding-left: 8px; }
+  .durumRozet { display: inline-block; padding: 1px 6px; border-radius: 6px; font-size: 11px; font-weight: 700; margin-left: 6px; }
+  .durumRozet.bitti { background: #d93025; color: #fff; } .durumRozet.kritik { background: #f2b705; color: #3d2f00; }
+  .lejant { display: flex; gap: 12px; font-size: 12px; color: #5b6475; margin: 2px 0 6px; flex-wrap: wrap; }
+  .lejant i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; vertical-align: -2px; margin-right: 4px; }
+  .rozet.GELDİ { background: #d93025; } .rozet.ONARILDI, .rozet.DEPOYA { background: #1e8e3e; } .rozet.AKTARILDI { background: #e37400; } .rozet.DEVİR { background: #254ba0; } .rozet.SAYIM { background: #7b1fa2; }
+  .yerEtiket { display: inline-block; padding: 0 5px; border-radius: 5px; font-size: 11px; font-weight: 700; background: #e8eef7; color: #254ba0; margin-left: 4px; } .rozet.ÇIKTI { background: #5b6475; }
+  .bolumBaslik { font-weight: 700; font-size: 14px; margin: 12px 0 4px; color: #254ba0; }
+  .grupBaslik { background: #f3e8fd; color: #4a148c; padding: 8px; border-radius: 8px; margin-top: 10px; display: flex; justify-content: space-between; font-weight: 700; font-size: 14px; }
+  .rsatir b.eksi { color: #b3261e; }
+  .rozet { display: inline-block; padding: 1px 6px; border-radius: 6px; font-size: 11px; font-weight: 700; color: #fff; }
+  .rozet.GİRİŞ { background: #1e8e3e; } .rozet.TRANSFER { background: #e37400; } .rozet.ÇIKIŞ { background: #d93025; } .rozet.SAYIM { background: #7b1fa2; }
+  .yerler { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin-top: 4px; text-align: center; font-size: 12px; color: #5b6475; }
+  .yerler b { display: block; font-size: 15px; color: #1d2433; }
+  .yerler b.eksi { color: #b3261e; }
+  .fislink { color: #254ba0; text-decoration: underline; }
+  #raporBilgi { font-size: 12px; color: #5b6475; margin: 4px 0 8px; }
+  .tarihler { display: flex; gap: 6px; margin-bottom: 6px; }
+  .tarihler input { flex: 1; padding: 10px; font-size: 15px; border: 1px solid #cdd3dd; border-radius: 8px; min-width: 0; }
+  .hizli { display: flex; gap: 6px; margin-bottom: 8px; flex-wrap: wrap; }
+  .hizli button { flex: 1; padding: 8px 4px; font-size: 13px; border: 1px solid #cdd3dd; border-radius: 8px; background: #fff; color: #1d2433; }
+  .hizli button.secili { background: #e8eef7; border-color: #254ba0; color: #254ba0; font-weight: 700; }
+  .silbtn { border: 0; background: none; color: #b3261e; font-size: 13px; padding: 2px 0 2px 8px; text-decoration: underline; }
+  .btn.yesil { background: #1e8e3e; }
+  .btn.kirmizi { background: #d93025; }
+  /* Servis */
+  .seg { display: flex; gap: 6px; flex-wrap: wrap; }
+  .pRow { display: grid; grid-template-columns: 1fr 46px 46px 46px 40px; gap: 4px; align-items: center; margin-bottom: 6px; }
+  .pRow input[type=text] { margin: 0; }
+  .pRow input[type=checkbox] { width: 22px; height: 22px; justify-self: center; }
+  .pBaslik { font-size: 12px; color: #5b6475; font-weight: 600; text-align: center; }
+  .pBaslik span:first-child { text-align: left; }
+  .svSilBtn { border: none; background: none; color: #c62828; font-size: 16px; padding: 0 0 0 8px; cursor: pointer; }
+  .svKalemSatir { display: flex; gap: 6px; margin-bottom: 6px; align-items: center; }
+  .svKalemSatir .svKalemIslem { flex: 1; min-width: 0; }
+  .svKalemSatir .svKalemAdet { width: 64px; flex: none; text-align: center; }
+  .svKalemSil { flex: none; width: 40px; height: 42px; border: 1px solid #ddd; background: #fff; border-radius: 8px; color: #c62828; font-size: 16px; cursor: pointer; }
+  .svKalemTablo { width: 100%; border-collapse: collapse; font-size: 13px; margin: 4px 0 8px; }
+  .svKalemTablo th, .svKalemTablo td { border: 1px solid #ddd; padding: 5px 6px; }
+  .svKalemTablo th { background: #eef2fb; font-weight: 600; }
+  .svKalemTablo input { margin: 0; padding: 6px; width: 100%; box-sizing: border-box; text-align: right; }
+  .seg button { flex: 1; min-width: 0; padding: 10px 4px; font-size: 13px; font-weight: 700; border: 2px solid #cdd3dd; border-radius: 10px; background: #fff; color: #5b6475; }
+  .seg button.secili { background: #254ba0; border-color: #254ba0; color: #fff; }
+  .seg.kirmizi button.secili { background: #d93025; border-color: #d93025; }
+  .svSatir { padding: 10px 2px; border-bottom: 1px solid #edf0f4; cursor: pointer; }
+  .svSatir .ust { display: flex; justify-content: space-between; gap: 8px; align-items: center; }
+  .svSatir .alt { color: #5b6475; font-size: 12px; margin-top: 2px; }
+  .sure { display: inline-block; padding: 2px 7px; border-radius: 6px; font-size: 11px; font-weight: 700; white-space: nowrap; }
+  .sure.gecti { background: #d93025; color: #fff; } .sure.yakin { background: #f2b705; color: #3d2f00; } .sure.rahat { background: #e6f4ea; color: #137333; } .sure.kapali { background: #e8eaed; color: #5b6475; }
+  .svUrun { border: 1px solid #edf0f4; border-radius: 10px; padding: 8px; margin-top: 8px; }
+  .svUrun .satir input { padding: 8px; font-size: 15px; }
+  .zaman { border-left: 2px solid #cdd3dd; margin-left: 6px; padding-left: 12px; }
+  .zaman div { position: relative; padding: 4px 0 8px; font-size: 13px; }
+  .zaman div::before { content: ''; position: absolute; left: -18px; top: 8px; width: 10px; height: 10px; border-radius: 50%; background: #254ba0; }
+  .zaman small { display: block; color: #5b6475; }
+  .durumEtiket { display: inline-block; padding: 3px 8px; border-radius: 6px; font-size: 12px; font-weight: 700; background: #e8eef7; color: #254ba0; }
+  #yazdirAlani { display: none; }
+  @media print {
+    body { background: #fff !important; }
+    body > *:not(#yazdirAlani) { display: none !important; }
+    #yazdirAlani { display: block !important; font-family: Arial, sans-serif; color: #000; font-size: 11pt; }
+    #yazdirAlani table { width: 100%; border-collapse: collapse; margin: 6px 0; }
+    #yazdirAlani td, #yazdirAlani th { border: 1px solid #000; padding: 4px 6px; vertical-align: top; text-align: left; }
+    #yazdirAlani th { background: #e8e8e8; }
+    #yazdirAlani h2 { text-align: center; margin: 6px 0; font-size: 14pt; }
+    #yazdirAlani .imza td { height: 60px; width: 25%; }
+    @page { size: A4; margin: 12mm; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="marka" onclick="anaSayfa()" title="Ana sayfa"><img src="data:image/png;base64,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" alt="Ayas"><span>DEPO<br>TAKİP</span></div>
+  <div><small id="durum">Yükleniyor…</small><button id="servisBtn" class="gizli" onclick="servisAc()" title="Servis kayıtları">🛠</button><button id="raporBtn" class="gizli" onclick="raporAcKapat()" title="Raporlar">📊</button><button onclick="ayarlar()" title="Ayarlar">⚙</button></div>
+</header>
+
+<main>
+  <!-- PIN ekranı -->
+  <div id="girisEkrani" class="kart gizli">
+    <img id="girisLogo" src="data:image/png;base64,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" alt="Ayas">
+    <strong>Depo Takip Sistemi — Giriş</strong>
+    <label for="kadiGir">Kullanıcı adı</label>
+    <input type="text" id="kadiGir" autocomplete="username" autocapitalize="off" autocorrect="off" spellcheck="false" onkeydown="if(event.key==='Enter')el('sifreGir').focus()">
+    <label for="sifreGir">Şifre</label>
+    <input type="password" id="sifreGir" autocomplete="current-password" onkeydown="if(event.key==='Enter')girisYap()">
+    <button class="btn" id="girisBtn" onclick="girisYap()">Giriş yap</button>
+    <div id="girisMesaj" class="mesaj"></div>
+  </div>
+
+  <!-- SERVİS KAYITLARI -->
+  <div id="servisEkran" class="kart gizli">
+    <div class="satir" style="align-items:center;margin-bottom:8px"><div><strong id="svBaslik">Servis kayıtları</strong></div><button class="btn dar ikincil" id="svGeriBtn" onclick="svGeri()">← Geri</button></div>
+
+    <div id="svListe">
+      <div class="satir">
+        <div class="depoBtn"><button class="btn kirmizi" style="margin-top:0" onclick="svYeni('ARIZA')">+ Arıza kaydı</button></div>
+        <div class="depoBtn"><button class="btn" style="margin-top:0" onclick="svYeni('İADE')">+ İade / değişim</button></div>
+      </div>
+      <button class="btn ikincil" onclick="svBarkodBul()">📷 Ürün barkoduyla kayıt bul</button>
+      <div class="satir" style="margin-top:8px">
+        <div><input type="text" id="svAra" placeholder="Ara: form no, müşteri, ürün, barkod" autocomplete="off" oninput="svListeCiz()" onkeydown="if(event.key==='Enter')svAraBarkod()"></div>
+      </div>
+      <div class="filtre" style="margin-top:6px"><label><input type="checkbox" id="svKapali" onchange="svYukle()"> Kapananları da göster (son 90 gün)</label></div>
+      <div id="svBilgi" style="font-size:12px;color:#5b6475;margin:4px 0"></div>
+      <div id="svSecim" class="mesaj bilgi gizli"></div>
+      <div id="svListeIc"></div>
+      <button class="btn yesil" onclick="svExcel()">⬇ Servis kayıtlarını Excel'e indir</button>
+      <button class="btn ikincil yonetimBtn" onclick="personelAc()">👥 Kullanıcılar (yönetici)</button>
+    </div>
+
+    <div id="svForm" class="gizli">
+      <label style="margin-top:0">Kayıt türü</label>
+      <div class="seg" id="svTur"></div>
+      <label>Gönderen ismi</label>
+      <input type="text" id="svGonderen" list="svGonderenListe" placeholder="Müşteri / bayi adı" autocomplete="off">
+      <datalist id="svGonderenListe"></datalist>
+      <label>İletişim no</label>
+      <input type="text" id="svIletisim" inputmode="tel" placeholder="05xx xxx xx xx" autocomplete="off">
+      <label>Satış kanalı</label>
+      <div class="seg" id="svKanal" data-secenek="E-TİCARET|BAYİ"></div>
+      <label>Ürünlerin geliş şekli</label>
+      <div class="seg" id="svSekil" data-secenek="KARGO|AMBAR|KENDİSİ"></div>
+      <label>Koli durumu (kargo ön kontrolü)</label>
+      <div class="seg" id="svKoli" data-secenek="SAĞLAM|EZİK / HASARLI"></div>
+      <div id="svTutanakKutu" class="gizli"><label>Kargo tutanağı alındı mı?</label><div class="seg kirmizi" id="svTutanak" data-secenek="ALINDI|ALINMADI"></div></div>
+      <label>Ürünler (barkod okutun)</label>
+      <div class="satir">
+        <div><input type="text" id="svUrunGir" placeholder="Barkod / stok kodu" autocomplete="off" onkeydown="if(event.key==='Enter')svUrunEkleElle()"></div>
+        <button class="btn dar" onclick="svUrunEkleElle()">Ekle</button>
+        <button class="btn dar ikincil" onclick="kameraAc('svUrun')">📷</button>
+      </div>
+      <div id="svUrunler"></div>
+      <datalist id="svSorunListe"></datalist>
+      <label>Satış temsilcisi (isteğe bağlı)</label>
+      <div id="svTemsilciKutu"></div>
+      <label>Kabul eden (depo sorumlusu)</label>
+      <div id="svKabulEdenKutu"></div>
+      <label>Açıklama (isteğe bağlı)</label>
+      <input type="text" id="svAciklama" autocomplete="off">
+      <button class="btn" onclick="svKaydet()">Kaydı aç ve stoğa al</button>
+      <div id="svFormMesaj" class="mesaj"></div>
+    </div>
+
+    <div id="svDetay" class="gizli"></div>
+
+    <div id="svPersonel" class="gizli">
+      <div style="font-size:13px;color:#5b6475;margin-bottom:8px">Her kişi kendi kullanıcı adı ve şifresiyle girer; yaptığı işlemlerde adı otomatik yazılır. Kişiye dokunup açın, yetkilerini tek tek işaretleyin ya da hazır şablonla başlayın. Şifre yalnızca doldurulursa değişir. Kullanıcı adı boş bırakılan kişi giriş yapamaz, sadece listelerde (örn. satış temsilcisi seçimi) görünür. Değişiklikler <b>Kaydet</b>'e basınca geçerli olur.</div>
+      <div id="pListe"></div>
+      <button class="btn ikincil" onclick="personelSatir()">+ Kullanıcı ekle</button>
+      <button class="btn" onclick="personelKaydet()">Kaydet</button>
+      <div id="pMesaj" class="mesaj"></div>
+    </div>
+  </div>
+
+  <!-- Raporlar (salt okunur) -->
+  <div id="raporlar" class="kart gizli">
+    <div class="satir" style="align-items:center;margin-bottom:8px"><div><strong>Raporlar</strong></div><button class="btn dar ikincil" onclick="raporAcKapat()">← Okutmaya dön</button></div>
+    <div id="raporKilit" class="gizli">
+      <label>Rapor şifresi</label>
+      <input type="password" id="raporSifreGir" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" onkeydown="if(event.key==='Enter')raporSifreGonder()">
+      <button class="btn" onclick="raporSifreGonder()">Raporları Aç</button>
+      <div id="raporKilitMesaj" class="mesaj"></div>
+    </div>
+    <div id="raporIcerik">
+    <div class="sekmeler">
+      <button data-r="stok" class="secili" onclick="raporSec('stok')">Stok</button>
+      <button data-r="hareket" onclick="raporSec('hareket')">Hareket</button>
+      <button data-r="ayrilan" onclick="raporSec('ayrilan')">Ayrılan</button>
+      <button data-r="iade" onclick="raporSec('iade')" style="line-height:1.1;padding-top:4px;padding-bottom:4px">İade<br>Arıza</button>
+      <button data-r="sayim" onclick="raporSec('sayim')">Sayım</button>
+    </div>
+    <div id="tarihFiltre" class="gizli">
+      <div class="hizli">
+        <button data-h="bugun" onclick="hizliTarih('bugun')">Bugün</button>
+        <button data-h="dun" onclick="hizliTarih('dun')">Dün</button>
+        <button data-h="hafta" onclick="hizliTarih('hafta')">Bu hafta</button>
+        <button data-h="ay" onclick="hizliTarih('ay')">Bu ay</button>
+        <button data-h="tumu" onclick="hizliTarih('tumu')">Tümü</button>
+      </div>
+      <div class="tarihler">
+        <input type="date" id="tarihBas" onchange="tarihDegisti()">
+        <input type="date" id="tarihBit" onchange="tarihDegisti()">
+      </div>
+    </div>
+    <div class="filtre">
+      <input type="text" id="raporAra" placeholder="Ara: ürün, kod, fiş, müşteri…" oninput="raporCiz()" autocomplete="off">
+      <select id="iadeYerFiltre" class="gizli" onchange="raporCiz()"><option value="">İade + Arızalı</option></select>
+      <select id="raporTur" class="gizli" onchange="raporCiz()"><option value="">Tümü</option><option>GİRİŞ</option><option>TRANSFER</option><option>ÇIKIŞ</option><option>SAYIM</option></select>
+    </div>
+    <div id="stokFiltre">
+      <div class="filtre">
+        <select id="yerFiltre" style="flex:1;min-width:0;width:100%" onchange="if(this.value!=='')el('sadeceStoklu').checked=true;raporCiz()"><option value="">Tüm yerler (KULLANILABİLİR)</option></select>
+        <select id="durumFiltre" style="flex:1;min-width:0;width:100%" onchange="raporCiz()">
+          <option value="">Tüm durumlar</option>
+          <option value="uretim">Üretilecekler (biten + kritik)</option>
+          <option value="BİTTİ">Sadece bitenler</option>
+          <option value="KRİTİK">Sadece kritikler</option>
+        </select>
+      </div>
+      <div class="filtre"><label><input type="checkbox" id="sadeceStoklu" onchange="raporCiz()"> Sadece stoğu olanlar</label></div>
+      <div class="lejant"><span><i style="background:#d93025"></i>Bitti (0 ve altı)</span><span><i style="background:#f2b705"></i>Kritik (eşiğin altı)</span><span id="lejantNot"></span></div>
+    </div>
+    <div id="raporBilgi"></div>
+    <button class="btn kirmizi gizli" id="fisSilBtn" onclick="fisSil()">Bu fişi tamamen sil</button>
+    <div id="raporListe"></div>
+    <button class="btn yesil" onclick="excelIndir()">⬇ Bu sekmeyi Excel'e indir</button>
+    <button class="btn" id="tumuBtn" onclick="tumunuIndir()">⬇ Tüm raporlar (tek Excel, ayrı sayfalar)</button>
+    <button class="btn ikincil" onclick="raporYukle()">↻ Yenile</button>
+    </div>
+  </div>
+
+  <div id="uygulama" class="gizli">
+    <div id="okutmaYokNot" class="kart"><b>Okutma yetkiniz yok.</b><div style="font-size:14px;color:#5b6475;margin-top:6px">Servis kayıtları için üstteki 🛠 düğmesini kullanın. Yetki için yöneticinize başvurun.</div><button class="btn" onclick="servisAc()">🛠 Servis kayıtları</button></div>
+    <div class="kart">
+      <label style="margin-top:0">İşlem</label>
+      <div class="mod">
+        <button data-m="GİRİŞ" class="secili" onclick="modSec('GİRİŞ')">GİRİŞ<br><small>Montajdan</small></button>
+        <button data-m="TRANSFER" onclick="modSec('TRANSFER')">TRANSFER<br><small>Yerler arası</small></button>
+        <button data-m="ÇIKIŞ" onclick="modSec('ÇIKIŞ')">ÇIKIŞ<br><small>Müşteriye</small></button>
+        <button data-m="SAYIM" onclick="modSec('SAYIM')">SAYIM<br><small>Raf sayımı</small></button>
+      </div>
+
+      <div class="satir">
+        <div id="kaynakKutu"><label id="kaynakEtiket">Nereden</label><select id="kaynak" onchange="yerDegisti()"></select></div>
+        <div class="ok-isaret" id="okIsaret">→</div>
+        <div id="hedefKutu"><label>Nereye</label><select id="hedef" onchange="yerDegisti()"></select></div>
+      </div>
+      <div id="musteriKutu" class="gizli">
+        <label id="musteriEtiket">Ayrılan müşteri (zorunlu)</label>
+        <input type="text" id="musteriYaz" list="musteriListe" placeholder="Müşteri adı" autocomplete="off" oninput="durum.musteri=this.value;taslakYaz()">
+        <datalist id="musteriListe"></datalist>
+        <datalist id="arizaListe"></datalist>
+        <select id="musteriSec" onchange="durum.musteri=this.value;taslakYaz();listeyiCiz()"></select>
+      </div>
+      <div id="kilitNot" class="mesaj bilgi gizli">İşlemi veya yeri değiştirmek için önce listeyi kaydedin ya da temizleyin.</div>
+
+      <label>İşlemi yapan</label>
+      <div id="okutanKutu"><input type="text" id="okutan" placeholder="Adınız" list="personelListe" autocomplete="off" oninput="taslakYaz()"></div>
+      <datalist id="personelListe"></datalist>
+
+      <label id="notEtiket">Not (isteğe bağlı)</label>
+      <input type="text" id="not" oninput="taslakYaz()">
+    </div>
+
+    <div class="kart">
+      <button class="btn" id="kameraBtn" onclick="kameraAcKapat()">📷 Kamerayı Aç</button>
+      <div id="ayarKutu"><div class="kart">
+  <div id="ayarAd" style="font-weight:700;font-size:17px"></div>
+  <div id="ayarRoller" style="font-size:13px;color:#5b6475;margin:2px 0 6px"></div>
+  <button class="btn ikincil" onclick="el('sifreFormu').classList.toggle('gizli')">Şifremi değiştir</button>
+  <div id="sifreFormu" class="gizli">
+    <label for="sfEski">Mevcut şifre</label><input type="password" id="sfEski" autocomplete="current-password">
+    <label for="sfYeni">Yeni şifre (en az 6 karakter)</label><input type="password" id="sfYeni" autocomplete="new-password">
+    <label for="sfYeni2">Yeni şifre (tekrar)</label><input type="password" id="sfYeni2" autocomplete="new-password" onkeydown="if(event.key==='Enter')sifreDegistir()">
+    <button class="btn" onclick="sifreDegistir()">Şifreyi kaydet</button>
+  </div>
+  <div id="sfMesaj" class="mesaj"></div>
+  <button class="btn ikincil yonetimBtn" onclick="ayarKapat();servisAc();personelAc()">👥 Kullanıcılar</button>
+  <button class="btn" style="background:#c62828" onclick="ayarKapat();cikisYap('')">Çıkış yap</button>
+  <button class="btn ikincil" onclick="ayarKapat()">Kapat</button>
+</div></div>
+<div id="urunSecKutu"><div class="kart"><div style="font-weight:700;font-size:16px">Bu barkod birden fazla ürüne ait</div>
+  <div id="urunSecAlt" style="font-size:13px;color:#5b6475;margin:4px 0 6px"></div><div id="urunSecListe"></div>
+  <button class="btn ikincil" onclick="urunSecKapat()">Vazgeç</button></div></div>
+<div id="kameraKutu">
+        <video id="video" playsinline muted autoplay></video>
+        <div id="cerceve"></div>
+        <div id="kameraUst"><span id="kameraBaslik">Barkod okut</span><button onclick="kameraKapat()">✕ Kapat</button></div>
+        <div id="kameraMesaj"></div>
+        <div id="kameraIpucu">Barkodu çerçevenin içine yatay tutun</div>
+        <div id="kameraAlt">
+          <label><input type="checkbox" id="artArda" onchange="artArdaDegisti()"> Art arda okut</label>
+          <span id="kameraSayac"></span>
+        </div>
+      </div>
+      <button class="btn ikincil" onclick="document.getElementById('foto').click()">Fotoğraf çekerek okut</button>
+      <input type="file" id="foto" accept="image/*" capture="environment" class="gizli" onchange="fotoOku(this)">
+
+      <label>Barkod veya stok kodu (el okuyucu da buraya yazar)</label>
+      <div class="satir">
+        <div><input type="text" id="elle" placeholder="Barkod / stok kodu" autocomplete="off" onkeydown="if(event.key==='Enter'){elleEkle();}"></div>
+        <button class="btn dar" onclick="elleEkle()">Ekle</button>
+      </div>
+      <div id="mesaj" class="mesaj"></div>
+      <div id="sayimSonuc" class="mesaj bilgi gizli"></div>
+    </div>
+
+    <div class="kart">
+      <strong id="listeBaslik">Liste</strong>
+      <table><tbody id="liste"></tbody></table>
+      <div id="bosListe" class="bos">Henüz ürün okutulmadı.</div>
+      <div class="toplam" id="toplam"></div>
+      <button class="btn" id="kaydetBtn" onclick="kaydet()" disabled>Fişi Kaydet</button>
+      <button class="btn ikincil" onclick="listeyiTemizle()">Listeyi Temizle</button>
+    </div>
+  </div>
+</main>
+<div id="yazdirAlani"></div>
+
+<script>
+  var FORMATLAR = ['EAN13', 'EAN8', 'Code128', 'Code39', 'UPCA', 'UPCE', 'ITF', 'QRCode', 'DataMatrix'];
+  var HAFIZA = 'barkodDepoV2';
+  var durum = { pin: '', mod: 'GİRİŞ', kaynak: '', hedef: '', okutan: '', not: '', musteri: '', liste: [] };
+  var personel = [], sayimYer = '', farkHaric = [], girisYerler = null;
+  // SAYIM DEPO'da henüz dağıtılmamış adet (sayım − diğer depolar)
+  function farkStok(kod) {
+    var y = stok[kod] || {}, t = y[sayimYer] || 0;
+    yerler.forEach(function (x) { if (x !== sayimYer && farkHaric.indexOf(x) < 0) t -= y[x] || 0; });
+    return t;
+  }
+  // Bir yerden gönderilebilecek adet
+  function musait(kod, yer) { return yer === sayimYer ? ((stok[kod] || {})._CANLI || 0) : ((stok[kod] || {})[yer] || 0); }
+  function yerListesi(alan) {
+    if (alan === 'hedef' && durum.mod === 'GİRİŞ' && girisYerler) return girisYerler;
+    if (alan === 'kaynak' && durum.mod === 'ÇIKIŞ' && sayimYer) return yerler.filter(function (y) { return y !== sayimYer; });
+    return yerler;
+  }
+  function okutanAlaniKur() {
+    var kutu = el('okutanKutu'); if (!kutu) return;
+    if (durum.ben) { kutu.innerHTML = '<input type="text" id="okutan" readonly style="background:#f2f4f7">'; el('okutan').value = durum.ben.ad; return; }
+    var l = personel.filter(function (p) { return p.depo || p.servis; });
+    var simdi = (durum.okutan || '').trim();
+    if (!l.length) { kutu.innerHTML = '<input type="text" id="okutan" placeholder="Adınız" list="personelListe" autocomplete="off" oninput="taslakYaz()">'; el('okutan').value = simdi; return; }
+    var adlar = l.map(function (p) { return p.ad; });
+    if (simdi && adlar.indexOf(simdi) < 0) adlar.push(simdi);
+    kutu.innerHTML = '<select id="okutan" onchange="taslakYaz()"><option value="">— Adınızı seçin —</option>' + adlar.map(function (a) { return '<option' + (a === simdi ? ' selected' : '') + '>' + esc(a) + '</option>'; }).join('') + '</select>';
+  }
+  var yerler = ['SAYIM DEPO'], musteriZorunlu = ['AYRILMIŞ'], iadeYerler = [], ayrilan = {}, iadeOneri = { kimden: [], ariza: [], iade: [] };
+  var VARSAYILAN_ARIZA = ['Motor arızası', 'Kanat kırık', 'Gövde hasarı', 'Elektrik / kablo', 'Ses / titreşim', 'Nakliye hasarı', 'Kondansatör', 'Diğer'];
+  var VARSAYILAN_IADE = ['Yanlış ürün', 'Müşteri vazgeçti', 'Fazla sipariş', 'Hasarlı geldi', 'Arıza şikayeti (kontrol edilecek)', 'Diğer'];
+  function iadeHedefi() { return durum.hedef === 'İADE'; } // false ise ARIZALI
+  var urunByKey = {}, stok = {};
+
+  /* ================= Hafıza (telefonda kalır) ================= */
+  function taslakYaz() {
+    // Alanlar yalnızca okutma ekranı açıkken okunur (giriş ekranındayken kayıtlı ad silinmesin)
+    if (!el('uygulama').classList.contains('gizli')) { durum.okutan = el('okutan').value; durum.not = el('not').value; }
+    try { localStorage.setItem(HAFIZA, JSON.stringify(durum)); } catch (e) {}
+  }
+  function taslakOku() {
+    try { var t = JSON.parse(localStorage.getItem(HAFIZA) || 'null'); if (t) durum = Object.assign(durum, t); } catch (e) {}
+  }
+
+  /* ================= Sunucu ================= */
+  function api(yontem, veri) {
+    if (API_URL.indexOf('http') !== 0) return Promise.reject(new Error('index.html içinde API_URL ayarlanmamış.'));
+    var istek = yontem === 'GET'
+      ? fetch(API_URL + '?islem=veri&pin=' + encodeURIComponent(durum.pin))
+      : fetch(API_URL, { method: 'POST', body: JSON.stringify(veri) }); // text/plain: Google ile uyumlu
+    return istek.then(function (r) { return r.json(); }).then(function (j) {
+      if (!j.ok) { oturumHatasi(j.hata); throw new Error(j.hata || 'Bilinmeyen hata'); }
+      return j;
+    });
+  }
+
+  function yukle() {
+    el('durum').textContent = 'Bağlanıyor…';
+    return api('GET').then(function (j) {
+      var v = j.veri;
+      yerler = v.yerler; musteriZorunlu = v.musteriZorunlu || []; iadeYerler = v.iadeYerler || []; iadeOneri = Object.assign({ kimden: [], ariza: [], iade: [] }, v.iadeOneri || {}); ayrilan = v.ayrilan || {}; stok = v.stok || {}; urunByKey = {}; cokluBarkod = {}; personel = v.personel || []; personelDatalist(); okutanAlaniKur();
+      sayimYer = v.sayimYer || ''; farkHaric = v.farkHaric || []; girisYerler = v.girisYerler || null;
+      // Yer adı değiştiyse (örn. DEPO -> ANA DEPO) telefondaki eski seçimi düzelt
+      if (durum.kaynak && yerler.indexOf(durum.kaynak) < 0) durum.kaynak = yerler[0];
+      if (durum.hedef && yerler.indexOf(durum.hedef) < 0) durum.hedef = yerler[0];
+      if (durum.mod === 'GİRİŞ' && !durum.hedef) durum.hedef = yerler[0];
+      v.urunler.forEach(function (u) { anahtarEkle(u.kod, u); u.barkodlar.forEach(function (b) { anahtarEkle(b, u); }); });
+      el('durum').textContent = v.urunler.length + ' ürün';
+      durum.ben = v.ben || durum.ben; durum.okutan = (durum.ben && durum.ben.ad) || ''; taslakYaz();
+      el('girisEkrani').classList.add('gizli'); el('uygulama').classList.remove('gizli');
+      yetkiUygula();
+      yerleriDoldur(); ekraniKur();
+      if (document.body.classList.contains('okutmaYok') && el('servisEkran').classList.contains('gizli')) servisAc();
+    }).catch(function (e) {
+      el('durum').textContent = 'Bağlantı yok';
+      if (/^OTURUM/.test(e.message) || !durum.pin) { if (!durum.pin) girisGoster(''); }
+      else { el('uygulama').classList.remove('gizli'); mesaj('Sunucuya bağlanılamadı: ' + e.message + ' — İnterneti kontrol edip sayfayı yenileyin.', 'hata'); }
+    });
+  }
+
+  function girisGoster(hata) {
+    el('uygulama').classList.add('gizli'); el('girisEkrani').classList.remove('gizli');
+    if (el('durum').textContent === 'Yükleniyor…') el('durum').textContent = '';
+    var m = el('girisMesaj'); if (hata) { m.textContent = hata; m.className = 'mesaj hata'; } else m.className = 'mesaj';
+  }
+  /* ---- Giriş / oturum / yetki ---- */
+  function girisYap() {
+    var kadi = el('kadiGir').value.trim().toLocaleLowerCase('tr-TR'), sifre = el('sifreGir').value;
+    if (!kadi || !sifre) { girisGoster('Kullanıcı adı ve şifreyi yazın.'); return; }
+    var m = el('girisMesaj'); m.className = 'mesaj bilgi'; m.textContent = 'Giriş yapılıyor…'; el('girisBtn').disabled = true;
+    api('POST', { islem: 'giris', kadi: kadi, sifre: sifre }).then(function (j) {
+      durum.pin = j.sonuc.anahtar; durum.ben = j.sonuc.kullanici; durum.okutan = durum.ben.ad; durum.kadi = kadi;
+      el('sifreGir').value = ''; m.className = 'mesaj'; taslakYaz(); yukle();
+    }).catch(function (e) { girisGoster(e.message); })
+      .then(function () { el('girisBtn').disabled = false; });
+  }
+  // Sunucu "OTURUM:" derse (süre doldu, şifre değişti, kullanıcı kapatıldı) giriş ekranına dönülür
+  function oturumHatasi(h) {
+    if (!/^OTURUM/.test(h || '') || !durum.pin) return false;
+    cikisYap(String(h).replace(/^OTURUM:\s*/, ''));
+    return true;
+  }
+  function cikisYap(msj) {
+    kameraKapat(); durum.pin = ''; durum.ben = null; taslakYaz();
+    ['raporlar', 'servisEkran', 'raporBtn', 'servisBtn'].forEach(function (id) { el(id).classList.add('gizli'); });
+    document.body.classList.remove('yonetici', 'silYetki', 'duzeltYetki', 'svKabulYetki', 'svSilYetki', 'okutmaYok');
+    el('kadiGir').value = durum.kadi || ''; el('sifreGir').value = '';
+    girisGoster(msj || '');
+  }
+  // Yetki kodları sunucudakiyle aynı (Kod.gs → YETKILER)
+  var YETKI_KISA = { okut_giris: 'Giriş', okut_transfer: 'Transfer', okut_cikis: 'Çıkış', okut_sayim: 'Sayım', rapor: 'Raporlar', duzelt: 'Düzeltme', sil: 'Hareket silme',
+    sv_kabul: 'Servis kabul', sv_depo: 'Servis depo', sv_servis: 'Servis teknik', sv_satis: 'Servis satış', sv_sil: 'Servis silme', admin: 'Yönetici' };
+  var MOD_YETKI = { 'GİRİŞ': 'okut_giris', 'TRANSFER': 'okut_transfer', 'ÇIKIŞ': 'okut_cikis', 'SAYIM': 'okut_sayim' };
+  function yetkiVar(k) { var b = durum.ben || {}; return !!b.admin || (b.yetkiler || []).indexOf(k) >= 0; }
+  function yetkiUygula() {
+    var b = durum.ben || {}, c = document.body.classList;
+    c.toggle('yonetici', !!b.admin);
+    c.toggle('silYetki', yetkiVar('sil')); c.toggle('duzeltYetki', yetkiVar('duzelt'));
+    c.toggle('svKabulYetki', yetkiVar('sv_kabul')); c.toggle('svSilYetki', yetkiVar('sv_sil'));
+    var izinli = Object.keys(MOD_YETKI).filter(function (m) { return yetkiVar(MOD_YETKI[m]); });
+    document.querySelectorAll('.mod button[data-m]').forEach(function (bt) { bt.classList.toggle('yetkisiz', izinli.indexOf(bt.dataset.m) < 0); });
+    c.toggle('okutmaYok', !izinli.length);
+    if (izinli.length && izinli.indexOf(durum.mod) < 0 && !durum.liste.length) modSec(izinli[0]);
+    el('raporBtn').classList.toggle('gizli', !yetkiVar('rapor'));
+    el('servisBtn').classList.remove('gizli');
+    okutanAlaniKur();
+  }
+  function yetkiMetni(b) { return b && b.admin ? 'Yönetici (tüm yetkiler)' : ((b && b.yetkiler) || []).map(function (k) { return YETKI_KISA[k] || k; }).join(' · ') || '—'; }
+  // Oturum süreyi sunucu denetler; eski "günde bir kez PIN" kuralı kalktı
+  function gunKontrol() { return true; }
+  function ayarlar() {
+    if (!durum.pin || !durum.ben) return;
+    el('ayarAd').textContent = durum.ben.ad + ' (' + durum.ben.kadi + ')';
+    el('ayarRoller').textContent = 'Yetkiler: ' + yetkiMetni(durum.ben);
+    el('sifreFormu').classList.add('gizli'); el('sfMesaj').className = 'mesaj';
+    ['sfEski', 'sfYeni', 'sfYeni2'].forEach(function (id) { el(id).value = ''; });
+    el('ayarKutu').classList.add('acik');
+  }
+  function ayarKapat() { el('ayarKutu').classList.remove('acik'); }
+  function sifreDegistir() {
+    var m = el('sfMesaj'), eski = el('sfEski').value, yeni = el('sfYeni').value;
+    var h = !eski ? 'Mevcut şifreyi yazın.' : yeni.length < 6 ? 'Yeni şifre en az 6 karakter olmalı.' : yeni !== el('sfYeni2').value ? 'Yeni şifreler aynı değil.' : '';
+    if (h) { m.className = 'mesaj hata'; m.textContent = h; return; }
+    m.className = 'mesaj bilgi'; m.textContent = 'Kaydediliyor…';
+    api('POST', { islem: 'sifreDegistir', pin: durum.pin, eski: eski, yeni: yeni }).then(function (j) {
+      durum.pin = j.sonuc.anahtar; taslakYaz();
+      m.className = 'mesaj ok'; m.textContent = 'Şifre değişti ✓ Diğer cihazlardaki oturumlarınız kapandı.';
+      el('sifreFormu').classList.add('gizli'); ['sfEski', 'sfYeni', 'sfYeni2'].forEach(function (id) { el(id).value = ''; });
+    }).catch(function (e) { m.className = 'mesaj hata'; m.textContent = e.message; });
+  }
+
+  /* ================= Ürün arama ================= */
+  function normal(s) { return String(s || '').replace(/\s+/g, '').toUpperCase(); }
+  // Aynı barkod birden fazla ürüne verilmişse hepsi tutulur; okutulunca kullanıcıya sorulur
+  var cokluBarkod = {};
+  function anahtarEkle(k, u) {
+    k = normal(k); if (!k) return;
+    [k, k.replace(/^0+/, '')].forEach(function (a, i) {
+      if (!a || (i === 1 && a === k)) return;
+      var v = urunByKey[a];
+      if (!v) { urunByKey[a] = u; return; }
+      if (v.kod === u.kod) return;
+      var l = cokluBarkod[a] || [v];
+      if (!l.some(function (x) { return x.kod === u.kod; })) l.push(u);
+      cokluBarkod[a] = l;
+    });
+  }
+  function bul(k) { k = normal(k); return urunByKey[k] || urunByKey[k.replace(/^0+/, '')] || null; }
+  function bulHepsi(k) {
+    k = normal(k);
+    var a = urunByKey[k] ? k : k.replace(/^0+/, '');
+    if (cokluBarkod[a]) return cokluBarkod[a].slice();
+    var u = urunByKey[a]; return u ? [u] : [];
+  }
+  var urunSecGeri = null;
+  function urunSecici(liste, metin, geri) {
+    urunSecGeri = geri;
+    el('urunSecAlt').textContent = 'Barkod ' + metin + ' — doğru ürünü seçin:';
+    el('urunSecListe').innerHTML = liste.map(function (u, i) { return '<button class="secBtn" data-i="' + i + '"><b>' + esc(u.kod) + '</b><small>' + esc(u.ad) + '</small></button>'; }).join('');
+    el('urunSecListe').onclick = function (e) {
+      var b = e.target.closest('.secBtn'); if (!b) return;
+      var g = urunSecGeri; urunSecKapat(); if (g) g(liste[+b.dataset.i]);
+    };
+    el('urunSecKutu').classList.add('acik');
+  }
+  function urunSecKapat() { el('urunSecKutu').classList.remove('acik'); urunSecGeri = null; }
+  function secimAcik() { return el('urunSecKutu').classList.contains('acik'); }
+
+  /* ================= İşlem ve yer seçimi ================= */
+  function yerleriDoldur() {
+    ['kaynak', 'hedef'].forEach(function (id) {
+      var l = yerListesi(id), anahtar = l.join('|');
+      if (el(id).dataset.l !== anahtar) { el(id).innerHTML = l.map(function (y) { return '<option>' + esc(y) + '</option>'; }).join(''); el(id).dataset.l = anahtar; }
+    });
+    // Moda uymayan eski seçim düzeltilir (örn. ÇIKIŞ'ta SAYIM DEPO seçilemez)
+    if (durum.mod === 'GİRİŞ' && durum.hedef && yerListesi('hedef').indexOf(durum.hedef) < 0) durum.hedef = yerListesi('hedef')[0];
+    if (durum.mod === 'ÇIKIŞ' && durum.kaynak && yerListesi('kaynak').indexOf(durum.kaynak) < 0) durum.kaynak = yerListesi('kaynak')[0];
+  }
+
+  function modSec(m) {
+    if (durum.liste.length && m !== durum.mod) return;
+    durum.mod = m;
+    if (m === 'GİRİŞ') { durum.kaynak = ''; if (!durum.hedef) durum.hedef = yerler[0]; }
+    if (m === 'ÇIKIŞ' || m === 'SAYIM') { durum.hedef = ''; if (!durum.kaynak) durum.kaynak = yerler[0]; }
+    if (m === 'TRANSFER') {
+      if (!durum.kaynak) durum.kaynak = yerler[0];
+      if (!durum.hedef || durum.hedef === durum.kaynak) durum.hedef = yerler.filter(function (y) { return y !== durum.kaynak; })[0];
+    }
+    ekraniKur();
+  }
+
+  function yerDegisti() {
+    durum.kaynak = durum.mod === 'GİRİŞ' ? '' : el('kaynak').value;
+    durum.hedef = (durum.mod === 'ÇIKIŞ' || durum.mod === 'SAYIM') ? '' : el('hedef').value;
+    if (durum.mod === 'TRANSFER' && durum.kaynak === durum.hedef) mesaj('Nereden ve nereye aynı olamaz.', 'hata');
+    ekraniKur();
+  }
+
+  function iadeGirisi() { return durum.mod === 'GİRİŞ' && iadeYerler.indexOf(durum.hedef) >= 0; }
+  function ayrilanaGiris() { return (durum.mod === 'GİRİŞ' || durum.mod === 'TRANSFER') && musteriZorunlu.indexOf(durum.hedef) >= 0; }
+  function ayrilandanCikis() { return (durum.mod === 'TRANSFER' || durum.mod === 'ÇIKIŞ') && musteriZorunlu.indexOf(durum.kaynak) >= 0; }
+
+  function ekraniKur() {
+    yerleriDoldur();
+    var m = durum.mod, kilitli = durum.liste.length > 0;
+    document.querySelectorAll('.mod button').forEach(function (b) {
+      b.classList.toggle('secili', b.getAttribute('data-m') === m);
+      b.disabled = kilitli && b.getAttribute('data-m') !== m;
+    });
+    el('kaynakKutu').classList.toggle('gizli', m === 'GİRİŞ');
+    el('hedefKutu').classList.toggle('gizli', m === 'ÇIKIŞ' || m === 'SAYIM');
+    el('kaynakEtiket').textContent = m === 'SAYIM' ? 'Sayılan yer' : 'Nereden';
+    el('okIsaret').classList.toggle('gizli', m !== 'TRANSFER');
+    if (durum.kaynak) el('kaynak').value = durum.kaynak;
+    if (durum.hedef) el('hedef').value = durum.hedef;
+    el('kaynak').disabled = el('hedef').disabled = kilitli;
+    el('kilitNot').classList.toggle('gizli', !kilitli);
+    el('okutan').value = durum.okutan || '';
+    el('not').value = durum.not || '';
+    var ag = ayrilanaGiris(), ac = ayrilandanCikis(), ig = iadeGirisi();
+    el('musteriKutu').classList.toggle('gizli', !ag && !ac && !ig);
+    el('musteriYaz').classList.toggle('gizli', !ag && !ig);
+    if (ig) {
+      el('musteriEtiket').textContent = iadeHedefi() ? 'Kimden geldi? (müşteri / bayi — zorunlu)' : 'Kimden / nereden geldi? (müşteri, bayi veya Montaj / Üretim — zorunlu)';
+      var adlar = {}; (iadeHedefi() ? [] : ['Montaj / Üretim']).concat(iadeOneri.kimden).concat(Object.keys(ayrilan)).forEach(function (x) { if (x && x.charAt(0) !== '(') adlar[x] = 1; });
+      el('musteriListe').innerHTML = Object.keys(adlar).sort().map(function (x) { return '<option value="' + esc(x) + '">'; }).join('');
+      el('musteriYaz').value = durum.musteri || '';
+      var ar = {}; (iadeHedefi() ? VARSAYILAN_IADE.concat(iadeOneri.iade) : VARSAYILAN_ARIZA.concat(iadeOneri.ariza)).forEach(function (x) { if (x) ar[x] = 1; });
+      el('arizaListe').innerHTML = Object.keys(ar).map(function (x) { return '<option value="' + esc(x) + '">'; }).join('');
+      el('not').setAttribute('list', 'arizaListe');
+    } else el('not').removeAttribute('list');
+    el('musteriSec').classList.toggle('gizli', !ac);
+    if (ag) {
+      el('musteriEtiket').textContent = durum.hedef + ': hangi müşteriye ayrılıyor? (zorunlu)';
+      el('musteriListe').innerHTML = Object.keys(ayrilan).filter(function (x) { return x.charAt(0) !== '('; }).sort().map(function (x) { return '<option value="' + esc(x) + '">'; }).join('');
+      el('musteriYaz').value = durum.musteri || '';
+    }
+    if (ac) {
+      el('musteriEtiket').textContent = durum.kaynak + ': hangi müşterinin malı? (zorunlu)';
+      var ms = Object.keys(ayrilan).sort();
+      if (durum.musteri && ms.indexOf(durum.musteri) < 0) durum.musteri = '';
+      el('musteriSec').innerHTML = '<option value="">— Müşteri seçin —</option>' + ms.map(function (x) {
+        var t = 0; Object.keys(ayrilan[x]).forEach(function (k) { t += ayrilan[x][k]; });
+        return '<option value="' + esc(x) + '">' + esc(x) + ' (' + t + ' adet)</option>';
+      }).join('');
+      el('musteriSec').value = durum.musteri || '';
+    }
+    var iade = iadeGirisi();
+    el('notEtiket').textContent = iade ? ((iadeHedefi() ? 'İade sebebi' : 'Arıza sebebi') + ' (zorunlu — listeden seçin veya yazın)') : ((m === 'ÇIKIŞ' && !ac) ? 'Müşteri / Sipariş / İrsaliye No (zorunlu)' : (m === 'ÇIKIŞ' ? 'İrsaliye / Sipariş No (isteğe bağlı)' : 'Not (isteğe bağlı)'));
+    el('not').placeholder = iade ? (iadeHedefi() ? 'Örn. Yanlış ürün' : 'Örn. Motor arızası') : m === 'ÇIKIŞ' ? 'Örn. ABC Ltd / Trendyol 12345' : (m === 'SAYIM' ? 'Örn. A rafı' : 'Örn. iş emri no');
+    var baslik = { 'GİRİŞ': (iade ? (iadeHedefi() ? 'Giriş: İade → ' : 'Giriş: Arızalı ürün → ') : 'Giriş: Montaj → ') + durum.hedef, 'TRANSFER': 'Transfer: ' + durum.kaynak + ' → ' + durum.hedef, 'ÇIKIŞ': 'Çıkış: ' + durum.kaynak + ' → Müşteri', 'SAYIM': 'Sayım: ' + durum.kaynak };
+    el('listeBaslik').textContent = baslik[m];
+    listeyiCiz();
+  }
+
+  /* ================= Okutma ================= */
+  function okundu(kodMetni, secilen) {
+    if (secimAcik()) return false;
+    if (!secilen) {
+      var cok = bulHepsi(kodMetni);
+      if (cok.length > 1) { sinyal(true); urunSecici(cok, kodMetni, function (u) { okundu(kodMetni, u); }); return true; }
+    }
+    if (!Object.keys(urunByKey).length) {
+      sinyal(false); cerceveRenk('hata');
+      mesaj('Ürün listesi yüklenmedi (sunucuya bağlanılamadı). İnterneti kontrol edip sayfayı yenileyin.', 'hata');
+      return false;
+    }
+    var u = secilen || bul(kodMetni);
+    if (!u) {
+      sinyal(false); cerceveRenk('hata');
+      mesaj('Bulunamadı: ' + kodMetni + ' — bu barkod "Urunler" sayfasında yok.', 'hata');
+      return false;
+    }
+    var satir = durum.liste.filter(function (s) { return s.kod === u.kod; })[0];
+    if (satir) satir.adet += 1;
+    else durum.liste.unshift({ kod: u.kod, ad: u.ad, barkod: normal(kodMetni), adet: 1 });
+    sinyal(true); cerceveRenk('okundu');
+    mesaj('✓ ' + u.ad + ' (' + u.kod + ') — listede: ' + (satir ? satir.adet : 1), 'ok');
+    ekraniKur();
+    return true;
+  }
+
+  function elleEkle() {
+    var g = el('elle'), v = g.value.trim();
+    if (!v) return;
+    okundu(v); g.value = ''; g.focus();
+  }
+
+  /* ---- Canlı kamera: zxing-wasm ile kare kare okuma ---- */
+  var akis = null, taraniyor = false, sonKod = '', sonGorulme = 0, okunanBuOturum = 0;
+  var tuval = document.createElement('canvas'), ctx2d = tuval.getContext('2d', { willReadFrequently: true });
+
+  // Logoya tıklanınca: kamera/raporlar kapanır, okutma ekranının en üstüne dönülür
+  function anaSayfa() {
+    if (akis) kameraKapat();
+    if (!el('girisEkrani').classList.contains('gizli')) return; // giriş ekranındaysa bir şey yapma
+    el('raporlar').classList.add('gizli');
+    el('servisEkran').classList.add('gizli');
+    el('uygulama').classList.remove('gizli');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  var kameraModu = 'okutma'; // 'okutma' | 'svUrun' | 'svBul'
+  function kameraAcKapat() { if (akis) kameraKapat(); else kameraAc('okutma'); }
+
+  // Kamera ile ilgili mesaj: hangi ekrandan açıldıysa orada görünür
+  function kameraHata(m) {
+    if (kameraModu === 'svUrun') { el('svFormMesaj').className = 'mesaj hata'; el('svFormMesaj').textContent = m; }
+    else if (kameraModu === 'svBul') { el('svSecim').className = 'mesaj hata'; el('svSecim').textContent = m; }
+    else mesaj(m, 'hata');
+  }
+  function kameraAc(mod) {
+    kameraModu = mod || 'okutma';
+    if (typeof ZXingWASM === 'undefined') { kameraHata('Barkod okuyucu yüklenemedi. İnterneti kontrol edip sayfayı yenileyin.'); return; }
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) { kameraHata('Bu tarayıcı kamerayı desteklemiyor. Safari veya Chrome kullanın.'); return; }
+    navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: 'environment' }, width: { ideal: 1920 }, height: { ideal: 1080 } }, audio: false })
+      .then(function (s) {
+        akis = s;
+        var v = el('video'); v.srcObject = s; v.play();
+        el('kameraKutu').classList.add('acik');
+        document.body.style.overflow = 'hidden';
+        el('kameraMesaj').className = ''; el('kameraSayac').textContent = '';
+        el('kameraBaslik').textContent = kameraModu === 'svUrun' ? 'Servis: ürün okut' : (kameraModu === 'svBul' ? 'Servis kaydı bul' : el('listeBaslik').textContent);
+        try { el('artArda').checked = localStorage.getItem('artArda') === '1'; } catch (e) {}
+        el('kameraAlt').style.visibility = kameraModu === 'okutma' ? 'visible' : 'hidden';
+        okunanBuOturum = 0; sonKod = ''; sonGorulme = 0;
+        sesHazirla();
+        taraniyor = true; kareOku();
+      })
+      .catch(function (e) {
+        if (e && (e.name === 'NotFoundError' || e.name === 'OverconstrainedError'))
+          kameraHata('Bu cihazda kamera bulunamadı. Bilgisayarda USB barkod okuyucuyla ya da barkodu/stok kodunu kutuya yazarak ekleyin.');
+        else if (e && e.name === 'NotAllowedError')
+          kameraHata('Kamera izni verilmedi. iPhone: Ayarlar → Safari → Kamera → İzin Ver. Android/Chrome: adres çubuğundaki kilit simgesi → Kamera → İzin ver.');
+        else
+          kameraHata('Kamera açılamadı (' + (e.name || e) + '). Başka bir uygulama kamerayı kullanıyor olabilir; kapatıp tekrar deneyin.');
+      });
+  }
+
+  function kameraKapat() {
+    taraniyor = false;
+    if (akis) { akis.getTracks().forEach(function (t) { t.stop(); }); akis = null; }
+    el('kameraKutu').classList.remove('acik');
+    document.body.style.overflow = '';
+  }
+  function artArdaDegisti() { try { localStorage.setItem('artArda', el('artArda').checked ? '1' : '0'); } catch (e) {} }
+  function kameraMesaj(m, tip) { var d = el('kameraMesaj'); d.textContent = m; d.className = tip; }
+
+  function kareOku() {
+    if (!taraniyor) return;
+    var v = el('video');
+    if (v.readyState < 2 || !v.videoWidth) { setTimeout(kareOku, 150); return; }
+    // Ekrandaki çerçevenin videoda karşılık geldiği bölgeyi (biraz geniş) oku
+    var vw = v.videoWidth, vh = v.videoHeight;
+    var ew = v.clientWidth || vw, eh = v.clientHeight || vh;
+    var k = Math.max(ew / vw, eh / vh);            // object-fit: cover ölçeği
+    var gw = ew / k, gh = eh / k;                  // ekranda görünen video alanı (video pikseli)
+    var gx = (vw - gw) / 2, gy = (vh - gh) / 2;
+    var sw = Math.min(vw, gw * 0.96), sh = Math.min(vh, gh * 0.40);
+    var sx = Math.round(gx + (gw - sw) / 2), sy = Math.round(gy + (gh - sh) / 2);
+    sw = Math.round(sw); sh = Math.round(sh);
+    var olcek = Math.min(1, 1280 / sw);
+    tuval.width = Math.round(sw * olcek); tuval.height = Math.round(sh * olcek);
+    ctx2d.drawImage(v, sx, sy, sw, sh, 0, 0, tuval.width, tuval.height);
+    var veri = ctx2d.getImageData(0, 0, tuval.width, tuval.height);
+    ZXingWASM.readBarcodes(veri, { formats: FORMATLAR, tryHarder: true, tryRotate: true, maxNumberOfSymbols: 1 })
+      .then(function (s) {
+        var r = s.filter(function (x) { return x.isValid && x.text; })[0];
+        var simdi = Date.now();
+        if (r) {
+          var kd = normal(r.text);
+          // Aynı barkod kamerada durdukça tekrar sayılmaz; kadrajdan çıkıp yeniden gösterilince sayılır
+          if (!(kd === sonKod && simdi - sonGorulme < 1200)) kameraOkudu(r.text);
+          sonKod = kd; sonGorulme = simdi;
+        }
+      })
+      .catch(function () {})
+      .then(function () { setTimeout(kareOku, 120); });
+  }
+
+  // Kamera bir barkod okuyunca: tek okumada kamerayı kapat, art arda modunda açık tut
+  function kameraOkudu(metin) {
+    if (kameraModu !== 'okutma') { // servis ekranından açıldıysa: tek okuma, sonucu servise ver
+      taraniyor = false; sinyal(true); cerceveRenk('okundu');
+      setTimeout(function () { kameraKapat(); if (kameraModu === 'svUrun') svUrunEkle(metin); else svBarkodSonuc(metin); }, 300);
+      return;
+    }
+    var ok = okundu(metin);
+    var son = durum.liste.filter(function (x) { return bul(metin) && x.kod === bul(metin).kod; })[0];
+    if (!ok) { kameraMesaj(el('mesaj').textContent, 'hata'); return; }
+    okunanBuOturum++;
+    kameraMesaj('✓ ' + son.ad + ' — listede ' + son.adet + ' adet', 'ok');
+    if (el('artArda').checked) { el('kameraSayac').textContent = 'Bu açılışta ' + okunanBuOturum + ' okuma'; return; }
+    taraniyor = false;
+    setTimeout(function () { kameraKapat(); window.scrollTo({ top: el('listeBaslik').getBoundingClientRect().top + window.scrollY - 80, behavior: 'smooth' }); }, 450);
+  }
+
+  /* ---- Fotoğraftan okuma (yedek yol) ---- */
+  function fotoOku(input) {
+    var dosya = input.files && input.files[0];
+    input.value = '';
+    if (!dosya) return;
+    if (typeof ZXingWASM === 'undefined') { mesaj('Barkod okuyucu yüklenemedi.', 'hata'); return; }
+    mesaj('Fotoğraf okunuyor…', 'bilgi');
+    ZXingWASM.readBarcodes(dosya, { formats: FORMATLAR, tryHarder: true, tryRotate: true, maxNumberOfSymbols: 8 })
+      .then(function (s) {
+        var g = s.filter(function (r) { return r.isValid && r.text; });
+        if (!g.length) throw new Error('yok');
+        var kayitli = g.filter(function (r) { return bul(r.text); });
+        var a = kayitli.length ? kayitli : g;
+        if (a.length > 1) {
+          var o = function (r) { var p = r.position; return { x: (p.topLeft.x + p.bottomRight.x) / 2, y: (p.topLeft.y + p.bottomRight.y) / 2 }; };
+          var mx = 0, my = 0; g.forEach(function (r) { var c = o(r); mx = Math.max(mx, c.x * 2); my = Math.max(my, c.y * 2); });
+          a.sort(function (p, q) { var c = o(p), d = o(q); return (Math.pow(c.x - mx / 2, 2) + Math.pow(c.y - my / 2, 2)) - (Math.pow(d.x - mx / 2, 2) + Math.pow(d.y - my / 2, 2)); });
+        }
+        okundu(a[0].text);
+      })
+      .catch(function () { sinyal(false); mesaj('Fotoğrafta barkod bulunamadı. Barkodu net ve parlamasız çekin.', 'hata'); });
+  }
+
+  /* ================= Liste ================= */
+  function listeyiCiz() {
+    var tb = el('liste'); tb.innerHTML = '';
+    var toplam = 0, uyariVar = false;
+    var sayim = durum.mod === 'SAYIM';
+    var kaynakYer = (durum.mod === 'GİRİŞ' || sayim) ? null : durum.kaynak;
+    durum.liste.forEach(function (s, i) {
+      toplam += s.adet;
+      var yerStok = stok[s.kod] || {};
+      // Sayımda sistem stoğu gösterilmez (kör sayım)
+      var mv = kaynakYer ? musait(s.kod, kaynakYer) : 0;
+      var bilgi = sayim ? 'sayılan adet →' : (kaynakYer ? (kaynakYer + (kaynakYer === sayimYer ? ' (depoda kalan)' : '') + ': ' + mv) : (durum.hedef + ': ' + (yerStok[durum.hedef] || 0)));
+      var uyari = '';
+      if (kaynakYer && s.adet > mv) { uyari = '<span class="uyari">⛔ ' + esc(kaynakYer) + (kaynakYer === sayimYer ? ' depoda kalan: ' : ' stoğu: ') + Math.max(mv, 0) + ' — fazlası gönderilemez</span>'; uyariVar = true; }
+      if (ayrilandanCikis() && durum.musteri) {
+        var ma = (ayrilan[durum.musteri] || {})[s.kod] || 0;
+        bilgi += ' · ' + durum.musteri + ': ' + ma;
+        if (s.adet > ma) { uyari += '<span class="uyari">⚠ ' + esc(durum.musteri) + ' için ayrılan: ' + ma + '</span>'; uyariVar = true; }
+      }
+      var tr = document.createElement('tr');
+      tr.innerHTML = '<td class="ad">' + esc(s.ad) + '<small>' + esc(s.kod) + ' · ' + esc(bilgi) + '</small>' + uyari + '</td>' +
+        '<td class="adet"><input type="number" min="' + (sayim ? 0 : 1) + '" step="1" inputmode="numeric" value="' + s.adet + '" onchange="adetDegis(' + i + ', this.value)"></td>' +
+        '<td class="sil"><button onclick="satirSil(' + i + ')">✕</button></td>';
+      tb.appendChild(tr);
+    });
+    el('bosListe').style.display = durum.liste.length ? 'none' : 'block';
+    el('toplam').textContent = durum.liste.length ? (durum.liste.length + ' çeşit · ' + toplam + ' adet') : '';
+    el('kaydetBtn').disabled = !durum.liste.length || uyariVar;
+    el('kaydetBtn').textContent = sayim ? 'Sayımı Kaydet' : (uyariVar ? 'Stok yetersiz — kırmızı satırları düzeltin' : 'Fişi Kaydet');
+    taslakYaz();
+  }
+
+  function adetDegis(i, v) {
+    var n = parseInt(v, 10), enAz = durum.mod === 'SAYIM' ? 0 : 1;
+    if (!(n >= enAz)) { mesaj('Adet en az ' + enAz + ' olmalı. Ürünü çıkarmak için ✕ kullanın.', 'hata'); listeyiCiz(); return; }
+    durum.liste[i].adet = n; listeyiCiz();
+  }
+  function satirSil(i) { durum.liste.splice(i, 1); ekraniKur(); }
+
+  var temizleOnay = 0;
+  function listeyiTemizle() {
+    if (!durum.liste.length) return;
+    if (Date.now() - temizleOnay > 3000) { temizleOnay = Date.now(); mesaj('Listeyi silmek için 3 sn içinde tekrar basın.', 'bilgi'); return; }
+    durum.liste = []; temizleOnay = 0; mesaj('Liste temizlendi.', 'bilgi'); ekraniKur();
+  }
+
+  /* ================= Kaydet ================= */
+  var sayimOnay = 0;
+  function kaydet() {
+    taslakYaz();
+    if (iadeGirisi() && !(durum.musteri || '').trim()) { mesaj('Kimden geldiğini yazın.', 'hata'); el('musteriYaz').focus(); return; }
+    if (iadeGirisi() && !durum.not.trim()) { mesaj((iadeHedefi() ? 'İade' : 'Arıza') + ' sebebini yazın.', 'hata'); el('not').focus(); return; }
+    if (durum.mod === 'ÇIKIŞ' && !durum.not.trim() && !ayrilandanCikis()) { mesaj('Çıkışta müşteri / sipariş bilgisi zorunlu.', 'hata'); el('not').focus(); return; }
+    if (durum.mod === 'TRANSFER' && durum.kaynak === durum.hedef) { mesaj('Nereden ve nereye aynı olamaz.', 'hata'); return; }
+    if ((ayrilanaGiris() || ayrilandanCikis()) && !(durum.musteri || '').trim()) { mesaj('Müşteri seçilmeli / yazılmalı.', 'hata'); return; }
+    if (durum.mod === 'SAYIM' && Date.now() - sayimOnay > 4000) {
+      sayimOnay = Date.now();
+      mesaj('Dikkat: Kaydedince listedeki ürünlerin ' + durum.kaynak + ' stoğu sayılan adetlere eşitlenir. Onaylamak için 4 sn içinde tekrar basın.', 'bilgi');
+      return;
+    }
+    sayimOnay = 0;
+    var b = el('kaydetBtn'); b.disabled = true; b.textContent = 'Kaydediliyor…';
+    api('POST', {
+      pin: durum.pin, tur: durum.mod, kaynak: durum.kaynak, hedef: durum.hedef,
+      okutan: durum.okutan.trim(), not: durum.not.trim(), musteri: (ayrilanaGiris() || ayrilandanCikis()) ? (durum.musteri || '').trim() : '',
+      kimden: iadeGirisi() ? (durum.musteri || '').trim() : '',
+      satirlar: durum.liste.map(function (s) { return { kod: s.kod, barkod: s.barkod, adet: s.adet }; })
+    }).then(function (j) {
+      var r = j.sonuc;
+      if (iadeGirisi()) { // yeni yazılan kimden / arıza sonraki girişlerde öneri olarak çıksın
+        if (iadeOneri.kimden.indexOf(durum.musteri.trim()) < 0) iadeOneri.kimden.push(durum.musteri.trim());
+        var ol = iadeHedefi() ? iadeOneri.iade : iadeOneri.ariza;
+        if (ol.indexOf(durum.not.trim()) < 0) ol.push(durum.not.trim());
+      }
+      stok = r.stok || stok; if (r.ayrilan) ayrilan = r.ayrilan; durum.liste = []; durum.not = ''; durum.musteri = '';
+      ekraniKur();
+      mesaj('Kaydedildi ✓ Fiş No: ' + r.fisNo + ' — ' + r.satirSayisi + ' çeşit, ' + r.toplamAdet + ' adet.', 'ok');
+      var ss = el('sayimSonuc');
+      if (r.farklar) {
+        var farkli = r.farklar.filter(function (f) { return f.fark !== 0; });
+        ss.innerHTML = '<strong>Sayım sonucu:</strong> ' + (farkli.length ? farkli.length + ' üründe fark bulundu, stok düzeltildi.' : 'Fark yok, sistem ile sayım tutuyor.') +
+          '<div class="farklar">' + farkli.map(function (f) {
+            return '<div>' + esc(f.kod) + ': sistem ' + f.sistem + ', sayılan ' + f.sayilan + ' → <b>' + (f.fark > 0 ? '+' : '') + f.fark + '</b></div>';
+          }).join('') + '</div>';
+        ss.className = 'mesaj bilgi';
+      } else ss.className = 'mesaj bilgi gizli';
+    }).catch(function (e) {
+      listeyiCiz();
+      mesaj('KAYDEDİLEMEDİ: ' + e.message + ' — Liste silinmedi, tekrar deneyin.', 'hata');
+    });
+  }
+
+  /* ================= Raporlar ================= */
+  var raporTuru = 'stok', raporVeri = {}, tarihSecim = 'bugun', raporSifre = 'oturum', silmeSifre = 'oturum'; // yetki artık kullanıcı girişinden gelir
+  function raporAcKapat() {
+    var acik = !el('raporlar').classList.contains('gizli');
+    if (acik) { el('raporlar').classList.add('gizli'); el('uygulama').classList.remove('gizli'); return; }
+    if (!gunKontrol()) return;
+    kameraKapat(); raporVeri = {};
+    el('servisEkran').classList.add('gizli');
+    el('uygulama').classList.add('gizli'); el('raporlar').classList.remove('gizli');
+    if (!el('tarihBas').value && tarihSecim !== 'tumu') hizliTarih(tarihSecim, true);
+    raporSec(raporTuru);
+  }
+  function raporKilitGoster(hata) {
+    el('raporIcerik').classList.add('gizli'); el('raporKilit').classList.remove('gizli');
+    el('raporSifreGir').value = '';
+    var m = el('raporKilitMesaj'); m.textContent = hata || ''; m.className = hata ? 'mesaj hata' : 'mesaj';
+    setTimeout(function () { el('raporSifreGir').focus(); }, 50);
+  }
+  function raporSifreGonder() {
+    raporSifre = el('raporSifreGir').value.trim();
+    if (!raporSifre) return;
+    el('raporKilit').classList.add('gizli'); el('raporIcerik').classList.remove('gizli');
+    raporYukle();
+  }
+  function raporSec(t) {
+    raporTuru = t;
+    document.querySelectorAll('.sekmeler button').forEach(function (b) { b.classList.toggle('secili', b.getAttribute('data-r') === t); });
+    el('raporTur').classList.toggle('gizli', t !== 'hareket');
+    el('iadeYerFiltre').classList.toggle('gizli', t !== 'iade');
+    el('stokFiltre').classList.toggle('gizli', t !== 'stok');
+    el('tarihFiltre').classList.toggle('gizli', t === 'stok' || t === 'ayrilan');
+    el('raporAra').placeholder = t === 'iade' ? 'Ara: ürün, müşteri, arıza sebebi…' : 'Ara: ürün, kod, fiş, müşteri…';
+    if (raporVeri[t]) raporCiz(); else raporYukle();
+  }
+
+  // ---- Tarih ----
+  function ymd(d) { return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2); }
+  function hizliTarih(h, yuklemeden) {
+    var b = new Date(), s = new Date();
+    if (h === 'dun') { b.setDate(b.getDate() - 1); s = new Date(b); }
+    if (h === 'hafta') { var g = (b.getDay() + 6) % 7; b.setDate(b.getDate() - g); }
+    if (h === 'ay') { b.setDate(1); }
+    el('tarihBas').value = h === 'tumu' ? '' : ymd(b);
+    el('tarihBit').value = h === 'tumu' ? '' : ymd(s);
+    tarihSecim = h;
+    document.querySelectorAll('.hizli button').forEach(function (x) { x.classList.toggle('secili', x.getAttribute('data-h') === h); });
+    if (!yuklemeden) tarihDegisti(true);
+  }
+  function tarihDegisti(hizlidan) {
+    if (!hizlidan) { tarihSecim = 'ozel'; document.querySelectorAll('.hizli button').forEach(function (x) { x.classList.remove('secili'); }); }
+    delete raporVeri.hareket; delete raporVeri.sayim; delete raporVeri.iade;
+    if (raporTuru === 'hareket' || raporTuru === 'sayim' || raporTuru === 'iade') raporYukle();
+  }
+  function tarihMetni() {
+    var b = el('tarihBas').value, s = el('tarihBit').value;
+    var f = function (x) { return x ? x.split('-').reverse().join('.') : ''; };
+    if (!b && !s) return 'tüm tarihler';
+    return b === s ? f(b) : (f(b) || '…') + ' – ' + (f(s) || '…');
+  }
+
+  // ---- Yükle / çiz ----
+  function raporYukle() {
+    var t = raporTuru;
+    if (!raporSifre) { raporKilitGoster(''); return; }
+    el('raporBilgi').textContent = 'Yükleniyor…'; el('raporListe').innerHTML = ''; el('fisSilBtn').classList.add('gizli');
+    var q = '?islem=rapor&tur=' + t + '&pin=' + encodeURIComponent(durum.pin) + '&rs=' + encodeURIComponent(raporSifre);
+    if (t === 'hareket' || t === 'sayim' || t === 'iade') q += '&bas=' + el('tarihBas').value + '&bit=' + el('tarihBit').value;
+    fetch(API_URL + q).then(function (r) { return r.json(); }).then(function (j) {
+      if (!j.ok) {
+        if (oturumHatasi(j.hata)) return;
+        throw new Error(j.hata);
+      }
+      raporVeri[t] = j.rapor;
+      if (t === 'iade') {
+        var iy = el('iadeYerFiltre'), sec = iy.value;
+        iy.innerHTML = '<option value="">' + (j.rapor.iadeYerler || []).join(' + ') + '</option>' + (j.rapor.iadeYerler || []).map(function (y) { return '<option>' + esc(y) + '</option>'; }).join('');
+        iy.value = sec;
+      }
+      if (t === 'stok') {
+        var yf = el('yerFiltre'), secili = yf.value;
+        yf.innerHTML = '<option value="">Tüm yerler (KULLANILABİLİR)</option>' + j.rapor.yerler.map(function (y, i) { return '<option value="' + i + '">' + esc(y) + '</option>'; }).join('');
+        yf.value = secili;
+      }
+      if (t === raporTuru) raporCiz();
+    }).catch(function (e) { el('raporBilgi').textContent = 'Rapor alınamadı: ' + e.message; });
+  }
+  function icerir(ara, alanlar) {
+    if (!ara) return true;
+    var m = alanlar.join(' ').toLocaleUpperCase('tr');
+    return ara.split(/\s+/).every(function (p) { return m.indexOf(p) >= 0; });
+  }
+  // Stok rengi: Tüm yerlerde TOPLAM'a, depo seçiliyse o depoya göre
+  function stokDeger(s) { var yi = el('yerFiltre').value; return yi === '' ? (s.kullanilabilir !== undefined ? s.kullanilabilir : s.toplam) : s.yer[+yi]; }
+  function stokDurum(s) { var v = stokDeger(s), k = s.kritik || 2; return v <= 0 ? 'BİTTİ' : (v < k ? 'KRİTİK' : ''); }
+  function durumSinif(d) { return d === 'BİTTİ' ? ' bitti' : (d === 'KRİTİK' ? ' kritik' : ''); }
+  function durumRozet(d) { return d ? '<span class="durumRozet' + durumSinif(d) + '">' + d + '</span>' : ''; }
+
+  // Ekrandaki filtrelerle eşleşen satırlar (Excel de bunları kullanır)
+  function filtreliSatirlar() {
+    var r = raporVeri[raporTuru]; if (!r) return [];
+    var ara = el('raporAra').value.trim().toLocaleUpperCase('tr');
+    if (raporTuru === 'stok') {
+      var sadece = el('sadeceStoklu').checked, yi = el('yerFiltre').value, df = el('durumFiltre').value;
+      return r.satirlar.filter(function (s) {
+        var deger = stokDeger(s), d = stokDurum(s);
+        if (df === 'uretim' && !d) return false;
+        if ((df === 'BİTTİ' || df === 'KRİTİK') && d !== df) return false;
+        if (sadece && !df && deger === 0) return false; // durum filtresinde bitenler gizlenmesin
+        return icerir(ara, [s.kod, s.ad, s.barkod].concat((s.ayrilan || []).map(function (a) { return a.musteri; })));
+      });
+    }
+    if (raporTuru === 'hareket') {
+      var tf = el('raporTur').value;
+      return r.satirlar.filter(function (s) { return (!tf || s.tur === tf) && icerir(ara, [s.fis, s.kod, s.ad, s.okutan, s.not, s.kaynak, s.hedef, s.tur, s.musteri]); });
+    }
+    if (raporTuru === 'ayrilan') return r.satirlar.filter(function (s) { return icerir(ara, [s.musteri, s.kod, s.ad]); });
+    if (raporTuru === 'iade') {
+      var iyf = el('iadeYerFiltre').value;
+      return r.satirlar.filter(function (s) { return (!iyf || s.yer === iyf || s.kaynak === iyf || s.hedef === iyf) && icerir(ara, [s.fis, s.kod, s.ad, s.okutan, s.not, s.kaynak, s.hedef, s.sonuc, s.kimden, s.ariza, s.yer]); });
+    }
+    return r.satirlar.filter(function (s) { return icerir(ara, [s.fis, s.kod, s.ad, s.okutan, s.not, s.yer]); });
+  }
+  function raporCiz() {
+    var r = raporVeri[raporTuru]; if (!r) return;
+    var liste = filtreliSatirlar(), LIMIT = 300, html = '';
+    liste.slice(0, LIMIT).forEach(function (s, i) {
+      if (raporTuru === 'stok') {
+        var yi = el('yerFiltre').value;
+        if (yi !== '') {
+          // Tek depo seçili: o deponun adedi büyük, diğer depolar küçük not
+          var v = s.yer[+yi], diger = r.yerler.map(function (y, k) { return k !== +yi && s.yer[k] ? y + ': ' + s.yer[k] : ''; }).filter(Boolean).join(' · ');
+          var dk = (r.ayrilanYerler || []).indexOf(r.yerler[+yi]) >= 0 ? dokum(s) : '';
+          var dz = stokDurum(s);
+          html += '<div class="rsatir' + durumSinif(dz) + '"><div class="ust"><span><b>' + esc(s.kod) + '</b>' + durumRozet(dz) + '</span><b' + (v < 0 ? ' class="eksi"' : '') + ' style="font-size:17px">' + v + '</b></div>' +
+            '<div class="alt">' + esc(s.ad) + '</div>' + dk + (diger ? '<div class="alt">Diğer: ' + esc(diger) + '</div>' : '') + '</div>';
+        } else {
+          // Tüm yerler: sadece stoğu olan depolar + toplam
+          var hucre = r.yerler.map(function (y, k) { return s.yer[k] ? '<div>' + esc(y) + '<b' + (s.yer[k] < 0 ? ' class="eksi"' : '') + '>' + s.yer[k] + '</b></div>' : ''; }).join('');
+          var dt = stokDurum(s);
+          var ku = s.kullanilabilir !== undefined ? s.kullanilabilir : s.toplam;
+          html += '<div class="rsatir' + durumSinif(dt) + '"><div class="ust"><span><b>' + esc(s.kod) + '</b>' + durumRozet(dt) + '</span><span>Kullanılabilir <b' + (ku < 0 ? ' class="eksi"' : '') + '>' + ku + '</b></span></div><div class="alt">' + esc(s.ad) + (ku !== s.toplam ? ' · Kalan ' + s.toplam : '') + '</div>' +
+            (hucre ? '<div class="yerler">' + hucre + '</div>' : '<div class="alt">Hiçbir depoda stok yok</div>') + dokum(s) + '</div>';
+        }
+      } else if (raporTuru === 'hareket') {
+        html += '<div class="rsatir"><div class="ust"><span><span class="rozet ' + esc(s.tur) + '">' + esc(s.tur) + '</span> <b>' + esc(s.kod) + '</b></span><span><b>' + s.adet + ' ad.</b>' + (duzeltilebilir(s) ? '<button class="silbtn duzbtn" style="color:#254BA0" onclick="satirDuzelt(' + i + ')">Düzelt</button>' : '') + '<button class="silbtn" onclick="satirSilRapor(' + i + ')">Sil</button></span></div>' +
+          '<div class="alt">' + esc(s.ad) + '</div>' +
+          '<div class="alt">' + esc(s.kaynak) + ' → ' + esc(s.hedef) + (s.not ? ' · ' + esc(s.not) : '') + '</div>' +
+          (s.musteri ? '<div class="musteri">Müşteri: ' + esc(s.musteri) + '</div>' : '') +
+          '<div class="alt">' + esc(s.tarih) + ' · <span class="fislink" onclick="fisFiltre(\'' + esc(s.fis) + '\')">' + esc(s.fis) + '</span> · ' + esc(s.okutan) + '</div></div>';
+      } else if (raporTuru === 'iade') {
+        var nereye = s.sonuc === 'GELDİ' ? (s.kaynak + ' → ' + s.hedef) : (s.kaynak + ' → ' + s.hedef);
+        var detay = s.sonuc === 'GELDİ'
+          ? '<div class="musteri">Kimden: <b>' + esc(s.kimden || '—') + '</b> · Sebep: <b>' + esc(s.ariza || '—') + '</b></div>'
+          : (s.not ? '<div class="musteri">' + esc(s.not) + '</div>' : '');
+        html += '<div class="rsatir"><div class="ust"><span><span class="rozet ' + esc(s.sonuc.split(' ')[0]) + '">' + esc(s.sonuc) + '</span> <b>' + esc(s.kod) + '</b><span class="yerEtiket">' + esc(s.yer || '') + '</span></span><span><b>' + s.adet + ' ad.</b>' + (duzeltilebilir(s) ? '<button class="silbtn duzbtn" style="color:#254BA0" onclick="satirDuzelt(' + i + ')">Düzelt</button>' : '') + '<button class="silbtn" onclick="satirSilRapor(' + i + ')">Sil</button></span></div>' +
+          '<div class="alt">' + esc(s.ad) + '</div>' +
+          '<div class="alt">' + esc(nereye) + '</div>' + detay +
+          '<div class="alt">' + esc(s.tarih) + ' · <span class="fislink" onclick="fisFiltre(\'' + esc(s.fis) + '\')">' + esc(s.fis) + '</span> · ' + esc(s.okutan) + '</div></div>';
+      } else if (raporTuru === 'ayrilan') {
+        if (i === 0 || liste[i - 1].musteri !== s.musteri) {
+          var tm = 0, ck = 0; liste.forEach(function (x) { if (x.musteri === s.musteri) { tm += x.adet; ck++; } });
+          html += '<div class="grupBaslik"><span>' + esc(s.musteri) + '</span><span>' + ck + ' çeşit · ' + tm + ' adet</span></div>';
+        }
+        html += '<div class="rsatir"><div class="ust"><span><b>' + esc(s.kod) + '</b></span><b' + (s.adet < 0 ? ' class="eksi"' : '') + '>' + s.adet + ' ad.</b></div><div class="alt">' + esc(s.ad) + '</div></div>';
+      } else {
+        html += '<div class="rsatir"><div class="ust"><span><b>' + esc(s.kod) + '</b> · ' + esc(s.yer) + '</span><span><b' + (s.fark < 0 ? ' class="eksi"' : '') + '>' + (s.fark > 0 ? '+' : '') + s.fark + '</b><button class="silbtn" onclick="satirSilRapor(' + i + ')">Sil</button></span></div>' +
+          '<div class="alt">' + esc(s.ad) + ' · sistem ' + s.sistem + ' · sayılan ' + s.sayilan + (s.not ? ' · ' + esc(s.not) : '') + '</div>' +
+          '<div class="alt">' + esc(s.tarih) + ' · <span class="fislink" onclick="fisFiltre(\'' + esc(s.fis) + '\')">' + esc(s.fis) + '</span> · ' + esc(s.okutan) + '</div></div>';
+      }
+    });
+    if (raporTuru === 'iade') {
+      var ara2 = el('raporAra').value.trim().toLocaleUpperCase('tr');
+      var bek = iadeBekleyen(r, ara2);
+      var ust = '<div class="bolumBaslik">Şu an bekleyen (' + bek.reduce(function (a, b) { return a + b.adet; }, 0) + ' adet, ' + bek.length + ' kayıt)</div>';
+      ust += bek.length ? bek.map(function (b) {
+        return '<div class="rsatir ' + (b.yer === 'ARIZALI' ? 'bitti' : 'kritik') + '"><div class="ust"><span><b>' + esc(b.kod) + '</b><span class="yerEtiket">' + esc(b.yer) + '</span></span><b>' + b.adet + ' ad.</b></div><div class="alt">' + esc(b.ad) + '</div>' +
+          '<div class="musteri">Kimden: <b>' + esc(b.kimden || '—') + '</b> · Sebep: <b>' + esc(b.ariza || '—') + '</b></div>' +
+          (b.aktarim ? '<div class="alt">Aktarım: ' + esc(b.aktarim) + '</div>' : '') +
+          '<div class="alt">' + (b.gun ? 'Geliş ' + b.gun.split('-').reverse().join('.') + ' · <b>' + b.bekleme + ' gündür bekliyor</b> · ' + esc(b.fis) : '') + '</div></div>';
+      }).join('') : '<div class="bos">Bekleyen iade yok.</div>';
+      ust += '<div class="bolumBaslik">İade / arıza hareketleri — ' + tarihMetni() + '</div>';
+      html = ust + (html || '<div class="bos">Bu dönemde iade hareketi yok.</div>');
+    }
+    if (liste.length > LIMIT) html += '<div class="bos">Ekranda ilk ' + LIMIT + ' sonuç gösteriliyor. Excel dosyasında ' + liste.length + ' satırın tamamı var.</div>';
+    el('raporListe').innerHTML = html || '<div class="bos">Kayıt yok.</div>';
+    // Bilgi satırı
+    if (raporTuru === 'stok') {
+      var t = r.yerler.map(function () { return 0; }).concat([0]), tk = 0;
+      liste.forEach(function (s) { s.yer.concat([s.toplam]).forEach(function (v, k) { t[k] += v; }); tk += (s.kullanilabilir !== undefined ? s.kullanilabilir : s.toplam); });
+      var nb = 0, nk = 0; liste.forEach(function (s) { var d = stokDurum(s); if (d === 'BİTTİ') nb++; else if (d === 'KRİTİK') nk++; });
+      el('raporBilgi').innerHTML = liste.length + ' ürün · <b style="color:#d93025">' + nb + ' bitti</b> · <b style="color:#a37b00">' + nk + ' kritik</b><br>' + r.yerler.concat(['KALAN']).map(function (b, k) { return esc(b) + ': <b>' + t[k] + '</b>'; }).join(' · ') + ' · KULLANILABİLİR: <b>' + tk + '</b>';
+      var yi2 = el('yerFiltre').value;
+      el('lejantNot').textContent = 'Renk: ' + (yi2 === '' ? 'KULLANILABİLİR stoğa göre (' + (r.kullanilamaz || []).join(', ') + ' hariç)' : r.yerler[+yi2] + ' stoğuna göre') + (r.farkAciklama ? ' · ' + r.farkAciklama : '');
+    } else if (raporTuru === 'iade') {
+      var g = 0, o = 0, c = 0;
+      var arz = {};
+      var gy = {}, ak = 0;
+      liste.forEach(function (s) {
+        if (s.sonuc === 'GELDİ') { g += s.adet; gy[s.yer] = (gy[s.yer] || 0) + s.adet; var a = (s.yer === 'İADE' ? 'İade: ' : 'Arıza: ') + (s.ariza || '(belirtilmemiş)'); arz[a] = (arz[a] || 0) + s.adet; }
+        else if (s.sonuc === 'DEPOYA DÖNDÜ' || s.sonuc === 'ONARILDI') o += s.adet; else if (s.sonuc === 'ÇIKTI') c += s.adet; else if (s.sonuc === 'AKTARILDI') ak += s.adet;
+      });
+      var arzMetin = Object.keys(arz).sort(function (a, b) { return arz[b] - arz[a]; }).map(function (a) { return esc(a) + ': ' + arz[a]; }).join(' · ');
+      var gyMetin = Object.keys(gy).map(function (y) { return y + ' ' + gy[y]; }).join(', ');
+      el('raporBilgi').innerHTML = tarihMetni() + ': <b style="color:#d93025">' + g + ' gelen</b>' + (gyMetin ? ' (' + esc(gyMetin) + ')' : '') + ' · <b style="color:#e37400">' + ak + ' iade→arızalı</b> · <b style="color:#1e8e3e">' + o + ' depoya dönen</b> · <b>' + c + ' çıkan</b> (hurda/tedarikçi)' +
+        (arzMetin ? '<br>Sebepler → ' + arzMetin : '');
+    } else if (raporTuru === 'ayrilan') {
+      var mu = {}, top = 0; liste.forEach(function (s) { mu[s.musteri] = 1; top += s.adet; });
+      el('raporBilgi').textContent = Object.keys(mu).length + ' müşteri · ' + top + ' adet ayrılmış. Müşteri adıyla arama yapabilirsiniz.';
+    } else {
+      var adet = 0; liste.forEach(function (s) { adet += raporTuru === 'hareket' ? s.adet : 0; });
+      el('raporBilgi').textContent = tarihMetni() + ' · ' + liste.length + ' kayıt' + (raporTuru === 'hareket' ? ' · ' + adet + ' adet' : '') +
+        (r.toplamSatir > r.satirlar.length ? ' (aralıkta ' + r.toplamSatir + ' kayıt var, son ' + r.satirlar.length + ' tanesi yüklendi; aralığı daraltın)' : '') + ' · Fiş numarasına dokunun: fişin tamamı görünür.';
+    }
+    // Arama tam bir fiş numarasıysa "fişi sil" düğmesi
+    var ara = el('raporAra').value.trim().toUpperCase();
+    var tekFis = (raporTuru === 'hareket' || raporTuru === 'sayim' || raporTuru === 'iade') && /^(AYS-\d+|[GTCS]\d{8}-\d{3})$/.test(ara) && liste.length > 0;
+    el('fisSilBtn').classList.toggle('gizli', !tekFis);
+    if (tekFis) el('fisSilBtn').textContent = ara + ' fişini tamamen sil (' + liste.length + ' satır)';
+  }
+  function dokum(s) {
+    if (!s.ayrilan || !s.ayrilan.length) return '';
+    return '<div class="musteri">Ayrılan → ' + s.ayrilan.map(function (a) { return esc(a.musteri) + ': <b>' + a.adet + '</b>'; }).join(' · ') + '</div>';
+  }
+  // Bekleyen iadeler (tek tek): eski en üstte, bekleme günü hesaplı
+  function iadeBekleyen(r, ara, yerSecimi) {
+    var bugun = new Date((r.bugun || ymd(new Date())) + 'T00:00:00');
+    var iyf = yerSecimi !== undefined ? yerSecimi : el('iadeYerFiltre').value;
+    return (r.bekleyenDetay || []).filter(function (b) { return (!iyf || b.yer === iyf) && icerir(ara, [b.kod, b.ad, b.yer, b.kimden, b.ariza, b.fis]); })
+      .map(function (b) { var c = Object.assign({}, b); c.bekleme = b.gun ? Math.round((bugun - new Date(b.gun + 'T00:00:00')) / 864e5) : ''; return c; })
+      .sort(function (a, b) { return (a.gun || '0') < (b.gun || '0') ? -1 : 1; });
+  }
+  function fisFiltre(f) { el('raporAra').value = f; raporCiz(); window.scrollTo(0, 0); }
+
+  // ---- Silme (yönetici PIN + sebep; kayıt "Silinenler" sayfasına taşınır) ----
+  // ---- Adet düzeltme (örn. montaj 10 yazmış, depo 9 saymış) ----
+  function duzeltilebilir(s) { return ['GİRİŞ', 'TRANSFER', 'ÇIKIŞ'].indexOf(s.tur) >= 0 && !/^(ARZ|IAD)-\d+/.test(s.not || ''); }
+  function satirDuzelt(i) {
+    var s = filtreliSatirlar()[i]; if (!s) return;
+    var y = prompt(s.fis + ' · ' + s.tur + ' · ' + s.kod + ' (' + s.kaynak + ' → ' + s.hedef + ')\nŞu an: ' + s.adet + ' adet\n\nDoğru adet:', String(s.adet));
+    if (y === null) return;
+    var adet = Number(String(y).trim());
+    if (!(adet >= 1) || Math.floor(adet) !== adet) { alert('Geçerli bir adet yazın (1 veya daha fazla). Tamamen yanlışsa satırı silin.'); return; }
+    if (adet === s.adet) return;
+    var sebep = prompt('Düzeltme sebebi:', 'Depo sayımı farklı çıktı');
+    if (!sebep || !sebep.trim()) { alert('Sebep yazılmadan düzeltilemez.'); return; }
+    var kisi = (durum.okutan || '').trim() || (prompt('Adınız (isteğe bağlı):') || '').trim();
+    el('raporBilgi').textContent = 'Düzeltiliyor…';
+    api('POST', { islem: 'duzelt', pin: durum.pin, fis: s.fis, kod: s.kod, adet: adet, sebep: sebep.trim(), duzelten: kisi })
+      .then(function (j) {
+        stok = j.sonuc.stok || stok; raporVeri = {}; raporYukle();
+        alert('Düzeltildi ✓ ' + s.kod + ': ' + j.sonuc.eski + ' → ' + j.sonuc.yeni + ' adet. Stoklar güncellendi; eski hali "Silinenler" sayfasında.');
+      })
+      .catch(function (e) { raporCiz(); alert('DÜZELTİLEMEDİ: ' + e.message); });
+  }
+  function satirSilRapor(i) {
+    var s = filtreliSatirlar()[i]; if (!s) return;
+    var tanim = (raporTuru === 'hareket' || raporTuru === 'iade')
+      ? s.fis + ' · ' + s.tur + ' · ' + s.kod + ' · ' + s.adet + ' adet (' + s.kaynak + ' → ' + s.hedef + ')'
+      : s.fis + ' · SAYIM · ' + s.kod + ' · ' + s.yer + ' (sistem ' + s.sistem + ', sayılan ' + s.sayilan + ')';
+    silIstegi(s.fis, s.kod, tanim);
+  }
+  function fisSil() {
+    var f = el('raporAra').value.trim().toUpperCase();
+    silIstegi(f, '', f + ' fişinin TAMAMI (' + filtreliSatirlar().length + ' satır)');
+  }
+  function silIstegi(fis, kod, tanim) {
+    if (!confirm('Silinecek:\n' + tanim + '\n\nStok buna göre yeniden hesaplanır. Kayıt "Silinenler" sayfasına taşınır. Devam edilsin mi?')) return;
+    var sebep = prompt('Silme sebebi (zorunlu):', 'Yanlış okutma');
+    if (!sebep || !sebep.trim()) { alert('Sebep yazılmadan silinemez.'); return; }
+    var silen = (durum.okutan || '').trim() || (prompt('Adınız:') || '').trim();
+    if (!silen) return;
+    if (!silmeSifre) { var y = prompt('Silme için yönetici şifresi:'); if (!y) return; silmeSifre = y.trim(); }
+    el('raporBilgi').textContent = 'Siliniyor…';
+    api('POST', { islem: 'sil', pin: durum.pin, ypin: silmeSifre, fis: fis, kod: kod, silen: silen, sebep: sebep.trim() })
+      .then(function (j) {
+        stok = j.sonuc.stok || stok;
+        raporVeri = {};
+        if (!kod) el('raporAra').value = '';
+        raporYukle();
+        mesaj('Silindi: ' + tanim, 'ok');
+        alert('Silindi ✓ (' + j.sonuc.toplam + ' satır "Silinenler" sayfasına taşındı)');
+      })
+      .catch(function (e) {
+        if (/YÖNETİCİ PIN hatalı/.test(e.message)) silmeSifre = '';
+        raporCiz();
+        alert('SİLİNEMEDİ: ' + e.message);
+      });
+  }
+
+  // ---- Excel (.xlsx) ----
+  var xlsxYukleniyor = null;
+  function xlsxHazir() {
+    if (window.XLSX) return Promise.resolve();
+    if (!xlsxYukleniyor) xlsxYukleniyor = new Promise(function (coz, red) {
+      var sc = document.createElement('script');
+      sc.src = 'https://cdn.jsdelivr.net/npm/xlsx-js-style@1.2.0/dist/xlsx.bundle.js'; // renkli hücre destekli
+      sc.onload = coz; sc.onerror = function () { xlsxYukleniyor = null; red(new Error('Excel kütüphanesi yüklenemedi')); };
+      document.head.appendChild(sc);
+    });
+    return xlsxYukleniyor;
+  }
+  function sayfaEkle(kitap, ad, basliklar, satirlar, genislik, satirRengi) {
+    var ws = XLSX.utils.aoa_to_sheet([basliklar].concat(satirlar));
+    ws['!cols'] = genislik.map(function (w) { return { wch: w }; });
+    var ince = { style: 'thin', color: { rgb: 'D0D5DD' } }, kenar = { top: ince, bottom: ince, left: ince, right: ince };
+    for (var c = 0; c < basliklar.length; c++) {
+      var hb = ws[XLSX.utils.encode_cell({ r: 0, c: c })];
+      if (hb) hb.s = { font: { bold: true, color: { rgb: 'FFFFFF' } }, fill: { patternType: 'solid', fgColor: { rgb: '254BA0' } }, border: kenar, alignment: { vertical: 'center' } };
+      for (var r = 0; r < satirlar.length; r++) {
+        var h = ws[XLSX.utils.encode_cell({ r: r + 1, c: c })];
+        if (!h) continue;
+        var renk = satirRengi ? satirRengi(r) : null;
+        h.s = { border: kenar };
+        if (renk) h.s.fill = { patternType: 'solid', fgColor: { rgb: renk } };
+      }
+    }
+    ws['!freeze'] = { xSplit: 0, ySplit: 1 };
+    ws['!autofilter'] = { ref: XLSX.utils.encode_range({ s: { r: 0, c: 0 }, e: { r: satirlar.length, c: basliklar.length - 1 } }) };
+    XLSX.utils.book_append_sheet(kitap, ws, ad);
+  }
+  // ---- Excel sayfa oluşturucular (tekli indirme ve "Tümü" aynılarını kullanır) ----
+  var RENK = { bitti: 'F8C9C6', kritik: 'FFE9A8', geldi: 'FDE2E1', onarildi: 'E6F4EA' };
+  function durumKul(s) { var v = s.kullanilabilir !== undefined ? s.kullanilabilir : s.toplam, k = s.kritik || 2; return v <= 0 ? 'BİTTİ' : (v < k ? 'KRİTİK' : ''); }
+  function xlsStok(wb, r, liste, durumFn) {
+    var d = liste.map(durumFn || durumKul);
+    sayfaEkle(wb, 'Stok', ['Stok Kodu', 'Ürün Adı', 'Barkod'].concat(r.yerler).concat(['KALAN', 'KULLANILABİLİR', 'Kritik Seviye', 'DURUM']),
+      liste.map(function (s, i) { return [s.kod, s.ad, s.barkod].concat(s.yer).concat([s.toplam, s.kullanilabilir, s.kritik, d[i]]); }),
+      [18, 45, 16].concat(r.yerler.map(function () { return 13; })).concat([10, 15, 12, 10]),
+      function (i) { return d[i] === 'BİTTİ' ? RENK.bitti : (d[i] === 'KRİTİK' ? RENK.kritik : null); });
+  }
+  function xlsHareket(wb, liste) {
+    var sirali = liste.slice().reverse(); // eskiden yeniye
+    sayfaEkle(wb, 'Hareketler', ['Tarih', 'Fiş No', 'Tür', 'Stok Kodu', 'Ürün Adı', 'Adet', 'Nereden', 'Nereye', 'Müşteri', 'Okutan', 'Not'],
+      sirali.map(function (s) { return [s.tarih, s.fis, s.tur, s.kod, s.ad, s.adet, s.kaynak, s.hedef, s.musteri, s.okutan, s.not]; }), [16, 15, 10, 18, 40, 7, 13, 13, 20, 12, 30]);
+    var oz = {}, gun = {};
+    sirali.forEach(function (s) {
+      var o = oz[s.kod] || (oz[s.kod] = { ad: s.ad, dv: 0, g: 0, t: 0, c: 0, sf: 0, se: 0 });
+      var d = gun[s.gun] || (gun[s.gun] = { dv: 0, g: 0, t: 0, c: 0, sf: 0, se: 0, fis: {} });
+      d.fis[s.fis] = 1;
+      var alan = s.tur === 'DEVİR' ? 'dv' : s.tur === 'GİRİŞ' ? 'g' : s.tur === 'TRANSFER' ? 't' : s.tur === 'ÇIKIŞ' ? 'c' : (s.hedef === 'SAYIM' ? 'se' : 'sf');
+      o[alan] += s.adet; d[alan] += s.adet;
+    });
+    sayfaEkle(wb, 'Ürün Özeti', ['Stok Kodu', 'Ürün Adı', 'Devir', 'Giriş', 'Transfer', 'Çıkış', 'Sayım Fazlası', 'Sayım Eksiği'],
+      Object.keys(oz).sort().map(function (k) { var o = oz[k]; return [k, o.ad, o.dv, o.g, o.t, o.c, o.sf, o.se]; }), [18, 45, 8, 8, 9, 8, 13, 13]);
+    sayfaEkle(wb, 'Günlük', ['Gün', 'Fiş Sayısı', 'Devir', 'Giriş', 'Transfer', 'Çıkış', 'Sayım Fazlası', 'Sayım Eksiği'],
+      Object.keys(gun).sort().map(function (k) { var d = gun[k]; return [k.split('-').reverse().join('.'), Object.keys(d.fis).length, d.dv, d.g, d.t, d.c, d.sf, d.se]; }), [12, 10, 8, 8, 9, 8, 13, 13]);
+  }
+  function xlsAyrilan(wb, liste) {
+    sayfaEkle(wb, 'Ayrılanlar', ['Müşteri', 'Stok Kodu', 'Ürün Adı', 'Ayrılan Adet'],
+      liste.map(function (s) { return [s.musteri, s.kod, s.ad, s.adet]; }), [28, 18, 45, 12]);
+  }
+  function xlsIade(wb, r, liste, ara, yerSec) {
+    var bek = iadeBekleyen(r, ara || '', yerSec);
+    sayfaEkle(wb, 'Bekleyen İade-Arıza', ['Yer', 'Stok Kodu', 'Ürün Adı', 'Adet', 'Kimden Geldi', 'Sebep', 'Aktarım', 'Geliş Tarihi', 'Bekleme (gün)', 'Fiş No'],
+      bek.map(function (b) { return [b.yer, b.kod, b.ad, b.adet, b.kimden, b.ariza, b.aktarim, b.gun ? b.gun.split('-').reverse().join('.') : '', b.bekleme, b.fis]; }),
+      [10, 18, 40, 7, 24, 30, 16, 12, 13, 15], function (i) { return bek[i].bekleme !== '' && bek[i].bekleme >= 15 ? RENK.bitti : RENK.kritik; });
+    var sir = liste.slice().reverse();
+    sayfaEkle(wb, 'İade-Arıza Hareketleri', ['Tarih', 'Fiş No', 'Sonuç', 'Yer', 'Stok Kodu', 'Ürün Adı', 'Adet', 'Kimden Geldi', 'Sebep', 'Nereden', 'Nereye', 'Not', 'Okutan'],
+      sir.map(function (s) { return [s.tarih, s.fis, s.sonuc, s.yer, s.kod, s.ad, s.adet, s.kimden, s.ariza, s.kaynak, s.hedef, s.sonuc === 'GELDİ' ? '' : s.not, s.okutan]; }),
+      [16, 15, 14, 10, 18, 36, 7, 22, 26, 14, 14, 24, 12],
+      function (i) { var x = sir[i].sonuc; return x === 'GELDİ' ? RENK.geldi : (x === 'DEPOYA DÖNDÜ' || x === 'ONARILDI' ? RENK.onarildi : (x === 'AKTARILDI' ? 'FFE0B2' : null)); });
+    // Arıza özeti: dönemde gelen iadeler sebebe göre
+    var arz = {};
+    sir.forEach(function (s) {
+      if (s.sonuc !== 'GELDİ') return;
+      var a = s.yer + '|' + (s.ariza || '(belirtilmemiş)'), o = arz[a] || (arz[a] = { adet: 0, urun: {}, kimden: {} });
+      o.adet += s.adet; o.urun[s.kod] = 1; if (s.kimden) o.kimden[s.kimden] = 1;
+    });
+    sayfaEkle(wb, 'Sebep Özeti', ['Yer', 'Sebep', 'Gelen Adet', 'Ürün Çeşidi', 'Ürünler', 'Kimlerden'],
+      Object.keys(arz).sort(function (a, b) { return arz[b].adet - arz[a].adet; }).map(function (a) {
+        var o = arz[a], p = a.split('|'); return [p[0], p[1], o.adet, Object.keys(o.urun).length, Object.keys(o.urun).join(', '), Object.keys(o.kimden).join(', ')];
+      }), [10, 28, 11, 12, 45, 40]);
+  }
+  function xlsSayim(wb, liste) {
+    sayfaEkle(wb, 'Sayımlar', ['Tarih', 'Fiş No', 'Yer', 'Stok Kodu', 'Ürün Adı', 'Sistem Stoğu', 'Sayılan', 'Fark', 'Okutan', 'Not'],
+      liste.slice().reverse().map(function (s) { return [s.tarih, s.fis, s.yer, s.kod, s.ad, s.sistem, s.sayilan, s.fark, s.okutan, s.not]; }), [16, 15, 11, 18, 40, 12, 9, 7, 12, 25]);
+  }
+  function aralikAdi() { return ((el('tarihBas').value || 'ilk') + '_' + (el('tarihBit').value || 'son')).replace('ilk_son', 'tumu'); }
+
+  // Ekrandaki sekmeyi, ekrandaki filtrelerle indirir
+  function excelIndir() {
+    var r = raporVeri[raporTuru];
+    if (!r) { alert('Önce rapor yüklenmeli.'); return; }
+    var liste = filtreliSatirlar();
+    if (!liste.length && !(raporTuru === 'iade' && (r.bekleyenDetay || []).length)) { alert('Filtreye uyan kayıt yok.'); return; }
+    el('raporBilgi').textContent = 'Excel hazırlanıyor…';
+    xlsxHazir().then(function () {
+      var wb = XLSX.utils.book_new(), dosya, ara = el('raporAra').value.trim().toLocaleUpperCase('tr');
+      if (raporTuru === 'iade') { var iys = el('iadeYerFiltre').value; xlsIade(wb, r, liste, ara, iys); dosya = (iys === 'İADE' ? 'Iade_' : iys === 'ARIZALI' ? 'Arizali_' : 'Iade_Ariza_') + aralikAdi(); }
+      else if (raporTuru === 'ayrilan') { xlsAyrilan(wb, liste); dosya = 'Ayrilanlar_' + ymd(new Date()); }
+      else if (raporTuru === 'stok') {
+        xlsStok(wb, r, liste, stokDurum);
+        var yi3 = el('yerFiltre').value, df3 = el('durumFiltre').value;
+        dosya = (df3 === 'uretim' ? 'Uretim_Listesi_' : 'Stok_') + (yi3 === '' ? '' : r.yerler[+yi3].replace(/[^A-Za-z0-9ÇĞİÖŞÜçğıöşü-]/g, '') + '_') + ymd(new Date());
+      } else if (raporTuru === 'hareket') { xlsHareket(wb, liste); dosya = 'Hareketler_' + aralikAdi(); }
+      else { xlsSayim(wb, liste); dosya = 'Sayimlar_' + aralikAdi(); }
+      XLSX.writeFile(wb, dosya + '.xlsx');
+      raporCiz();
+    }).catch(function (e) { el('raporBilgi').textContent = 'Excel oluşturulamadı: ' + e.message; });
+  }
+
+  // Tüm raporlar tek dosyada, her biri ayrı sayfa (tarih aralığı: üstteki seçim; arama/durum filtreleri uygulanmaz)
+  function tumunuIndir() {
+    var bas = el('tarihBas').value, bit = el('tarihBit').value;
+    var btn = el('tumuBtn'); btn.disabled = true; btn.textContent = 'Raporlar toplanıyor…';
+    var getir = function (t) {
+      var q = '?islem=rapor&tur=' + t + '&pin=' + encodeURIComponent(durum.pin) + '&rs=' + encodeURIComponent(raporSifre);
+      if (t === 'hareket' || t === 'sayim' || t === 'iade') q += '&bas=' + bas + '&bit=' + bit;
+      return fetch(API_URL + q).then(function (x) { return x.json(); }).then(function (j) { if (!j.ok) throw new Error(j.hata); return j.rapor; });
+    };
+    Promise.all([xlsxHazir(), getir('stok'), getir('hareket'), getir('ayrilan'), getir('iade'), getir('sayim'), svApiGet(true)]).then(function (v) {
+      var st = v[1], ha = v[2], ay = v[3], ia = v[4], sa = v[5], wb = XLSX.utils.book_new();
+      // Özet sayfası en başta
+      var nb = 0, nk = 0; st.satirlar.forEach(function (s) { var d = durumKul(s); if (d === 'BİTTİ') nb++; else if (d === 'KRİTİK') nk++; });
+      var g = 0, o = 0, c = 0; ia.satirlar.forEach(function (s) { if (s.sonuc === 'GELDİ') g += s.adet; else if (s.sonuc === 'DEPOYA DÖNDÜ' || s.sonuc === 'ONARILDI') o += s.adet; else if (s.sonuc === 'ÇIKTI') c += s.adet; });
+      var bekI = 0, bekA = 0; (ia.bekleyenDetay || []).forEach(function (b) { if (b.yer === 'İADE') bekI += b.adet; else bekA += b.adet; });
+      var ayAdet = ay.satirlar.reduce(function (a, b) { return a + b.adet; }, 0);
+      sayfaEkle(wb, 'Özet', ['Bilgi', 'Değer'], [
+        ['Rapor tarihi', new Date().toLocaleString('tr-TR')],
+        ['Dönem (hareket, iade, sayım)', tarihMetni()],
+        ['Ürün sayısı', st.satirlar.length],
+        ['Biten ürün (kullanılabilir ≤ 0)', nb],
+        ['Kritik ürün', nk],
+        ['Dönemdeki hareket satırı', ha.satirlar.length],
+        ['Müşteriye ayrılmış adet', ayAdet],
+        ['Bekleyen İADE adedi', bekI],
+        ['Bekleyen ARIZALI adedi', bekA],
+        ['Dönemde gelen / depoya dönen / çıkan (iade+arıza)', g + ' / ' + o + ' / ' + c],
+        ['Dönemdeki sayım satırı', sa.satirlar.length],
+        ['Açık servis kaydı / süresi geçen', v[6].filter(function (k) { return k.durum !== 'KAPANDI'; }).length + ' / ' + v[6].filter(function (k) { return svSure(k).sinif === 'gecti'; }).length]
+      ], [44, 30], function (i) { return i === 3 && nb ? RENK.bitti : (i === 4 && nk ? RENK.kritik : null); });
+      xlsStok(wb, st, st.satirlar);
+      xlsHareket(wb, ha.satirlar);
+      xlsAyrilan(wb, ay.satirlar);
+      xlsIade(wb, ia, ia.satirlar, '', '');
+      xlsSayim(wb, sa.satirlar);
+      svExcelSayfasi(wb, v[6]);
+      XLSX.writeFile(wb, 'Ayas_Depo_Tum_Raporlar_' + aralikAdi() + '.xlsx');
+      raporCiz();
+    }).catch(function (e) {
+      if (/RAPOR ŞİFRESİ/.test(e.message)) { raporSifre = ''; raporKilitGoster('Rapor şifresi hatalı.'); return; }
+      alert('Tüm raporlar indirilemedi: ' + e.message);
+    }).then(function () { btn.disabled = false; btn.textContent = '⬇ Tüm raporlar (tek Excel, ayrı sayfalar)'; });
+  }
+
+  /* ================= SERVİS KAYITLARI ================= */
+  var svKayitlar = [], svAktif = null, svGorunum = 'liste', svYeniUrunler = [], svYukleniyor = false;
+  var SV_SURE = { 'ARIZA': 240, 'İADE': 48, 'DEĞİŞİM': 48 }; // saat
+  var SV_SORUN = ['Motor ses yapıyor', 'Motor çalışmıyor', 'Kanat kırık', 'Titreşim', 'Elektrik / kablo', 'Kondansatör', 'Gövde hasarı', 'Nakliye hasarı', 'Diğer'];
+  var SV_IADE = ['Müşteri vazgeçti', 'Yanlış ürün', 'Fazla sipariş', 'Hasarlı geldi', 'Beğenmedi', 'Diğer'];
+
+  function svApiGet(kapali) {
+    return fetch(API_URL + '?islem=servis&pin=' + encodeURIComponent(durum.pin) + (kapali ? '&kapali=1' : ''))
+      .then(function (r) { return r.json(); }).then(function (j) { if (!j.ok) { oturumHatasi(j.hata); throw new Error(j.hata); } return j.servis; });
+  }
+  function svApiPost(veri) {
+    return api('POST', Object.assign({ pin: durum.pin }, veri)).then(function (j) { return j.sonuc; });
+  }
+  function svGoster(g) {
+    svGorunum = g;
+    ['svListe', 'svForm', 'svDetay', 'svPersonel'].forEach(function (id) { el(id).classList.toggle('gizli', id !== { liste: 'svListe', form: 'svForm', detay: 'svDetay', personel: 'svPersonel' }[g]); });
+    el('svGeriBtn').textContent = g === 'liste' ? '← Okutmaya dön' : '← Kayıtlar';
+    window.scrollTo({ top: 0 });
+  }
+  function servisAc() {
+    if (!gunKontrol()) return;
+    kameraKapat();
+    el('uygulama').classList.add('gizli'); el('raporlar').classList.add('gizli'); el('servisEkran').classList.remove('gizli');
+    el('svBaslik').textContent = 'Servis kayıtları';
+    svGoster('liste'); svYukle();
+  }
+  function svGeri() {
+    if (svGorunum === 'liste') { el('servisEkran').classList.add('gizli'); el('uygulama').classList.remove('gizli'); return; }
+    el('svBaslik').textContent = 'Servis kayıtları'; svGoster('liste'); svListeCiz();
+  }
+  function svYukle() {
+    el('svBilgi').textContent = 'Yükleniyor…'; svYukleniyor = true;
+    return svApiGet(el('svKapali').checked).then(function (l) { svKayitlar = l; svYukleniyor = false; svListeCiz(); })
+      .catch(function (e) { svYukleniyor = false; el('svBilgi').textContent = 'Kayıtlar alınamadı: ' + e.message; });
+  }
+
+  // Kalan süre: arızada yasal 10 gün, iade/değişimde 48 saat
+  function svSure(k) {
+    if (k.durum === 'KAPANDI') return { sinif: 'kapali', metin: 'Kapandı ' + (k.kapanis || '').split(' ')[0] };
+    var gecen = (Date.now() - new Date(k.gelis).getTime()) / 36e5, limit = SV_SURE[k.tur] || 48, kalan = limit - gecen;
+    // Kalan süre yukarı (10 günün ilk saati "10 gün kaldı"), geçen süre aşağı yuvarlanır
+    var bicim = function (sa, kalanMi) { var m = Math.abs(sa), yuv = kalanMi ? Math.ceil : Math.floor; return k.tur === 'ARIZA' && m >= 24 ? yuv(m / 24) + ' gün' : Math.max(1, yuv(m)) + ' saat'; };
+    if (kalan < 0) return { sinif: 'gecti', metin: bicim(kalan, false) + ' geçti', kalan: kalan };
+    var yakin = k.tur === 'ARIZA' ? kalan <= 72 : kalan <= 12;
+    return { sinif: yakin ? 'yakin' : 'rahat', metin: bicim(kalan, true) + ' kaldı', kalan: kalan };
+  }
+  function svUrunMetni(k) { return k.urunler.map(function (u) { return u.adet + '× ' + u.kod; }).join(', '); }
+  function svSatirHtml(k) {
+    var sr = svSure(k);
+    return '<div class="svSatir" onclick="svDetayAc(\'' + esc(k.formNo) + '\')"><div class="ust"><span><b>' + esc(k.formNo) + '</b> · ' + esc(svUrunMetni(k)) + '</span><span><span class="sure ' + sr.sinif + '">' + esc(sr.metin) + '</span><button class="svSilBtn" title="Kaydı sil" onclick="event.stopPropagation();svSil(\'' + esc(k.formNo) + '\')">🗑</button></span></div>' +
+      '<div class="alt">' + esc(k.gonderen) + ' · ' + esc(k.tur) + ' · <b>' + esc(k.durum) + '</b></div></div>';
+  }
+  function svListeCiz() {
+    var ara = el('svAra').value.trim().toLocaleUpperCase('tr');
+    var urunKodlar = bulHepsi(ara).map(function (u) { return u.kod; });
+    var l = svKayitlar.filter(function (k) {
+      if (!ara) return true;
+      if (urunKodlar.length && k.urunler.some(function (u) { return urunKodlar.indexOf(u.kod) >= 0; })) return true;
+      return icerir(ara, [k.formNo, k.gonderen, k.durum, k.tur, k.iletisim].concat(k.urunler.map(function (u) { return u.kod + ' ' + u.ad + ' ' + u.seri + ' ' + u.sorun; })));
+    }).sort(function (a, b) {
+      var ka = a.durum === 'KAPANDI', kb = b.durum === 'KAPANDI';
+      if (ka !== kb) return ka ? 1 : -1;
+      return (svSure(a).kalan || 0) - (svSure(b).kalan || 0); // en acil üstte
+    });
+    var acik = svKayitlar.filter(function (k) { return k.durum !== 'KAPANDI'; });
+    var gecen = acik.filter(function (k) { return svSure(k).sinif === 'gecti'; }).length;
+    el('svBilgi').innerHTML = acik.length + ' açık kayıt' + (gecen ? ' · <b style="color:#d93025">' + gecen + ' tanesinin süresi geçti</b>' : '');
+    el('svListeIc').innerHTML = l.map(svSatirHtml).join('') || '<div class="bos">' + (ara ? 'Aramaya uyan kayıt yok.' : 'Açık servis kaydı yok.') + '</div>';
+  }
+
+  // ---- Barkodla kayıt bulma ----
+  function svBarkodBul() { el('svSecim').classList.add('gizli'); kameraAc('svBul'); }
+  function svAraBarkod() { var v = el('svAra').value.trim(); if (bul(v)) svBarkodSonuc(v); }
+  function svBarkodSonuc(metin, secilen) {
+    if (!secilen && bulHepsi(metin).length > 1) { urunSecici(bulHepsi(metin), metin, function (x) { svBarkodSonuc(metin, x); }); return; }
+    var u = secilen || bul(metin);
+    if (!u) { el('svSecim').className = 'mesaj hata'; el('svSecim').textContent = 'Bu barkod ürün listesinde yok: ' + metin; return; }
+    var bulunan = svKayitlar.filter(function (k) { return k.durum !== 'KAPANDI' && k.urunler.some(function (x) { return x.kod === u.kod; }); });
+    if (bulunan.length === 1) { svDetayAc(bulunan[0].formNo); return; }
+    var kutu = el('svSecim'); kutu.className = 'mesaj bilgi';
+    if (!bulunan.length) {
+      kutu.innerHTML = '<b>' + esc(u.kod) + '</b> için açık servis kaydı yok.<div class="satir" style="margin-top:6px"><div><button class="btn kirmizi" style="margin-top:0" onclick="svYeni(\'ARIZA\',\'' + esc(u.kod) + '\')">Arıza kaydı aç</button></div><div><button class="btn" style="margin-top:0" onclick="svYeni(\'İADE\',\'' + esc(u.kod) + '\')">İade kaydı aç</button></div></div>';
+      return;
+    }
+    // Aynı modelden birden fazla açık kayıt: kişi müşteri / tarih / sorun bilgisine bakıp seçer
+    kutu.innerHTML = '<b>' + esc(u.kod) + '</b> için ' + bulunan.length + ' açık kayıt var, hangisi?' +
+      bulunan.map(function (k) {
+        var x = k.urunler.filter(function (y) { return y.kod === u.kod; })[0];
+        return '<div class="svSatir" onclick="svDetayAc(\'' + esc(k.formNo) + '\')"><div class="ust"><span><b>' + esc(k.formNo) + '</b> · ' + esc(k.gonderen) + '</span><span>' + esc(new Date(k.gelis).toLocaleDateString('tr-TR')) + '</span></div><div class="alt">' + esc(x.sorun) + (x.seri ? ' · SN ' + esc(x.seri) : '') + ' · ' + esc(k.durum) + '</div></div>';
+      }).join('');
+  }
+
+  // ---- Yeni kayıt (depo kabul) ----
+  function segKur(id, secenekler, secili, degisince) {
+    var kutu = el(id);
+    kutu.innerHTML = secenekler.map(function (x) { return '<button type="button" data-v="' + esc(x) + '"' + (x === secili ? ' class="secili"' : '') + '>' + esc(x) + '</button>'; }).join('');
+    kutu.onclick = function (e) {
+      var b = e.target.closest('button'); if (!b) return;
+      kutu.querySelectorAll('button').forEach(function (x) { x.classList.toggle('secili', x === b); });
+      if (degisince) degisince(b.getAttribute('data-v'));
+    };
+  }
+  function segDeger(id) { var b = el(id).querySelector('button.secili'); return b ? b.getAttribute('data-v') : ''; }
+  function svYeni(tur, kod) {
+    if (el('servisEkran').classList.contains('gizli')) servisAc();
+    svYeniUrunler = [];
+    segKur('svTur', tur === 'ARIZA' ? ['ARIZA'] : ['İADE', 'DEĞİŞİM'], tur === 'ARIZA' ? 'ARIZA' : 'İADE', svSorunListesi);
+    ['svKanal', 'svSekil', 'svKoli', 'svTutanak'].forEach(function (id) {
+      segKur(id, el(id).getAttribute('data-secenek').split('|'), '', id === 'svKoli' ? function (v) { el('svTutanakKutu').classList.toggle('gizli', v === 'SAĞLAM'); } : null);
+    });
+    el('svTutanakKutu').classList.add('gizli');
+    ['svGonderen', 'svIletisim', 'svAciklama', 'svUrunGir'].forEach(function (id) { el(id).value = ''; });
+    el('svTemsilciKutu').innerHTML = kisiSecHtml('satis', 'svTemsilci', true);
+    el('svKabulEdenKutu').innerHTML = '<input type="text" readonly style="background:#f2f4f7" value="' + esc((durum.ben && durum.ben.ad) || '') + '">';
+    var adlar = {}; svKayitlar.forEach(function (k) { adlar[k.gonderen] = 1; }); (iadeOneri.kimden || []).forEach(function (x) { adlar[x] = 1; });
+    el('svGonderenListe').innerHTML = Object.keys(adlar).sort().map(function (x) { return '<option value="' + esc(x) + '">'; }).join('');
+    el('svFormMesaj').className = 'mesaj';
+    el('svBaslik').textContent = tur === 'ARIZA' ? 'Yeni arıza kaydı (3-1)' : 'Yeni iade / değişim kaydı (3-2)';
+    svSorunListesi(); svUrunlerCiz();
+    if (kod) svUrunEkle(kod);
+    el('svSecim').classList.add('gizli');
+    svGoster('form');
+  }
+  function svSorunListesi() {
+    var ariza = segDeger('svTur') === 'ARIZA';
+    el('svSorunListe').innerHTML = (ariza ? SV_SORUN : SV_IADE).map(function (x) { return '<option value="' + esc(x) + '">'; }).join('');
+    svUrunlerCiz();
+  }
+  function svUrunEkleElle() { var v = el('svUrunGir').value.trim(); if (v) { svUrunEkle(v); el('svUrunGir').value = ''; el('svUrunGir').focus(); } }
+  function svUrunEkle(metin, secilen) {
+    if (!secilen && bulHepsi(metin).length > 1) { urunSecici(bulHepsi(metin), metin, function (x) { svUrunEkle(metin, x); }); return; }
+    var u = secilen || bul(metin);
+    if (!u) { el('svFormMesaj').className = 'mesaj hata'; el('svFormMesaj').textContent = 'Bulunamadı: ' + metin + ' — ürün listesinde yok.'; sinyal(false); return; }
+    var var_ = svYeniUrunler.filter(function (x) { return x.kod === u.kod; })[0];
+    if (var_ && !var_.seri) var_.adet++; // seri no girilmemişse aynı ürünü adet olarak topla
+    else svYeniUrunler.push({ kod: u.kod, ad: u.ad, barkod: normal(metin), adet: 1, seri: '', sorun: '' });
+    el('svFormMesaj').className = 'mesaj ok'; el('svFormMesaj').textContent = '✓ ' + u.ad;
+    svUrunlerCiz();
+  }
+  function svUrunlerCiz() {
+    var ariza = segDeger('svTur') === 'ARIZA';
+    el('svUrunler').innerHTML = svYeniUrunler.map(function (u, i) {
+      return '<div class="svUrun"><div style="display:flex;justify-content:space-between"><b>' + esc(u.kod) + '</b><button class="silbtn" onclick="svYeniUrunler.splice(' + i + ',1);svUrunlerCiz()">Çıkar</button></div>' +
+        '<div class="alt" style="font-size:12px;color:#5b6475">' + esc(u.ad) + '</div>' +
+        '<div class="satir" style="margin-top:6px"><div style="flex:0 0 70px"><input type="number" min="1" value="' + u.adet + '" onchange="svYeniUrunler[' + i + '].adet=+this.value" placeholder="Adet"></div>' +
+        '<div><input type="text" value="' + esc(u.seri) + '" oninput="svYeniUrunler[' + i + '].seri=this.value" placeholder="Seri no (varsa)"></div></div>' +
+        '<input type="text" style="margin-top:6px" list="svSorunListe" value="' + esc(u.sorun) + '" oninput="svYeniUrunler[' + i + '].sorun=this.value" placeholder="' + (ariza ? 'Bildirilen sorun (zorunlu)' : 'İade sebebi (zorunlu)') + '"></div>';
+    }).join('') || '<div class="bos">Henüz ürün eklenmedi.</div>';
+  }
+  function svKaydet() {
+    var istek = { islem: 'servisKabul', tur: segDeger('svTur'), okutan: (durum.okutan || '').trim(), gonderen: el('svGonderen').value.trim(), iletisim: el('svIletisim').value.trim(),
+      kanal: segDeger('svKanal'), gelisSekli: segDeger('svSekil'), koli: segDeger('svKoli'), tutanak: segDeger('svKoli') === 'SAĞLAM' ? '' : segDeger('svTutanak'),
+      temsilci: el('svTemsilci').value.trim(), aciklama: el('svAciklama').value.trim(),
+      urunler: svYeniUrunler.map(function (u) { return { kod: u.kod, barkod: u.barkod, adet: u.adet, seri: u.seri.trim(), sorun: u.sorun.trim() }; }) };
+    var hata = !istek.gonderen ? 'Gönderen ismi yazın.' : !istek.iletisim ? 'İletişim no yazın.' :
+      !istek.kanal ? 'Satış kanalını seçin.' : !istek.gelisSekli ? 'Geliş şeklini seçin.' : !istek.koli ? 'Koli durumunu seçin.' :
+      (istek.koli !== 'SAĞLAM' && !istek.tutanak) ? 'Kargo tutanağı alındı mı, seçin.' : !istek.urunler.length ? 'En az bir ürün okutun.' :
+      istek.urunler.some(function (u) { return !u.sorun; }) ? 'Her ürün için ' + (istek.tur === 'ARIZA' ? 'bildirilen sorunu' : 'iade sebebini') + ' yazın.' : '';
+    var m = el('svFormMesaj');
+    if (hata) { m.className = 'mesaj hata'; m.textContent = hata; return; }
+    if (istek.tutanak === 'ALINMADI' && !confirm('Koli hasarlı ve kargo tutanağı alınmadı. Prosedüre göre tutanak istenmeli. Yine de kayıt açılsın mı?')) return;
+    m.className = 'mesaj bilgi'; m.textContent = 'Kaydediliyor…';
+    svApiPost(istek).then(function (r) {
+      stok = r.stok || stok; svKayitlar.unshift(r.kayit);
+      m.className = 'mesaj';
+      svDetayAc(r.kayit.formNo, 'Kayıt açıldı: ' + r.kayit.formNo + ' — ürün ' + ({ 'ARIZA': 'ARIZALI', 'İADE': 'İADE', 'DEĞİŞİM': 'İADE' })[r.kayit.tur] + ' deposuna alındı.');
+    }).catch(function (e) { m.className = 'mesaj hata'; m.textContent = 'KAYDEDİLEMEDİ: ' + e.message; });
+  }
+
+  // ---- Kayıt detayı ve adımlar ----
+  function svDetayAc(formNo, bilgi) {
+    var k = svKayitlar.filter(function (x) { return x.formNo === formNo; })[0];
+    if (!k) return;
+    svAktif = k; el('svSecim').classList.add('gizli');
+    el('svBaslik').textContent = k.formNo + ' · ' + (k.tur === 'ARIZA' ? 'Arızalı ürün' : k.tur === 'İADE' ? 'İade' : 'Değişim');
+    var sr = svSure(k);
+    var h = (bilgi ? '<div class="mesaj ok">' + esc(bilgi) + '</div>' : '') +
+      '<div style="display:flex;justify-content:space-between;align-items:center;margin:4px 0 8px"><span class="durumEtiket">' + esc(k.durum) + '</span><span class="sure ' + sr.sinif + '">' + esc(sr.metin) + '</span></div>' +
+      '<div style="font-size:14px"><b>' + esc(k.gonderen) + '</b> · ' + esc(k.iletisim) + '</div>' +
+      '<div class="alt" style="font-size:12px;color:#5b6475">' + esc(k.kanal) + ' · ' + esc(k.gelisSekli) + ' · Koli: ' + esc(k.koli) + (k.tutanak ? ' (tutanak ' + esc(k.tutanak.toLowerCase()) + ')' : '') + ' · Geliş ' + esc(new Date(k.gelis).toLocaleString('tr-TR').slice(0, 16)) + '</div>' +
+      (k.temsilci ? '<div class="alt" style="font-size:12px;color:#5b6475">Satış temsilcisi: ' + esc(k.temsilci) + '</div>' : '') +
+      (k.aciklama ? '<div class="alt" style="font-size:12px;color:#5b6475">Açıklama: ' + esc(k.aciklama) + '</div>' : '') +
+      (k.kaynakFormNo ? '<div class="mesaj bilgi" style="display:block;margin-top:6px">↩ <b>' + esc(k.kaynakFormNo) + '</b> iade kaydından çevrildi · <span class="fislink" onclick="svDetayAc(\'' + esc(k.kaynakFormNo) + '\')">iade kaydını aç</span></div>' : '') +
+      (k.arizaFormNo ? '<div class="mesaj bilgi" style="display:block;margin-top:6px">→ <b>' + esc(k.arizaFormNo) + '</b> arıza kaydına çevrildi · <span class="fislink" onclick="svDetayAc(\'' + esc(k.arizaFormNo) + '\')">arıza kaydını aç</span></div>' : '') +
+      '<div class="bolumBaslik">Ürünler</div>' + k.urunler.map(function (u) {
+        return '<div class="svUrun"><b>' + u.adet + '× ' + esc(u.kod) + '</b>' + (u.seri ? ' · SN ' + esc(u.seri) : '') + '<div style="font-size:12px;color:#5b6475">' + esc(u.ad) + '</div><div class="musteri">' + (k.tur === 'ARIZA' ? 'Sorun' : 'Sebep') + ': ' + esc(u.sorun) + '</div></div>';
+      }).join('') +
+      (k.kalemler && k.kalemler.length ? '<div class="bolumBaslik">Onarım</div><div style="font-size:13px">' + esc(k.garanti) + (k.onay ? ' · Müşteri onayı: ' + esc(k.onay) : '') + '</div>' + svTeklifTablo(k) : '') +
+      (k.garanti && !(k.kalemler && k.kalemler.length) ? '<div class="bolumBaslik">Onarım</div><div style="font-size:13px">' + esc(k.garanti) + (k.teshis ? ' · ' + esc(k.teshis) : '') + (k.parca && k.parca !== k.teshis ? ' · Parça: ' + esc(k.parca) : '') + (k.parcaAdet ? ' × ' + esc(k.parcaAdet) : '') + (k.ucret ? ' · Ücret: ' + esc(k.ucret) : '') + (k.onay ? ' · Müşteri onayı: ' + esc(k.onay) : '') + '</div>' : '') +
+      (k.tur === 'DEĞİŞİM' ? '<div class="bolumBaslik">Değişim ürünü</div><div style="font-size:13px">' + (k.degisim.gonderildi ? 'Gönderildi: ' + esc(k.degisim.urunler) : 'Henüz gönderilmedi') + '</div>' : '') +
+      '<div class="bolumBaslik">İşlem geçmişi</div><div class="zaman">' + k.log.map(function (l) {
+        return '<div><b>' + esc(l.adim) + '</b><small>' + esc(l.tarih) + ' · ' + esc(l.kisi) + (l.not ? ' · ' + esc(l.not) : '') + '</small></div>';
+      }).join('') + '</div>' +
+      '<div id="svAdim">' + svKisiliPanel(k) + '</div>' +
+      '<div class="satir" style="margin-top:4px"><div><button class="btn ikincil" onclick="svYazdir()">🖨 Formu yazdır</button></div><div class="svKayitSil"><button class="btn ikincil" style="color:#c62828" onclick="svSil(\'' + esc(k.formNo) + '\')">🗑 Kaydı sil</button></div></div>' +
+      '<div id="svAdimMesaj" class="mesaj"></div>';
+    el('svDetay').innerHTML = h;
+    svGoster('detay');
+    svAdimKur(k);
+  }
+  function svAdimPaneli(k) {
+    var not = '<label>Not (isteğe bağlı)</label><input type="text" id="svNot" autocomplete="off">';
+    var d = k.durum, html = '';
+    if (d === 'TEŞHİS BEKLİYOR') html = '<div class="bolumBaslik">Sıradaki adım: montaj teşhis</div>' +
+      '<label>Garanti</label><div class="seg" id="svGaranti"></div>' +
+      '<label id="svKalemBaslik">Tespit edilen sorunlar / yapılacak işlemler (her biri ayrı satır)</label><div id="svKalemler"></div>' +
+      '<button class="btn ikincil" type="button" onclick="svKalemEkle()">+ Sorun / işlem ekle</button>' + not +
+      '<button class="btn" id="svTeshisBtn" onclick="svAdim(\'teshis\')">Teşhisi kaydet</button>';
+    else if (d === 'FİYATLANDIRMA BEKLİYOR') html = '<div class="bolumBaslik">Sıradaki adım: fiyatlandırma (satış temsilcisi)</div>' +
+      '<div style="font-size:13px;margin-bottom:6px">Montajın bildirdiği sorunlar. Her kalem için <b>birim fiyat</b> yazın:</div>' +
+      '<table class="svKalemTablo"><tr><th>Sorun / işlem</th><th>Adet</th><th>Birim fiyat (TL)</th><th>Tutar</th></tr>' +
+      (k.kalemler || []).map(function (x, i) { return '<tr><td>' + esc(x.islem) + '</td><td style="text-align:center">' + x.adet + '</td><td><input type="text" inputmode="decimal" class="svFiyat" data-i="' + i + '" data-adet="' + x.adet + '" oninput="svFiyatHesap()" placeholder="0"></td><td class="svTutar" id="svTutar' + i + '" style="text-align:right">—</td></tr>'; }).join('') +
+      '<tr><th colspan="3" style="text-align:right">TOPLAM</th><th id="svToplam" style="text-align:right">—</th></tr></table>' +
+      not +
+      '<button class="btn" onclick="svAdim(\'fiyat\')">Teşhisi kaydet (müşteri onayına gönder)</button>';
+    else if (d === 'MÜŞTERİ ONAYI BEKLİYOR') html = '<div class="bolumBaslik">Sıradaki adım: müşteri onayı (satış temsilcisi)</div>' + svTeklifTablo(k) + not +
+      '<div class="satir"><div><button class="btn yesil" onclick="svAdim(\'onay\',{onay:\'EVET\'})">Müşteri onayladı</button></div><div><button class="btn kirmizi" onclick="svAdim(\'onay\',{onay:\'HAYIR\'})">Onaylamadı</button></div></div>';
+    else if (d === 'ONARIMDA' && k.kalemler && k.kalemler.length) html = '<div class="bolumBaslik">Sıradaki adım: onarım</div>' + svTeklifTablo(k) + not +
+      '<button class="btn" onclick="svAdim(\'onarildi\')">Onarıldı</button>';
+    else if (d === 'ONARIMDA') html = '<div class="bolumBaslik">Sıradaki adım: onarım</div><label>Onarılan parça</label><input type="text" id="svParca" value="' + esc(k.teshis || '') + '">' +
+      '<div class="satir"><div><label>Kullanılan adet</label><input type="text" id="svParcaAdet" inputmode="numeric"></div><div><label>Ücret</label><input type="text" id="svUcret" value="' + esc(k.ucret || '') + '" placeholder="Garanti içi ise boş"></div></div>' + not +
+      '<button class="btn" onclick="svAdim(\'onarildi\')">Onarıldı</button>';
+    else if (d === 'TESLİME HAZIR') html = '<div class="bolumBaslik">Sıradaki adım: teslim' + (k.onarilmadan ? ' (onarılmadan iade)' : '') + '</div><label>Teslim alan / gönderim (kargo firması, takip no)</label><input type="text" id="svTeslim" autocomplete="off">' + not +
+      '<button class="btn" onclick="svAdim(\'teslim\')">Teslim et ve stoktan düş</button>';
+    else if (d === 'DEPO KONTROLÜ BEKLİYOR' || d === 'MONTAJ KONTROLÜ BEKLİYOR') {
+      var depo = d === 'DEPO KONTROLÜ BEKLİYOR';
+      html = '<div class="bolumBaslik">Sıradaki adım: ' + (depo ? 'depo göz kontrol' : 'montaj teknik ve koli kontrol') + '</div>' +
+        (depo ? '' : '<div class="filtre"><label><input type="checkbox" id="svKoliDegisti"> Koli değiştirildi</label></div>') +
+        '<label>Not (red ise sebep zorunlu)</label><input type="text" id="svNot" autocomplete="off">' +
+        '<div class="satir"><div><button class="btn yesil" onclick="svAdim(\'' + (depo ? 'depoKontrol' : 'montajKontrol') + '\',{sonuc:\'UYGUN\'})">Uygun</button></div><div><button class="btn kirmizi" onclick="svAdim(\'' + (depo ? 'depoKontrol' : 'montajKontrol') + '\',{sonuc:\'RED\'})">Red</button></div></div>';
+    } else if (d === 'RAFA YERLEŞTİRİLECEK') html = '<div class="bolumBaslik">Sıradaki adım: ürünü depoya gönder</div>' + not +
+      '<div class="satir"><div><button class="btn" onclick="svAdim(\'rafa\',{hedef:\'E-TİCARET\'})">E-ticaret depoya gönder</button></div><div><button class="btn" onclick="svAdim(\'rafa\',{hedef:\'BAYİ\'})">Bayi depoya gönder</button></div></div>';
+    else if (d === 'YENİ ÜRÜN GÖNDERİLECEK') html = '<div class="bolumBaslik">Sıradaki adım: değişim ürünü</div>' + not + '<button class="btn" onclick="svAdim(\'degisimGonder\')">Değişim ürününü gönder (' + esc(svDegisimKaynak(k)) + ' deposundan düş)</button>';
+    else if (d.indexOf('RED') === 0) html = '<div class="bolumBaslik">Sıradaki adım: müşterinin kararı</div>' +
+      '<div style="font-size:13px;color:#5b6475;margin-bottom:6px">Müşteri aranıp karar alındıktan sonra birini seçin.</div>' + not +
+      '<button class="btn" onclick="svAdim(\'redTeslim\')">Ürünü onarımsız geri istiyor — müşteriye gönderildi (İADE\'den düş)</button>' +
+      (k.tur === 'DEĞİŞİM' && k.degisim.gonderildi ? '' : '<button class="btn kirmizi" onclick="if(confirm(\'Müşteri ücretli onarımı kabul etti mi?\\n\\nYeni bir ARIZA kaydı açılır (garanti dışı), ürün İADE → ARIZALI aktarılır ve bu iade kaydı kapanır.\'))svAdim(\'arizayaCevir\')">Müşteri ücretli onarımı kabul etti → Arıza kaydına çevir</button>');
+    if (k.tur === 'DEĞİŞİM' && !k.degisim.gonderildi && d !== 'KAPANDI' && d.indexOf('RED') !== 0 && d !== 'YENİ ÜRÜN GÖNDERİLECEK')
+      html += '<button class="btn ikincil" onclick="if(confirm(\'Değişim ürünü kontrol bitmeden şimdi gönderilsin mi? ' + esc(svDegisimKaynak(k)) + ' stoğundan düşülecek.\'))svAdim(\'degisimGonder\')">Değişim ürününü şimdi gönder</button>';
+    if (d === 'KAPANDI') html = '<div class="mesaj bilgi" style="display:block">Bu kayıt kapandı (' + esc(k.kapanis || '') + ').</div><label>Not ekle</label><input type="text" id="svNot" autocomplete="off"><button class="btn ikincil" onclick="svAdim(\'not\')">Not ekle</button>';
+    return html;
+  }
+  /* ---- Personel ---- */
+  var ROL_AD = { depo: 'Depo sorumlusu', servis: 'Servis sorumlusu', satis: 'Satış temsilcisi' };
+  var DURUM_ROL = { 'TEŞHİS BEKLİYOR': 'servis', 'ONARIMDA': 'servis', 'MONTAJ KONTROLÜ BEKLİYOR': 'servis', 'FİYATLANDIRMA BEKLİYOR': 'satis', 'MÜŞTERİ ONAYI BEKLİYOR': 'satis',
+    'TESLİME HAZIR': 'depo', 'DEPO KONTROLÜ BEKLİYOR': 'depo', 'RAFA YERLEŞTİRİLECEK': 'depo', 'YENİ ÜRÜN GÖNDERİLECEK': 'depo' };
+  function personelDatalist() { if (el('personelListe')) el('personelListe').innerHTML = personel.map(function (p) { return '<option value="' + esc(p.ad) + '">'; }).join(''); }
+  function kisiHatirla(rol, id) { try { if (el(id) && el(id).value) localStorage.setItem('kisi_' + rol, el(id).value); } catch (e) {} }
+  // Göreve uygun kişiler listeden seçilir; listede kimse yoksa serbest yazılır.
+  function kisiSecHtml(rol, id, bosBaslasin, varsayilan) {
+    var l = personel.filter(function (p) { return rol ? p[rol] : true; });
+    if (!l.length) return '<input type="text" id="' + id + '" data-rol="' + (rol || '') + '" autocomplete="off" list="personelListe" placeholder="' + (rol ? ROL_AD[rol] + ' (👥 Personel listesine eklenebilir)' : 'Adınız') + '">';
+    var son = ''; try { son = localStorage.getItem('kisi_' + rol) || ''; } catch (e) {}
+    if (!son && durum.okutan) son = durum.okutan.trim();
+    if (bosBaslasin) son = '';
+    if (varsayilan && l.some(function (p) { return p.ad === varsayilan; })) son = varsayilan; // kayıttaki satış temsilcisi önce gelir
+    return '<select id="' + id + '" data-rol="' + (rol || '') + '"><option value="">— seçin —</option>' +
+      l.map(function (p) { return '<option' + (p.ad === son ? ' selected' : '') + '>' + esc(p.ad) + '</option>'; }).join('') + '</select>';
+  }
+  function svKisiliPanel(k) {
+    var html = svAdimPaneli(k); if (!html) return html;
+    var rol = DURUM_ROL[k.durum] || (k.durum.indexOf('RED') === 0 ? 'satis' : ''); // red: müşteriyle görüşüp kararı satış verir
+    if (!rol || yetkiVar('sv_' + rol)) return html;
+    var i = html.indexOf('</div>');
+    return (i < 0 ? '' : html.slice(0, i + 6)) +
+      '<div class="mesaj bilgi" style="display:block">Bu adımı <b>' + ROL_AD[rol] + '</b> yapar. İsterseniz kayda not ekleyebilirsiniz.</div>' +
+      '<label>Not</label><input type="text" id="svNot" autocomplete="off"><button class="btn ikincil" onclick="svAdim(\'not\')">Not ekle</button>';
+  }
+  var P_ETIKET = {}, P_SABLON = {};
+  var P_GRUP = [
+    ['Okutma', ['okut_giris', 'okut_transfer', 'okut_cikis', 'okut_sayim']],
+    ['Raporlar ve hareketler', ['rapor', 'duzelt', 'sil']],
+    ['Servis', ['sv_kabul', 'sv_depo', 'sv_servis', 'sv_satis', 'sv_sil']],
+    ['Yönetim', ['admin']]
+  ];
+  var SABLON_AD = { depo: 'Depo', servis: 'Montaj', satis: 'Satış temsilcisi', rapor: '+ Raporlar', admin: 'Yönetici' };
+  function personelAc() {
+    el('svBaslik').textContent = 'Kullanıcılar'; svGoster('personel');
+    el('pListe').innerHTML = ''; var m = el('pMesaj'); m.className = 'mesaj bilgi'; m.textContent = 'Yükleniyor…';
+    fetch(API_URL + '?islem=kullanicilar&pin=' + encodeURIComponent(durum.pin)).then(function (r) { return r.json(); }).then(function (j) {
+      if (!j.ok) { oturumHatasi(j.hata); throw new Error(j.hata); }
+      P_ETIKET = j.yetkiler || {}; P_SABLON = j.sablonlar || {};
+      kullanicilariCiz(j.kullanicilar); m.className = 'mesaj';
+    }).catch(function (e) { m.className = 'mesaj hata'; m.textContent = e.message; });
+  }
+  function kullanicilariCiz(l) { el('pListe').innerHTML = ''; l.forEach(function (p) { personelSatir(p, false); }); if (!l.length) personelSatir(); }
+  function pOzet(d) {
+    var ad = d.querySelector('.pAd').value.trim() || 'Yeni kullanıcı', kadi = d.querySelector('.pKadi').value.trim();
+    var y = Array.prototype.filter.call(d.querySelectorAll('.pY'), function (c) { return c.checked; }).map(function (c) { return c.dataset.k; });
+    d.querySelector('.pBas').textContent = ad + (kadi ? ' (' + kadi + ')' : ' — giriş yapamaz');
+    d.querySelector('.pAlt').textContent = y.indexOf('admin') >= 0 ? 'Yönetici (tüm yetkiler)' : (y.map(function (k) { return YETKI_KISA[k]; }).join(' · ') || 'Yetki yok');
+    var ak = d.querySelector('.pAktif').checked, r = d.querySelector('.rozetK');
+    r.textContent = ak ? 'Aktif' : 'Kapalı'; r.className = 'rozetK' + (ak ? '' : ' kapali'); d.classList.toggle('kapali', !ak);
+  }
+  function pSablon(btn, ad) {
+    var d = btn.closest('.pKart'), l = P_SABLON[ad] || [];
+    if (ad !== 'rapor') d.querySelectorAll('.pY').forEach(function (c) { c.checked = false; });
+    d.querySelectorAll('.pY').forEach(function (c) { if (l.indexOf(c.dataset.k) >= 0) c.checked = true; });
+    pOzet(d);
+  }
+  function personelSatir(p, acik) {
+    var yeni = !p; p = p || { aktif: true, yetkiler: [] };
+    var y = p.yetkiler || [];
+    var d = document.createElement('details'); d.className = 'pKart'; d.open = yeni || acik === true;
+    d.dataset.eskiKadi = p.kadi || '';
+    d.innerHTML = '<summary><div><b class="pBas"></b><small class="pAlt"></small></div><span class="rozetK"></span></summary>' +
+      '<div class="ikili" style="margin-top:8px"><div><label>Ad Soyad</label><input type="text" class="pAd" autocomplete="off" oninput="pOzet(this.closest(\'.pKart\'))"></div>' +
+      '<div><label>Kullanıcı adı</label><input type="text" class="pKadi" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="örn. cetin" oninput="pOzet(this.closest(\'.pKart\'))"></div></div>' +
+      '<div class="pGrup">Hazır şablon</div><div class="pSablon">' + Object.keys(SABLON_AD).map(function (k) { return '<button type="button" onclick="pSablon(this,\'' + k + '\')">' + SABLON_AD[k] + '</button>'; }).join('') + '</div>' +
+      P_GRUP.map(function (g) {
+        return '<div class="pGrup">' + g[0] + '</div><div class="pYetki">' + g[1].map(function (k) {
+          return '<label title="' + esc(P_ETIKET[k] || '') + '"><input type="checkbox" class="pY" data-k="' + k + '"' + (y.indexOf(k) >= 0 ? ' checked' : '') + ' onchange="pOzet(this.closest(\'.pKart\'))"> ' + esc(P_ETIKET[k] || YETKI_KISA[k]) + '</label>';
+        }).join('') + '</div>';
+      }).join('') +
+      '<div class="ikili" style="align-items:end;margin-top:8px"><div><label>' + (p.sifreVar ? 'Yeni şifre (değişmeyecekse boş)' : 'Şifre (en az 6 karakter)') + '</label><input type="text" class="pSifre" autocomplete="off" autocapitalize="off" spellcheck="false"></div>' +
+      '<div style="display:flex;gap:8px;align-items:center;justify-content:space-between"><label style="display:flex;align-items:center;gap:6px;margin:0;font-size:14px;color:#1d2433"><input type="checkbox" class="pAktif"' + (p.aktif === false ? '' : ' checked') + ' style="width:18px;height:18px" onchange="pOzet(this.closest(\'.pKart\'))"> Aktif</label>' +
+      '<button type="button" class="svKalemSil" title="Listeden çıkar" onclick="this.closest(\'.pKart\').remove()">✕</button></div></div>';
+    d.querySelector('.pAd').value = p.ad || ''; d.querySelector('.pKadi').value = p.kadi || '';
+    el('pListe').appendChild(d); pOzet(d);
+    if (yeni) d.querySelector('.pAd').focus();
+  }
+  function personelKaydet() {
+    var liste = Array.prototype.map.call(document.querySelectorAll('#pListe .pKart'), function (r) {
+      var x = { ad: r.querySelector('.pAd').value.trim(), kadi: r.querySelector('.pKadi').value.trim().toLocaleLowerCase('tr-TR'), eskiKadi: r.dataset.eskiKadi,
+        yeniSifre: r.querySelector('.pSifre').value.trim(), aktif: r.querySelector('.pAktif').checked,
+        yetkiler: Array.prototype.filter.call(r.querySelectorAll('.pY'), function (c) { return c.checked; }).map(function (c) { return c.dataset.k; }) };
+      return x;
+    }).filter(function (p) { return p.ad; });
+    var m = el('pMesaj');
+    var yetkisiz = liste.filter(function (p) { return !p.yetkiler.length; });
+    if (yetkisiz.length) { m.className = 'mesaj hata'; m.textContent = yetkisiz[0].ad + ' için en az bir yetki işaretleyin.'; return; }
+    m.className = 'mesaj bilgi'; m.textContent = 'Kaydediliyor…';
+    svApiPost({ islem: 'personel', liste: liste }).then(function (r) {
+      personel = r.personel; personelDatalist(); kullanicilariCiz(r.kullanicilar);
+      m.className = 'mesaj ok'; m.textContent = 'Kaydedildi ✓ (' + r.kullanicilar.length + ' kişi). Şifresi değişen ya da kapatılan kişilerin açık oturumları kapandı.';
+    }).catch(function (e) { m.className = 'mesaj hata'; m.textContent = 'KAYDEDİLEMEDİ: ' + e.message; });
+  }
+  /* ---- Servis kaydı silme ---- */
+  function svSil(formNo) {
+    var k = svKayitlar.filter(function (x) { return x.formNo === formNo; })[0]; if (!k) return;
+    var n = (k.fisler || []).length;
+    if (!confirm(formNo + ' (' + k.gonderen + ' · ' + svUrunMetni(k) + ') SİLİNECEK.\n\nBu kaydın oluşturduğu ' + n + ' stok hareketi de geri alınır (stok kayıt hiç açılmamış gibi düzelir). Kayıt "Silinenler" sayfasına taşınır.\n\nDevam edilsin mi?')) return;
+    var sebep = prompt('Silme sebebi (zorunlu):', 'Yanlış açıldı');
+    if (!sebep || !sebep.trim()) { alert('Sebep yazılmadan silinemez.'); return; }
+    if (!silmeSifre) { var y = prompt('Silme için yönetici şifresi:'); if (!y) return; silmeSifre = y.trim(); }
+    svApiPost({ islem: 'servisSil', ypin: silmeSifre, formNo: formNo, sebep: sebep.trim(), silen: (durum.okutan || '').trim() }).then(function (r) {
+      stok = r.stok || stok;
+      svKayitlar = svKayitlar.filter(function (x) { return x.formNo !== formNo; });
+      el('svBaslik').textContent = 'Servis kayıtları'; svGoster('liste'); svListeCiz();
+      el('svSecim').className = 'mesaj ok'; el('svSecim').textContent = formNo + ' silindi, ' + r.hareket + ' stok hareketi geri alındı.' + (r.geriAcilan ? ' ' + r.geriAcilan + ' iade kaydı yeniden açıldı.' : '');
+      if (r.geriAcilan) svYukle();
+    }).catch(function (e) {
+      if (/YÖNETİCİ PIN hatalı/.test(e.message)) silmeSifre = '';
+      alert('SİLİNEMEDİ: ' + e.message.replace('YÖNETİCİ PIN', 'Yönetici şifresi'));
+    });
+  }
+  function svDegisimKaynak(k) { return k.kanal === 'BAYİ' ? 'BAYİ' : 'E-TİCARET'; }
+  function svPara(n) { return Number(n).toLocaleString('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' TL'; }
+  function svSayi(t) { t = String(t || '').trim(); if (!t) return NaN; return Number(t.replace(/\./g, '').replace(',', '.')); }
+  function svTeklifTablo(k) {
+    if (!k.kalemler || !k.kalemler.length) return k.ucret || k.teshis ? '<div style="font-size:13px">' + (k.ucret ? 'Teklif: <b>' + esc(k.ucret) + '</b> · ' : '') + esc(k.teshis || '') + '</div>' : '';
+    var fiyatli = k.kalemler.some(function (x) { return x.tutar != null; });
+    return '<table class="svKalemTablo"><tr><th>Sorun / işlem</th><th>Adet</th>' + (fiyatli ? '<th>Birim</th><th>Tutar</th>' : '') + '</tr>' +
+      k.kalemler.map(function (x) { return '<tr><td>' + esc(x.islem) + '</td><td style="text-align:center">' + x.adet + '</td>' + (fiyatli ? '<td style="text-align:right">' + svPara(x.birimFiyat) + '</td><td style="text-align:right">' + svPara(x.tutar) + '</td>' : '') + '</tr>'; }).join('') +
+      (fiyatli ? '<tr><th colspan="3" style="text-align:right">TOPLAM</th><th style="text-align:right">' + esc(k.ucret) + '</th></tr>' : '') + '</table>' +
+      (k.temsilci ? '<div style="font-size:12px;color:#666">Satış temsilcisi: ' + esc(k.temsilci) + '</div>' : '');
+  }
+  function svKalemEkle(deger) {
+    var d = document.createElement('div'); d.className = 'svKalemSatir';
+    d.innerHTML = '<input type="text" class="svKalemIslem" list="svSorunListe2" autocomplete="off" placeholder="Örn. motor rulmanı değişimi">' +
+      '<input type="number" class="svKalemAdet" min="1" step="1" value="1" inputmode="numeric" title="Adet">' +
+      '<button type="button" class="svKalemSil" title="Sil" onclick="var p=this.parentNode,q=p.parentNode;if(q.children.length>1)q.removeChild(p);else p.querySelector(\'.svKalemIslem\').value=\'\'">✕</button>';
+    el('svKalemler').appendChild(d);
+    if (deger) d.querySelector('.svKalemIslem').value = deger; else if (el('svKalemler').children.length > 1) d.querySelector('.svKalemIslem').focus();
+  }
+  function svFiyatHesap() {
+    var top = 0, tam = true;
+    document.querySelectorAll('.svFiyat').forEach(function (f) {
+      var b = svSayi(f.value), t = b * Number(f.dataset.adet);
+      el('svTutar' + f.dataset.i).textContent = isNaN(t) ? '—' : svPara(t);
+      if (isNaN(t)) tam = false; else top += t;
+    });
+    el('svToplam').textContent = tam ? svPara(top) : (top ? svPara(top) + ' +' : '—');
+  }
+  function svAdimKur(k) {
+    if (el('svGaranti')) {
+      var gYaz = function (v) { el('svTeshisBtn').textContent = v === 'DIŞI' ? 'Satış temsilcisine gönder (fiyatlandırma)' : 'Teşhisi kaydet (onarıma geç)'; };
+      var gOn = k.garanti === 'GARANTİ DIŞI' ? 'DIŞI' : '';
+      segKur('svGaranti', ['İÇİ', 'DIŞI'], gOn, gYaz);
+      if (gOn) gYaz(gOn);
+    }
+    if (el('svKalemler')) {
+      if (!el('svSorunListe2')) { var dl = document.createElement('datalist'); dl.id = 'svSorunListe2'; dl.innerHTML = SV_SORUN.filter(function (x) { return x !== 'Diğer'; }).map(function (x) { return '<option value="' + esc(x) + '">'; }).join(''); document.body.appendChild(dl); }
+      svKalemEkle();
+    }
+  }
+  function svAdim(adim, ek) {
+    var k = svAktif, okutan = (durum.okutan || '').trim(), m = el('svAdimMesaj');
+    var v = function (id) { return el(id) ? el(id).value.trim() : ''; };
+    if (el('svKisi')) { kisiHatirla(el('svKisi').dataset.rol, 'svKisi'); okutan = el('svKisi').value.trim() || okutan; }
+    var istek = Object.assign({ islem: 'servisAdim', formNo: k.formNo, adim: adim, okutan: okutan || 'Belirtilmedi', not: v('svNot') }, ek || {});
+    if (adim === 'teshis') {
+      istek.garanti = segDeger('svGaranti');
+      istek.kalemler = Array.prototype.map.call(document.querySelectorAll('.svKalemSatir'), function (r) { return { islem: r.querySelector('.svKalemIslem').value.trim(), adet: Number(r.querySelector('.svKalemAdet').value) || 1 }; }).filter(function (x) { return x.islem; });
+      var h = !istek.garanti ? 'Garanti içi / dışı seçin.' : !istek.kalemler.length ? 'En az bir sorun / işlem yazın.' : '';
+      if (h) { m.className = 'mesaj hata'; m.textContent = h; return; }
+    }
+    if (adim === 'fiyat') {
+      istek.fiyatlar = Array.prototype.map.call(document.querySelectorAll('.svFiyat'), function (f) { return f.value.trim(); });
+      if (istek.fiyatlar.some(function (f) { var n = svSayi(f); return isNaN(n) || n < 0; })) { m.className = 'mesaj hata'; m.textContent = 'Her kalem için fiyat yazın (ücretsizse 0).'; return; }
+      istek.temsilci = istek.okutan === 'Belirtilmedi' ? '' : istek.okutan;
+    }
+    if (adim === 'onarildi' && el('svParca')) { istek.parca = v('svParca'); istek.parcaAdet = v('svParcaAdet'); istek.ucret = v('svUcret'); }
+    if (adim === 'teslim') istek.teslimAlan = v('svTeslim');
+    if (adim === 'montajKontrol') istek.koliDegisti = el('svKoliDegisti') && el('svKoliDegisti').checked;
+    m.className = 'mesaj bilgi'; m.textContent = 'Kaydediliyor…';
+    svApiPost(istek).then(function (r) {
+      stok = r.stok || stok;
+      [r.eski, r.kayit].forEach(function (yk) {
+        if (!yk) return;
+        var var_ = svKayitlar.some(function (x) { return x.formNo === yk.formNo; });
+        svKayitlar = var_ ? svKayitlar.map(function (x) { return x.formNo === yk.formNo ? yk : x; }) : [yk].concat(svKayitlar);
+      });
+      if (r.eski) { svDetayAc(r.kayit.formNo, r.eski.formNo + ' kapandı, ' + r.kayit.formNo + ' arıza kaydı açıldı (garanti dışı). Ürün İADE → ARIZALI aktarıldı.'); return; }
+      svDetayAc(r.kayit.formNo, 'Kaydedildi — yeni durum: ' + r.kayit.durum);
+    }).catch(function (e) { m.className = 'mesaj hata'; m.textContent = 'KAYDEDİLEMEDİ: ' + e.message; });
+  }
+
+  // ---- Yazdırma: firmanın form düzeninde A4 ----
+  function svYazdir() {
+    var k = svAktif; if (!k) return;
+    var x = function (v) { return esc(v == null ? '' : v); }, isaret = function (b) { return b ? '☒' : '☐'; };
+    var kisi = function (adimBas) { var l = k.log.filter(function (y) { return y.adim.indexOf(adimBas) === 0; }).pop(); return l ? x(l.kisi) + '<br><small>' + x(l.tarih) + '</small>' : ''; };
+    var logo = document.querySelector('header .marka img').src;
+    var ust = '<div style="display:flex;justify-content:space-between;align-items:center"><img src="' + logo + '" style="height:40px"><div style="text-align:right"><b>FORM NO: ' + x(k.formNo) + '</b><br>GELİŞ TARİHİ: ' + x(new Date(k.gelis).toLocaleString('tr-TR').slice(0, 16)) + '</div></div>';
+    var musteri = '<table><tr><th style="width:30%">GÖNDEREN İSMİ</th><td colspan="3">' + x(k.gonderen) + '</td></tr><tr><th>İLETİŞİM NO</th><td colspan="3">' + x(k.iletisim) + '</td></tr>' +
+      '<tr><th>SATIŞ KANALI</th><td colspan="3">' + isaret(k.kanal === 'E-TİCARET') + ' E-TİCARET &nbsp; ' + isaret(k.kanal === 'BAYİ') + ' BAYİ</td></tr>' +
+      '<tr><th>SERVİSE GELİŞ ŞEKLİ</th><td colspan="3">' + isaret(k.gelisSekli === 'KARGO') + ' KARGO &nbsp; ' + isaret(k.gelisSekli === 'AMBAR') + ' AMBAR &nbsp; ' + isaret(k.gelisSekli === 'KENDİSİ') + ' KENDİSİ</td></tr>' +
+      '<tr><th>KOLİ</th><td colspan="3">' + x(k.koli) + (k.tutanak ? ' — kargo tutanağı ' + x(k.tutanak) : '') + '</td></tr></table>';
+    var h;
+    if (k.tur === 'ARIZA') {
+      h = ust + '<h2>(3-1) ARIZALI ÜRÜN SERVİS FORMU</h2>' + musteri +
+        '<table><tr><th colspan="4">ÜRÜN BİLGİLERİ</th></tr><tr><th style="width:8%">ADET</th><th>ÜRÜN</th><th style="width:16%">SERİ NO</th><th>BİLDİRİLEN SORUN</th></tr>' +
+        k.urunler.map(function (u) { return '<tr><td>' + u.adet + '</td><td>' + x(u.kod) + '<br><small>' + x(u.ad) + '</small></td><td>' + x(u.seri) + '</td><td>' + x(u.sorun) + '</td></tr>'; }).join('') + '</table>' +
+        '<table><tr><th colspan="6">ONARIM BİLGİSİ</th></tr><tr><th>ÜRÜN</th><th>ONARILAN PARÇA</th><th>KULLANILAN ADET</th><th>GARANTİ İÇİ</th><th>GARANTİ DIŞI</th><th>ÜCRET</th></tr>' +
+        (k.kalemler && k.kalemler.length ? k.kalemler.map(function (q, i) { return '<tr>' + (i === 0 ? '<td rowspan="' + k.kalemler.length + '">' + x(svUrunMetni(k)) + '</td>' : '') + '<td>' + x(q.islem) + '</td><td style="text-align:center">' + q.adet + '</td><td style="text-align:center">' + isaret(k.garanti === 'GARANTİ İÇİ') + '</td><td style="text-align:center">' + isaret(k.garanti === 'GARANTİ DIŞI') + '</td><td style="text-align:right">' + (q.tutar != null ? x(svPara(q.tutar)) : '') + '</td></tr>'; }).join('') +
+          (k.ucret ? '<tr><th colspan="5" style="text-align:right">TOPLAM ÜCRET' + (k.temsilci ? ' (Satış temsilcisi: ' + x(k.temsilci) + ')' : '') + '</th><th style="text-align:right">' + x(k.ucret) + (k.onay ? '<br><small>Müşteri onayı: ' + x(k.onay) + '</small>' : '') + '</th></tr>' : '') + '</table>'
+        : '<tr><td>' + x(svUrunMetni(k)) + '</td><td>' + x(k.parca || k.teshis) + '</td><td>' + x(k.parcaAdet) + '</td><td style="text-align:center">' + isaret(k.garanti === 'GARANTİ İÇİ') + '</td><td style="text-align:center">' + isaret(k.garanti === 'GARANTİ DIŞI') + '</td><td>' + x(k.ucret) + (k.onay ? '<br><small>Müşteri onayı: ' + x(k.onay) + '</small>' : '') + '</td></tr></table>') +
+        '<table class="imza"><tr><th colspan="4">SERVİSİ TAMAMLANMIŞ / ÜRÜN TESLİMAT</th></tr><tr><th>DEPO SORUMLUSU</th><th>SERVİS SORUMLUSU</th><th>SATIŞ TEMSİLCİSİ</th><th>TESLİM ALAN</th></tr>' +
+        '<tr><td>' + kisi('Depo kabul') + '</td><td>' + (kisi('Onarıldı') || kisi('Montaj teşhis')) + '</td><td>' + x(k.temsilci) + '<br>' + kisi('Müşteri') + '</td><td>' + x(k.teslimAlan) + '</td></tr></table>';
+    } else {
+      var kd = k.kontrol || {};
+      h = ust + '<h2>(3-2) İADE / DEĞİŞİM SERVİS FORMU</h2><table><tr><th style="width:30%">TÜR</th><td>' + isaret(k.tur === 'DEĞİŞİM') + ' DEĞİŞİM &nbsp; ' + isaret(k.tur === 'İADE') + ' İADE</td></tr></table>' + musteri +
+        '<table><tr><th colspan="6">ÜRÜN BİLGİLERİ</th></tr><tr><th style="width:7%">ADET</th><th>ÜRÜN</th><th>SEBEP</th><th>DEPO GÖZLE KONTROL</th><th>MONTAJ TEKNİK VE KOLİ KONTROL</th><th>RAFA YERLEŞTİRME / STOK EKLEME</th></tr>' +
+        k.urunler.map(function (u) { return '<tr><td>' + u.adet + '</td><td>' + x(u.kod) + (u.seri ? '<br><small>SN ' + x(u.seri) + '</small>' : '') + '</td><td>' + x(u.sorun) + '</td><td>' + x(kd.depoKontrol || '') + '<br>' + kisi('Depo göz') + '</td><td>' + x(kd.montajKontrol || '') + (kd.koliDegisti ? ' (koli değişti)' : '') + '<br>' + kisi('Montaj teknik') + '</td><td>' + (k.rafa ? 'EKLENDİ<br>' + kisi('Rafa') : '') + '</td></tr>'; }).join('') + '</table>' +
+        (k.tur === 'DEĞİŞİM' ? '<table><tr><th style="width:30%">DEĞİŞİM ÜRÜNÜ</th><td>' + (k.degisim.gonderildi ? 'Gönderildi: ' + x(k.degisim.urunler) + ' — ' + kisi('Değişim') : '') + '</td></tr></table>' : '');
+    }
+    h += '<table><tr><th>AÇIKLAMA</th></tr><tr><td style="height:50px">' + x(k.aciklama) + '</td></tr></table>' +
+      '<table><tr><th colspan="3">İŞLEM GEÇMİŞİ</th></tr>' + k.log.map(function (l) { return '<tr><td style="width:22%">' + x(l.tarih) + '</td><td>' + x(l.adim) + (l.not ? ' — ' + x(l.not) : '') + '</td><td style="width:18%">' + x(l.kisi) + '</td></tr>'; }).join('') + '</table>' +
+      '<div style="font-size:9pt;margin-top:4px">Durum: ' + x(k.durum) + ' · Yazdırma: ' + x(new Date().toLocaleString('tr-TR')) + '</div>';
+    el('yazdirAlani').innerHTML = h;
+    setTimeout(function () { window.print(); }, 100);
+  }
+
+  // ---- Excel: her ürün bir satır ----
+  function svExcelSayfasi(wb, liste) {
+    var satir = [], renk = [];
+    liste.forEach(function (k) {
+      var sr = svSure(k);
+      k.urunler.forEach(function (u) {
+        satir.push([k.formNo, k.tur, k.durum, new Date(k.gelis).toLocaleString('tr-TR').slice(0, 16), sr.metin, k.gonderen, k.iletisim, k.kanal, k.gelisSekli, k.koli + (k.tutanak ? ' / tutanak ' + k.tutanak : ''),
+          u.kod, u.ad, u.adet, u.seri, u.sorun, k.garanti || '', (k.kalemler && k.kalemler.length ? k.kalemler.map(function (q) { return q.islem + ' ×' + q.adet + (q.tutar != null ? ' = ' + svPara(q.tutar) : ''); }).join(' | ') : (k.parca || k.teshis || '')), k.ucret || '', k.onay || '', k.temsilci || '', k.kapanis || '', k.log.length ? k.log[k.log.length - 1].adim + ' · ' + k.log[k.log.length - 1].kisi : '']);
+        renk.push(sr.sinif === 'gecti' ? RENK.bitti : (sr.sinif === 'yakin' ? RENK.kritik : (sr.sinif === 'kapali' ? 'EEEEEE' : null)));
+      });
+    });
+    sayfaEkle(wb, 'Servis Kayıtları', ['Form No', 'Tür', 'Durum', 'Geliş', 'Süre', 'Gönderen', 'İletişim', 'Kanal', 'Geliş Şekli', 'Koli', 'Stok Kodu', 'Ürün Adı', 'Adet', 'Seri No', 'Sorun / Sebep', 'Garanti', 'Sorunlar / İşlemler', 'Toplam Ücret', 'Müşteri Onayı', 'Satış Temsilcisi', 'Kapanış', 'Son İşlem'],
+      satir, [11, 9, 22, 16, 13, 22, 14, 11, 10, 18, 18, 34, 6, 12, 26, 14, 44, 14, 10, 16, 16, 28], function (i) { return renk[i]; });
+  }
+  function svExcel() {
+    if (!svKayitlar.length) { alert('İndirilecek servis kaydı yok.'); return; }
+    xlsxHazir().then(function () {
+      var wb = XLSX.utils.book_new();
+      svExcelSayfasi(wb, svKayitlar);
+      XLSX.writeFile(wb, 'Servis_Kayitlari_' + ymd(new Date()) + '.xlsx');
+    }).catch(function (e) { alert('Excel oluşturulamadı: ' + e.message); });
+  }
+
+  /* ================= Yardımcılar ================= */
+  function el(id) { return document.getElementById(id); }
+  function mesaj(m, tip) { var d = el('mesaj'); d.textContent = m; d.className = 'mesaj ' + tip; }
+  function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  var cerceveZaman;
+  function cerceveRenk(sinif) { var c = el('cerceve'); c.className = sinif; clearTimeout(cerceveZaman); cerceveZaman = setTimeout(function () { c.className = ''; }, 500); }
+  var ses = null;
+  function sesHazirla() { try { ses = ses || new (window.AudioContext || window.webkitAudioContext)(); if (ses.state === 'suspended') ses.resume(); } catch (e) {} }
+  function sinyal(ok) {
+    try { if (navigator.vibrate) navigator.vibrate(ok ? 80 : [200, 100, 200]); } catch (e) {}
+    try {
+      sesHazirla();
+      var o = ses.createOscillator(), g = ses.createGain();
+      o.frequency.value = ok ? 1400 : 300; g.gain.value = 0.2;
+      o.connect(g); g.connect(ses.destination); o.start(); o.stop(ses.currentTime + (ok ? 0.08 : 0.35));
+    } catch (e) {}
+  }
+  // Uygulamadan 5 dakikadan uzun çıkılırsa rapor ve silme şifreleri unutulur
+  var gizlenme = 0;
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) { kameraKapat(); gizlenme = Date.now(); return; }
+    if (!gunKontrol()) return;
+
+  });
+
+  document.body.appendChild(el('kameraKutu')); document.body.appendChild(el('urunSecKutu')); document.body.appendChild(el('ayarKutu')); // kamera her ekranın üstünde açılsın (okutma, servis)
+  taslakOku();
+  yerleriDoldur();
+  if (durum.ben) yetkiUygula();
+  if (durum.kadi) el('kadiGir').value = durum.kadi;
+  if (durum.pin && durum.pin.indexOf('~') > 0) yukle(); else { durum.pin = ''; girisGoster(''); } // eski PIN'li telefonlar yeniden giriş yapar
+</script>
+</body>
+</html>
