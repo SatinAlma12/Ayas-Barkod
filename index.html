@@ -2304,7 +2304,8 @@
   function zilCiz() {
     var bek = zilVeri && zilVeri.yetkili ? zilVeri.bekleyen : [];
     var yeniGelen = gelenYeniler();
-    var n = zilVeri && (zilVeri.yetkili || (zilVeri.depolarim || []).length) ? bek.length + yeniGelen.length : zilServisSayi;
+    var svG = (zilVeri && zilVeri.servisGorev) || [];
+    var n = zilVeri && (zilVeri.yetkili || (zilVeri.depolarim || []).length || zilVeri.svRolVar) ? bek.length + yeniGelen.length + svG.length : zilServisSayi;
     el('zilSayi').textContent = n > 99 ? '99+' : n; el('zilSayi').classList.toggle('gizli', !n);
     // uygulama açıkken yeni fiş gelirse: üstte bildirim + titreşim
     var fisler = bek.map(function (f) { return f.fis; });
@@ -2353,6 +2354,14 @@
         '<ul>' + f.kalemler.map(function (k) { return '<li><span>' + esc(k.kod) + ' <small style="color:#5b6475">' + esc(k.ad) + '</small></span><b>× ' + k.adet + '</b></li>'; }).join('') + '</ul></div>';
     }).join('');
   }
+  // Bildirimden servis kaydını doğrudan aç
+  function svKayitAc(formNo) {
+    bildirimKapat(); servisAc();
+    var bekle = setInterval(function () {
+      if (typeof svYukleniyor !== 'undefined' && !svYukleniyor) { clearInterval(bekle); svDetayAc(formNo); }
+    }, 200);
+    setTimeout(function () { clearInterval(bekle); }, 15000);
+  }
   function bildirimAc() { el('bkToast').classList.remove('goster'); el('bildirimKutu').classList.add('acik'); bildirimCiz(); zilYukle(); }
   function bildirimKapat0() { el('bildirimKutu').classList.remove('acik'); el('bkToast').classList.remove('goster'); }
   function bildirimKapat() { bildirimKapat0(); gelenGoruldu(); zilCiz(); }
@@ -2382,6 +2391,15 @@
         return '<div class="bkSatir"><span><b>' + esc(f.fis) + '</b> · ' + esc(f.okutan) + ' → ' + esc(f.hedef) + ' · ' + f.adet + ' adet</span><span class="bkCip ok">' + esc(f.teslim.alan) + ' · ' + esc(f.teslim.tarih) + '</span></div>' +
           (f.teslim.not ? '<div style="font-size:12px;color:#5b6475;margin:-4px 0 6px">Not: ' + esc(f.teslim.not) + '</div>' : '');
       }).join('') + '</details>';
+    }
+    if (v.svRolVar) {
+      var sg = v.servisGorev || [];
+      h += '<div class="bkBaslik">Sıra sizde: servis kayıtları (' + sg.length + ')</div>' + (sg.length ? sg.map(function (k) {
+        return '<div class="bkFis" style="border-left-color:' + (k.gecti ? '#c62828' : '#3d7bff') + '"><div class="ust"><b>' + esc(k.formNo) + ' · ' + esc(k.is) + '</b>' +
+          '<span class="bkCip ' + (k.gecti ? 'bek' : 'ok') + '"' + (k.gecti ? ' style="background:#fdecec;color:#b3261e"' : '') + '>' + esc(k.kalan) + '</span></div>' +
+          '<div class="alt">' + esc(k.gonderen) + ' · ' + esc(k.kanal) + ' · ' + esc(k.urun) + '</div>' +
+          '<button class="btn" style="background:#254ba0;margin-top:8px" onclick="svKayitAc(\'' + esc(k.formNo) + '\')">Kaydı aç</button></div>';
+      }).join('') : '<div class="bos">Sırası sizde olan servis kaydı yok.</div>');
     }
     h += '<div class="bkBaslik">Servis</div><button class="btn ikincil" onclick="bildirimKapat();navGit(\'servis\')">' + zilServisSayi + ' açık servis kaydı → Servise git</button>';
     el('bkIcerik').innerHTML = h;
