@@ -2298,7 +2298,7 @@
     var b = zilGet('?islem=servis&kapali=0').then(function (j) {
       zilServisSayi = (j.servis || []).filter(function (k) { return k.durum !== 'KAPANDI'; }).length;
     }).catch(function () {});
-    return Promise.all([a, b]).then(function () { if (zilVeri && zilVeri.bildirimAppId) bildirimKur(zilVeri.bildirimAppId); zilCiz(); });
+    return Promise.all([a, b]).then(function () { if (zilVeri && zilVeri.bildirimAppId) { bildirimKur(zilVeri.bildirimAppId); osGiris(); } zilCiz(); });
   }
   function zilCiz() {
     var bek = zilVeri && zilVeri.yetkili ? zilVeri.bekleyen : [];
@@ -2367,7 +2367,13 @@
 
 <script>
   /* ===== Telefona bildirim: OneSignal (anahtar sunucudan gelir; ayarlanmamışsa hiçbir şey yüklenmez) ===== */
-  var _os = null, _osDurum = 'yukleniyor';
+  var _os = null, _osDurum = 'yukleniyor', _osKadi = null;
+  // Telefonu o an giriş yapmış kullanıcıya bağla (çıkış/başka hesapla girişten sonra da)
+  function osGiris() {
+    if (!_os || !durum.ben || !durum.ben.kadi || _osKadi === durum.ben.kadi) return Promise.resolve();
+    var k = durum.ben.kadi; _osKadi = k;
+    return _os.login(k).catch(function (e) { _osKadi = null; console.log('OneSignal login', e); });
+  }
   function bildirimKur(appId) {
     if (window._osKurulu) return; window._osKurulu = true;
     var dizin = location.pathname.replace(/[^\/]*$/, '');             // ör. /Ayas-Barkod/
@@ -2381,7 +2387,7 @@
         .then(function () {
           _os = OneSignal;
           OneSignal.Notifications.addEventListener('permissionChange', telefonBildirimYenile);
-          return durum.ben && durum.ben.kadi ? OneSignal.login(durum.ben.kadi) : null;
+          return osGiris();
         })
         .then(function () { _osDurum = 'hazir'; telefonBildirimYenile(); })
         .catch(function (e) { _osDurum = 'hata'; console.log('OneSignal', e); telefonBildirimYenile(); });
@@ -2402,13 +2408,13 @@
     if (!_os) return; b.disabled = true; b.textContent = 'İzin isteniyor…';
     _os.Notifications.requestPermission()
       .then(function () { return _os.User.PushSubscription.optIn(); })
-      .then(function () { return durum.ben && durum.ben.kadi ? _os.login(durum.ben.kadi) : null; })
+      .then(function () { _osKadi = null; return osGiris(); })
       .catch(function (e) { console.log(e); })
       .then(function () { setTimeout(telefonBildirimYenile, 800); });
   }
   // Çıkışta telefonu bu kullanıcıdan ayır (başka kullanıcının bildirimleri gelmesin)
   var cikisYap0 = cikisYap;
-  cikisYap = function (m) { try { if (_os) _os.logout(); } catch (e) {} return cikisYap0(m); };
+  cikisYap = function (m) { try { if (_os) _os.logout(); } catch (e) {} _osKadi = null; return cikisYap0(m); };
   // Bildirime dokunarak açılınca zil penceresini aç
   if (/[?&]bildirim=1/.test(location.search)) {
     var bkBekle = setInterval(function () { if (durum.ben && el('girisEkrani').classList.contains('gizli')) { clearInterval(bkBekle); bildirimAc(); } }, 500);
