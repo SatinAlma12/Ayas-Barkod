@@ -761,7 +761,7 @@
     girisGoster(msj || '');
   }
   // Yetki kodları sunucudakiyle aynı (Kod.gs → YETKILER)
-  var YETKI_KISA = { okut_giris: 'Giriş', teslim_al: 'Teslim alma', okut_transfer: 'Transfer', okut_cikis: 'Çıkış', okut_sayim: 'Sayım', rapor: 'Raporlar', duzelt: 'Düzeltme', sil: 'Hareket silme',
+  var YETKI_KISA = { okut_giris: 'Giriş', teslim_al: 'Teslim alma', bilgi_eticaret: 'E-tic. gelen bildirimi', bilgi_bayi: 'Bayi gelen bildirimi', bilgi_ihracat: 'İhracat gelen bildirimi', bilgi_showroom: 'Showroom gelen bildirimi', okut_transfer: 'Transfer', okut_cikis: 'Çıkış', okut_sayim: 'Sayım', rapor: 'Raporlar', duzelt: 'Düzeltme', sil: 'Hareket silme',
     sv_kabul: 'Servis kabul', sv_depo: 'Servis depo', sv_servis: 'Servis teknik', sv_satis: 'Servis satış', sv_sil: 'Servis silme', admin: 'Yönetici' };
   var MOD_YETKI = { 'GİRİŞ': 'okut_giris', 'TRANSFER': 'okut_transfer', 'ÇIKIŞ': 'okut_cikis', 'SAYIM': 'okut_sayim' };
   function yetkiVar(k) { var b = durum.ben || {}; return !!b.admin || (b.yetkiler || []).indexOf(k) >= 0; }
@@ -1903,7 +1903,7 @@
   var P_ETIKET = {}, P_SABLON = {};
   var P_GRUP = [
     ['Okutma', ['okut_giris', 'okut_transfer', 'okut_cikis', 'okut_sayim']],
-    ['Bildirim', ['teslim_al']],
+    ['Bildirim', ['teslim_al', 'bilgi_eticaret', 'bilgi_bayi', 'bilgi_ihracat', 'bilgi_showroom']],
     ['Raporlar ve hareketler', ['rapor', 'duzelt', 'sil']],
     ['Servis', ['sv_kabul', 'sv_depo', 'sv_servis', 'sv_satis', 'sv_sil']],
     ['Yönetim', ['admin']]
@@ -2216,9 +2216,9 @@
   }
   function panelYukle(zorla) {
     if (!durum.pin) return;
+    zilYukle();
     if (!zorla && panelVeri && Date.now() - panelZaman < 60000) { panelCiz(); return; }
     panelZaman = Date.now();
-    zilYukle();
     if (!yetkiVar('rapor')) return;
     var bugun = ymd(new Date()), d = new Date(); d.setDate(d.getDate() - 6);
     Promise.all([panelGet('?islem=rapor&tur=stok'), panelGet('?islem=rapor&tur=hareket&bas=' + ymd(d) + '&bit=' + bugun), panelGet('?islem=rapor&tur=sayim&bas=' + bugun + '&bit=' + bugun)])
@@ -2272,6 +2272,7 @@
     else if (ilkAcilis && (acik('uygulama') || acik('servisEkran'))) {
       ilkAcilis = false;
       if (acik('uygulama') && durum.ben && el('durum').textContent !== 'Bağlantı yok') { panelVeri = null; panelAc(); }
+      else if (window.zilYukle) setTimeout(zilYukle, 0); // okutma yetkisi olmayan doğrudan servise düşer
     }
     navGuncelle1();
   };
@@ -2302,7 +2303,8 @@
   }
   function zilCiz() {
     var bek = zilVeri && zilVeri.yetkili ? zilVeri.bekleyen : [];
-    var n = zilVeri && zilVeri.yetkili ? bek.length : zilServisSayi;
+    var yeniGelen = gelenYeniler();
+    var n = zilVeri && (zilVeri.yetkili || (zilVeri.depolarim || []).length) ? bek.length + yeniGelen.length : zilServisSayi;
     el('zilSayi').textContent = n > 99 ? '99+' : n; el('zilSayi').classList.toggle('gizli', !n);
     // uygulama açıkken yeni fiş gelirse: üstte bildirim + titreşim
     var fisler = bek.map(function (f) { return f.fis; });
@@ -2315,18 +2317,50 @@
       }
     }
     zilGorulen = fisler;
+    if (zilGelenOnceki) {
+      var g2 = yeniGelen.filter(function (f) { return zilGelenOnceki.indexOf(f.fis) < 0; });
+      if (g2.length) { bkToast(g2[0].hedef + ' deposuna geldi: ' + g2[0].fis + ' · ' + g2[0].adet + ' adet' + (g2.length > 1 ? ' (+' + (g2.length - 1) + ')' : '')); try { navigator.vibrate && navigator.vibrate([120, 80, 120]); } catch (e) {} }
+    }
+    zilGelenOnceki = ((zilVeri && zilVeri.gelen) || []).map(function (f) { return f.fis; });
     if (el('bildirimKutu').classList.contains('acik')) bildirimCiz();
   }
   function bkToast(t) {
     var x = el('bkToast'); x.textContent = t; x.classList.add('goster'); x.onclick = function () { x.classList.remove('goster'); bildirimAc(); };
     clearTimeout(bkToast.z); bkToast.z = setTimeout(function () { x.classList.remove('goster'); }, 7000);
   }
+  var zilGelenOnceki = null;
+  function gorulenAnahtar() { return 'gorulenGelen_' + ((durum.ben && durum.ben.kadi) || ''); }
+  function gorulenGelen() { try { return JSON.parse(localStorage.getItem(gorulenAnahtar()) || '[]'); } catch (e) { return []; } }
+  function gelenYeniler() {
+    var g = (zilVeri && zilVeri.gelen) || [], gor = gorulenGelen();
+    return g.filter(function (f) { return gor.indexOf(f.fis) < 0; });
+  }
+  function gelenGoruldu() {
+    var g = (zilVeri && zilVeri.gelen) || []; if (!g.length) return;
+    try { localStorage.setItem(gorulenAnahtar(), JSON.stringify(g.map(function (f) { return f.fis; }).slice(0, 50))); } catch (e) {}
+  }
+  function gelenHtml(v) {
+    if (!v.depolarim || !v.depolarim.length) return '';
+    var gor = gorulenGelen();
+    var h = '<div class="bkBaslik">Deponuza gelen ürünler (' + v.depolarim.map(esc).join(', ') + ')</div>';
+    if (!v.gelen.length) return h + '<div class="bos">Henüz teslim alınmış giriş yok.</div>';
+    return h + v.gelen.map(function (f) {
+      var yeni = gor.indexOf(f.fis) < 0;
+      return '<div class="bkFis' + (yeni ? ' yeni' : '') + '"><div class="ust"><b>' + esc(f.fis) + ' → ' + esc(f.hedef) + '</b>' +
+        (yeni ? '<span class="bkCip ok">Yeni</span>' : '') + '</div>' +
+        '<div class="alt">Teslim alındı: ' + esc(f.teslim.tarih) + ' · ' + esc(f.teslim.alan) + ' · ' + f.kalemler.length + ' çeşit, ' + f.adet + ' adet</div>' +
+        (f.teslim.not ? '<div class="alt">Not: ' + esc(f.teslim.not) + '</div>' : '') +
+        '<ul>' + f.kalemler.map(function (k) { return '<li><span>' + esc(k.kod) + ' <small style="color:#5b6475">' + esc(k.ad) + '</small></span><b>× ' + k.adet + '</b></li>'; }).join('') + '</ul></div>';
+    }).join('');
+  }
   function bildirimAc() { el('bkToast').classList.remove('goster'); el('bildirimKutu').classList.add('acik'); bildirimCiz(); zilYukle(); }
-  function bildirimKapat() { el('bildirimKutu').classList.remove('acik'); }
+  function bildirimKapat0() { el('bildirimKutu').classList.remove('acik'); el('bkToast').classList.remove('goster'); }
+  function bildirimKapat() { bildirimKapat0(); gelenGoruldu(); zilCiz(); }
   function bildirimCiz() {
     var v = zilVeri, h = '';
     if (!v) { el('bkIcerik').innerHTML = '<div class="bos">Yükleniyor…</div>'; return; }
-    if (v.yetkili) h += '<div id="bkTelefon">' + telefonBildirimHtml() + '</div>';
+    if (v.bildirimAppId) h += '<div id="bkTelefon">' + telefonBildirimHtml() + '</div>';
+    h += gelenHtml(v);
     if (v.yetkili) {
       h += '<div class="bkBaslik">Teslim bekleyen montaj girişleri (' + v.bekleyen.length + ')</div>';
       h += v.bekleyen.length ? v.bekleyen.map(function (f) {
@@ -2399,9 +2433,9 @@
     if (_osDurum === 'yukleniyor') return '<div class="bkTel kapali">Telefon bildirimi hazırlanıyor…</div>';
     if (_osDurum === 'hata' || !_os) return '<div class="bkTel yok">Telefon bildirimi şu an kullanılamıyor (bağlantı ya da tarayıcı desteklemiyor). Zil yine çalışır.</div>';
     if (!_os.Notifications.isPushSupported()) return '<div class="bkTel yok">Bu tarayıcı telefon bildirimini desteklemiyor. Android\'de Chrome, iPhone\'da ana ekrana eklenmiş uygulama kullanın.</div>';
-    if (_os.Notifications.permission && _os.User.PushSubscription.optedIn) return '<div class="bkTel acik"><b>Telefon bildirimi açık ✓</b> Yeni montaj girişinde uygulama kapalıyken de telefonunuza bildirim gelir.</div>';
+    if (_os.Notifications.permission && _os.User.PushSubscription.optedIn) return '<div class="bkTel acik"><b>Telefon bildirimi açık ✓</b> Bildirimleriniz uygulama kapalıyken de telefonunuza gelir.</div>';
     if (typeof Notification !== 'undefined' && Notification.permission === 'denied') return '<div class="bkTel yok"><b>Bildirime izin verilmemiş.</b> Telefonun Ayarlar → Bildirimler bölümünden bu uygulamaya (ya da tarayıcıya) izin verin, sonra uygulamayı yeniden açın.</div>';
-    return '<div class="bkTel kapali"><b>Telefon bildirimi kapalı.</b> Açarsanız yeni montaj girişinde uygulama kapalıyken de bildirim gelir.<button class="btn" onclick="telefonBildirimAc(this)">Bildirimleri aç</button></div>';
+    return '<div class="bkTel kapali"><b>Telefon bildirimi kapalı.</b> Açarsanız bildirimleriniz uygulama kapalıyken de telefonunuza gelir.<button class="btn" onclick="telefonBildirimAc(this)">Bildirimleri aç</button></div>';
   }
   function telefonBildirimYenile() { var x = el('bkTelefon'); if (x) x.innerHTML = telefonBildirimHtml(); }
   function telefonBildirimAc(b) {
@@ -2414,7 +2448,12 @@
   }
   // Çıkışta telefonu bu kullanıcıdan ayır (başka kullanıcının bildirimleri gelmesin)
   var cikisYap0 = cikisYap;
-  cikisYap = function (m) { try { if (_os) _os.logout(); } catch (e) {} _osKadi = null; return cikisYap0(m); };
+  cikisYap = function (m) {
+    try { if (_os) _os.logout(); } catch (e) {} _osKadi = null;
+    zilVeri = null; zilGorulen = null; zilGelenOnceki = null; zilServisSayi = 0; panelVeri = null;
+    el('zilSayi').classList.add('gizli'); bildirimKapat0();
+    return cikisYap0(m);
+  };
   // Bildirime dokunarak açılınca zil penceresini aç
   if (/[?&]bildirim=1/.test(location.search)) {
     var bkBekle = setInterval(function () { if (durum.ben && el('girisEkrani').classList.contains('gizli')) { clearInterval(bkBekle); bildirimAc(); } }, 500);
