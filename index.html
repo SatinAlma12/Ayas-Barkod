@@ -86,6 +86,14 @@
   #urunSecKutu .kart { max-width: 480px; width: 100%; max-height: 85vh; overflow: auto; margin: 0; }
   #urunSecKutu .secBtn { display: block; width: 100%; text-align: left; padding: 12px; margin: 6px 0; border: 1px solid #c9d3ea; border-radius: 10px; background: #fff; font-size: 15px; cursor: pointer; }
   #urunSecKutu .secBtn small { display: block; color: #5b6475; font-size: 12px; margin-top: 2px; }
+  /* Barkodsuz ürün seçimi (satış transferi) */
+  #listeSecKutu { margin-top: 14px; padding-top: 12px; border-top: 1px dashed #cdd3dd; }
+  #lsListe { max-height: 280px; overflow-y: auto; margin-top: 6px; border-radius: 10px; }
+  #lsListe .lsBtn { display: block; width: 100%; text-align: left; padding: 11px 12px; margin: 0 0 6px; border: 1px solid #c9d3ea; border-radius: 10px; background: #fff; font-size: 15px; cursor: pointer; font-family: inherit; }
+  #lsListe .lsBtn:hover { background: #f1f5ff; }
+  #lsListe .lsBtn small, #lsSecili small { display: block; color: #5b6475; font-size: 12px; margin-top: 2px; }
+  #lsListe .lsBos { padding: 10px 4px; color: #5b6475; font-size: 14px; }
+  #lsSecili { margin-top: 8px; padding: 12px; border: 2px solid #1f55d6; border-radius: 12px; background: #f4f7ff; }
   #kameraKutu.acik { display: block; }
   #video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
   #cerceve { position: absolute; left: 6%; right: 6%; top: 50%; height: 26vh; transform: translateY(-50%); border: 3px solid rgba(255,255,255,.9); border-radius: 12px; box-shadow: 0 0 0 4000px rgba(0,0,0,.45); transition: border-color .15s; }
@@ -634,6 +642,20 @@
         <div><input type="text" id="elle" placeholder="Barkod / stok kodu" autocomplete="off" onkeydown="if(event.key==='Enter'){elleEkle();}"></div>
         <button class="btn dar" onclick="elleEkle()">Ekle</button>
       </div>
+      <!-- Barkodsuz transfer (satış): listeden ürün seç, adet yaz. Yalnızca "liste_secim" yetkisi olanlar ve TRANSFER modunda görünür. -->
+      <div id="listeSecKutu" class="gizli">
+        <label for="lsAra">Ya da ürünü listeden seçin (barkodsuz)</label>
+        <input type="text" id="lsAra" placeholder="Ürün adı veya stok kodu yazın…" autocomplete="off" oninput="lsCiz()" onfocus="lsCiz()" onkeydown="if(event.key==='Enter'){lsEnter();}">
+        <div id="lsListe"></div>
+        <div id="lsSecili" class="gizli">
+          <div><b id="lsAd"></b><small id="lsBilgi"></small></div>
+          <div class="satir" style="margin-top:8px">
+            <div><label for="lsAdet" style="margin-top:0">Adet</label><input type="number" id="lsAdet" min="1" step="1" inputmode="numeric" value="1" onkeydown="if(event.key==='Enter'){lsEkle();}"></div>
+            <button class="btn dar" onclick="lsEkle()">Listeye ekle</button>
+            <button class="btn dar ikincil" onclick="lsVazgec()">Vazgeç</button>
+          </div>
+        </div>
+      </div>
       <div id="mesaj" class="mesaj"></div>
       <div id="sayimSonuc" class="mesaj bilgi gizli"></div>
     </div>
@@ -683,7 +705,7 @@
   var VARSAYILAN_ARIZA = ['Motor arızası', 'Kanat kırık', 'Gövde hasarı', 'Elektrik / kablo', 'Ses / titreşim', 'Nakliye hasarı', 'Kondansatör', 'Diğer'];
   var VARSAYILAN_IADE = ['Yanlış ürün', 'Müşteri vazgeçti', 'Fazla sipariş', 'Hasarlı geldi', 'Arıza şikayeti (kontrol edilecek)', 'Diğer'];
   function iadeHedefi() { return durum.hedef === 'İADE'; } // false ise ARIZALI
-  var urunByKey = {}, stok = {};
+  var urunByKey = {}, stok = {}, tumUrunler = [];
 
   /* ================= Hafıza (telefonda kalır) ================= */
   function taslakYaz() {
@@ -720,6 +742,7 @@
       if (durum.hedef && yerler.indexOf(durum.hedef) < 0) durum.hedef = yerler[0];
       if (durum.mod === 'GİRİŞ' && !durum.hedef) durum.hedef = yerler[0];
       v.urunler.forEach(function (u) { anahtarEkle(u.kod, u); u.barkodlar.forEach(function (b) { anahtarEkle(b, u); }); });
+      tumUrunler = v.urunler.slice().sort(function (a, b) { return a.kod < b.kod ? -1 : (a.kod > b.kod ? 1 : 0); });
       el('durum').textContent = v.urunler.length + ' ürün';
       durum.ben = v.ben || durum.ben; durum.okutan = (durum.ben && durum.ben.ad) || ''; taslakYaz();
       if (ilk) { el('girisEkrani').classList.add('gizli'); el('uygulama').classList.remove('gizli'); }
@@ -783,7 +806,7 @@
     girisGoster(msj || '');
   }
   // Yetki kodları sunucudakiyle aynı (Kod.gs → YETKILER)
-  var YETKI_KISA = { okut_giris: 'Giriş', teslim_al: 'Teslim alma', bilgi_eticaret: 'E-tic. gelen bildirimi', bilgi_bayi: 'Bayi gelen bildirimi', bilgi_ihracat: 'İhracat gelen bildirimi', bilgi_showroom: 'Showroom gelen bildirimi', okut_transfer: 'Transfer', okut_cikis: 'Çıkış', okut_sayim: 'Sayım', rapor: 'Raporlar', duzelt: 'Düzeltme', sil: 'Hareket silme',
+  var YETKI_KISA = { okut_giris: 'Giriş', teslim_al: 'Teslim alma', bilgi_eticaret: 'E-tic. gelen bildirimi', bilgi_bayi: 'Bayi gelen bildirimi', bilgi_ihracat: 'İhracat gelen bildirimi', bilgi_showroom: 'Showroom gelen bildirimi', okut_transfer: 'Transfer', liste_secim: 'Listeden seçerek transfer', okut_cikis: 'Çıkış', okut_sayim: 'Sayım', rapor: 'Raporlar', duzelt: 'Düzeltme', sil: 'Hareket silme',
     sv_kabul: 'Servis kabul', sv_depo: 'Servis depo', sv_servis: 'Servis teknik', sv_satis: 'Servis satış', sv_sil: 'Servis silme', admin: 'Yönetici' };
   var MOD_YETKI = { 'GİRİŞ': 'okut_giris', 'TRANSFER': 'okut_transfer', 'ÇIKIŞ': 'okut_cikis', 'SAYIM': 'okut_sayim' };
   function yetkiVar(k) { var b = durum.ben || {}; return !!b.admin || (b.yetkiler || []).indexOf(k) >= 0; }
@@ -874,10 +897,14 @@
 
   function modSec(m) {
     if (durum.liste.length && m !== durum.mod) return;
+    var oncekiMod = durum.mod;
     durum.mod = m;
     if (m === 'GİRİŞ') { durum.kaynak = ''; if (!durum.hedef) durum.hedef = yerler[0]; }
     if (m === 'ÇIKIŞ' || m === 'SAYIM') { durum.hedef = ''; if (!durum.kaynak) durum.kaynak = yerler[0]; }
     if (m === 'TRANSFER') {
+      // Satış (listeden seçerek transfer) genelde BAYİ deposundan dağıtır
+      var tercih = yetkiVar('liste_secim') && !durum.liste.length && yerler.indexOf('BAYİ') >= 0 ? 'BAYİ' : '';
+      if (tercih && oncekiMod !== 'TRANSFER') durum.kaynak = tercih;
       if (!durum.kaynak || durum.kaynak === sayimYer) durum.kaynak = yerler.filter(function (y) { return y !== sayimYer; })[0] || yerler[0];
       if (!durum.hedef || durum.hedef === durum.kaynak || yerListesi('hedef').indexOf(durum.hedef) < 0) durum.hedef = yerListesi('hedef').filter(function (y) { return y !== durum.kaynak; })[0];
     }
@@ -945,6 +972,7 @@
     el('not').placeholder = iade ? (iadeHedefi() ? 'Örn. Yanlış ürün' : 'Örn. Motor arızası') : m === 'ÇIKIŞ' ? 'Örn. ABC Ltd / Trendyol 12345' : (m === 'SAYIM' ? 'Örn. A rafı' : 'Örn. iş emri no');
     var baslik = { 'GİRİŞ': (iade ? (iadeHedefi() ? 'Giriş: İade → ' : 'Giriş: Arızalı ürün → ') : 'Giriş: Montaj → ') + durum.hedef, 'TRANSFER': 'Transfer: ' + durum.kaynak + ' → ' + durum.hedef, 'ÇIKIŞ': 'Çıkış: ' + durum.kaynak + ' → Müşteri', 'SAYIM': 'Sayım: ' + durum.kaynak };
     el('listeBaslik').textContent = baslik[m];
+    lsGuncelle();
     listeyiCiz();
   }
 
@@ -1151,6 +1179,80 @@
     durum.liste[i].adet = n; listeyiCiz();
   }
   function satirSil(i) { durum.liste.splice(i, 1); ekraniKur(); }
+
+  /* ================= Barkodsuz ürün seçimi (satış transferi) =================
+   * Yalnızca TRANSFER modunda ve "liste_secim" yetkisi olana görünür. Seçilen ürün, mevcut listeye barkod okutulmuş gibi eklenir;
+   * stok kontrolü, müşteri (AYRILMIŞ) ve kayıt akışı aynıdır. */
+  var lsSecilen = null;
+  function lsGoster() { return durum.mod === 'TRANSFER' && yetkiVar('liste_secim'); }
+  function lsGuncelle() {
+    var k = el('listeSecKutu'); if (!k) return;
+    var g = lsGoster();
+    k.classList.toggle('gizli', !g);
+    if (!g) { lsSecilen = null; el('lsSecili').classList.add('gizli'); el('lsAra').classList.remove('gizli'); return; }
+    if (lsSecilen) lsSeciliCiz(); // kaynak depo değişti: mevcut adet güncellensin
+    if (el('lsAra').value.trim() || document.activeElement === el('lsAra')) lsCiz();
+  }
+  function lsCiz() {
+    if (!lsGoster() || lsSecilen) return;
+    var q = el('lsAra').value.trim().toLocaleUpperCase('tr-TR'), kaynak = durum.kaynak;
+    var terimler = q ? q.split(/\s+/) : [];
+    var uygun = tumUrunler.filter(function (u) {
+      if (musait(u.kod, kaynak) <= 0) return false; // gönderilebilecek stoğu olmayan gizli
+      var metin = (u.kod + ' ' + u.ad).toLocaleUpperCase('tr-TR');
+      return terimler.every(function (t) { return metin.indexOf(t) >= 0; });
+    });
+    var kutu = el('lsListe');
+    if (!uygun.length) { kutu.innerHTML = '<div class="lsBos">' + (q ? esc(kaynak) + ' deposunda "' + esc(el('lsAra').value.trim()) + '" ile eşleşen stoklu ürün yok.' : esc(kaynak) + ' deposunda gönderilebilir stok yok.') + '</div>'; return; }
+    kutu.innerHTML = uygun.slice(0, 40).map(function (u) {
+      return '<button type="button" class="lsBtn" data-k="' + esc(u.kod) + '"><b>' + esc(u.ad) + '</b><small>' + esc(u.kod) + ' · ' + esc(kaynak) + ': <b>' + musait(u.kod, kaynak) + '</b> adet</small></button>';
+    }).join('') + (uygun.length > 40 ? '<div class="lsBos">' + (uygun.length - 40) + ' ürün daha var — aramayı daraltın.</div>' : '');
+    kutu.onclick = function (e) {
+      var b = e.target.closest('.lsBtn'); if (!b) return;
+      lsSec(b.dataset.k);
+    };
+  }
+  function lsEnter() {
+    if (lsSecilen) { lsEkle(); return; }
+    var b = el('lsListe').querySelectorAll('.lsBtn');
+    if (b.length === 1) lsSec(b[0].dataset.k);
+  }
+  function lsSec(kod) {
+    var u = tumUrunler.filter(function (x) { return x.kod === kod; })[0]; if (!u) return;
+    lsSecilen = u;
+    el('lsListe').innerHTML = ''; el('lsAra').value = '';
+    el('lsAdet').value = 1;
+    lsSeciliCiz();
+    el('lsAdet').focus(); el('lsAdet').select();
+  }
+  function lsSeciliCiz() {
+    if (!lsSecilen) { el('lsSecili').classList.add('gizli'); return; }
+    var mv = musait(lsSecilen.kod, durum.kaynak);
+    el('lsAd').textContent = lsSecilen.ad;
+    el('lsBilgi').textContent = lsSecilen.kod + ' · ' + durum.kaynak + ': ' + mv + ' adet mevcut';
+    el('lsAdet').max = Math.max(mv, 1);
+    el('lsSecili').classList.remove('gizli');
+    el('lsAra').classList.add('gizli');
+  }
+  function lsVazgec() {
+    lsSecilen = null;
+    el('lsSecili').classList.add('gizli'); el('lsAra').classList.remove('gizli');
+    lsCiz(); el('lsAra').focus();
+  }
+  function lsEkle() {
+    if (!lsSecilen) return;
+    var a = Number(el('lsAdet').value), mv = musait(lsSecilen.kod, durum.kaynak);
+    if (!(a >= 1) || Math.floor(a) !== a) { mesaj('Adet 1 veya daha fazla, tam sayı olmalı.', 'hata'); el('lsAdet').focus(); return; }
+    var var_ = durum.liste.filter(function (s) { return s.kod === lsSecilen.kod; })[0];
+    var toplam = a + (var_ ? var_.adet : 0);
+    if (toplam > mv) { mesaj(durum.kaynak + ' deposunda ' + lsSecilen.kod + ' için en fazla ' + mv + ' adet gönderilebilir' + (var_ ? ' (listede zaten ' + var_.adet + ' var)' : '') + '.', 'hata'); el('lsAdet').focus(); return; }
+    if (var_) var_.adet = toplam; else durum.liste.unshift({ kod: lsSecilen.kod, ad: lsSecilen.ad, barkod: '', adet: a });
+    var ad = lsSecilen.ad;
+    lsSecilen = null; el('lsSecili').classList.add('gizli'); el('lsAra').classList.remove('gizli');
+    mesaj('✓ ' + ad + ' × ' + a + ' listeye eklendi.', 'ok');
+    ekraniKur();
+    el('lsAra').focus();
+  }
 
   var temizleOnay = 0;
   function listeyiTemizle() {
@@ -1939,7 +2041,7 @@
   }
   var P_ETIKET = {}, P_SABLON = {};
   var P_GRUP = [
-    ['Okutma', ['okut_giris', 'okut_transfer', 'okut_cikis', 'okut_sayim']],
+    ['Okutma', ['okut_giris', 'okut_transfer', 'liste_secim', 'okut_cikis', 'okut_sayim']],
     ['Bildirim', ['teslim_al', 'bilgi_eticaret', 'bilgi_bayi', 'bilgi_ihracat', 'bilgi_showroom']],
     ['Raporlar ve hareketler', ['rapor', 'duzelt', 'sil']],
     ['Servis', ['sv_kabul', 'sv_depo', 'sv_servis', 'sv_satis', 'sv_sil']],
@@ -2601,7 +2703,7 @@
   });
 
   // Yeni sürüm kontrolü: GitHub Pages sayfayı ~10 dk önbellekte tutar; telefon eski sürümde kalmasın
-  var SURUM_SABITI = "2026-11-25-5";
+  var SURUM_SABITI = "2026-11-25-6";
   var surumSon = 0;
   function surumKontrol() {
     if (Date.now() - surumSon < 300000) return; // en fazla 5 dakikada bir
