@@ -1257,6 +1257,7 @@
   function raporYukle() {
     var t = raporTuru;
     if (!raporSifre) { raporKilitGoster(''); return; }
+    window._raporZaman = Date.now();
     el('raporBilgi').textContent = 'Yükleniyor…'; el('raporListe').innerHTML = ''; el('fisSilBtn').classList.add('gizli');
     var q = '?islem=rapor&tur=' + t + '&pin=' + encodeURIComponent(durum.pin) + '&rs=' + encodeURIComponent(raporSifre);
     if (t === 'hareket' || t === 'sayim' || t === 'iade') q += '&bas=' + el('tarihBas').value + '&bit=' + el('tarihBit').value;
@@ -1466,25 +1467,26 @@
     silIstegi(f, '', f + ' fişinin TAMAMI (' + filtreliSatirlar().length + ' satır)');
   }
   function silIstegi(fis, kod, tanim) {
-    if (!confirm('Silinecek:\n' + tanim + '\n\nStok buna göre yeniden hesaplanır. Kayıt "Silinenler" sayfasına taşınır. Devam edilsin mi?')) return;
-    var sebep = prompt('Silme sebebi (zorunlu):', 'Yanlış okutma');
-    if (!sebep || !sebep.trim()) { alert('Sebep yazılmadan silinemez.'); return; }
-    var silen = (durum.okutan || '').trim() || (prompt('Adınız:') || '').trim();
-    if (!silen) return;
-    if (!silmeSifre) { var y = prompt('Silme için yönetici şifresi:'); if (!y) return; silmeSifre = y.trim(); }
+    // Tek onay: sonrası otomatik. Silen kişiyi sunucu oturumdan alır; sebep otomatik yazılır, kayıt yine "Silinenler" sayfasında saklanır.
+    if (!confirm('Silinecek:\n' + tanim + '\n\nStok buna göre yeniden hesaplanır. Kayıt "Silinenler" sayfasına taşınır. Silinsin mi?')) return;
+    var silen = (durum.okutan || '').trim() || ((durum.ben && durum.ben.ad) || '');
+    var sebep = 'Rapor ekranından silindi';
+    if (!silmeSifre) silmeSifre = 'oturum';
+    // Ekrandan hemen kaldır (sunucu onaylayınca yeniden yüklenir; hata olursa geri gelir)
+    var r0 = raporVeri[raporTuru];
+    if (r0 && r0.satirlar) { r0.satirlar = r0.satirlar.filter(function (x) { return !(x.fis === fis && (!kod || x.kod === kod)); }); raporCiz(); }
     el('raporBilgi').textContent = 'Siliniyor…';
-    api('POST', { islem: 'sil', pin: durum.pin, ypin: silmeSifre, fis: fis, kod: kod, silen: silen, sebep: sebep.trim() })
+    api('POST', { islem: 'sil', pin: durum.pin, ypin: silmeSifre, fis: fis, kod: kod, silen: silen, sebep: sebep })
       .then(function (j) {
         stok = j.sonuc.stok || stok;
         raporVeri = {};
         if (!kod) el('raporAra').value = '';
         raporYukle();
-        mesaj('Silindi: ' + tanim, 'ok');
-        alert('Silindi ✓ (' + j.sonuc.toplam + ' satır "Silinenler" sayfasına taşındı)');
+        islemToast('Silindi ✓ ' + tanim);
       })
       .catch(function (e) {
         if (/YÖNETİCİ PIN hatalı/.test(e.message)) silmeSifre = '';
-        raporCiz();
+        raporVeri = {}; raporYukle(); // silinemediyse satır geri gelsin
         alert('SİLİNEMEDİ: ' + e.message);
       });
   }
@@ -2518,6 +2520,56 @@
     setTimeout(function () { clearInterval(bkBekle); }, 20000);
     try { history.replaceState(null, '', location.pathname); } catch (e) {}
   }
+</script>
+
+<script>
+  /* ===== Otomatik yenileme: her başarılı yazma işleminden sonra ekranlar kendini günceller ===== */
+  // Kısa, engellemeyen bildirim (alert yerine)
+  function islemToast(t) {
+    var x = document.getElementById('islemToast');
+    if (!x) {
+      x = document.createElement('div'); x.id = 'islemToast'; x.setAttribute('role', 'status');
+      x.style.cssText = 'position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom) + 90px);transform:translateX(-50%);z-index:95;background:#1e8e3e;color:#fff;font-weight:600;border-radius:12px;padding:12px 16px;box-shadow:0 8px 24px rgba(0,0,0,.25);max-width:90vw;transition:opacity .25s;opacity:0;pointer-events:none';
+      document.body.appendChild(x);
+    }
+    x.textContent = t; x.style.opacity = '1';
+    clearTimeout(islemToast.z); islemToast.z = setTimeout(function () { x.style.opacity = '0'; }, 4000);
+  }
+  // Veri değişti: bellekteki özetleri at, görünen ekranı yenile
+  function veriDegisti() {
+    try {
+      panelVeri = null; panelZaman = 0;
+      var acik = function (id) { var e = document.getElementById(id); return e && !e.classList.contains('gizli'); };
+      if (acik('anaPanel')) panelYukle(true);
+      else if (acik('raporlar') && typeof raporSifre !== 'undefined' && raporSifre) {
+        // Rapor ekranı açıksa: işlemi yapan işlev zaten yeniledi mi? (yeniyse tekrar yükleme)
+        if (Date.now() - (window._raporZaman || 0) > 3000) raporYukle();
+      } else raporVeri = {}; // rapor ekranı kapalıyken: bir sonraki açılışta taze yüklensin
+      if (window.zilYukle) zilYukle();
+    } catch (e) { console.log('yenileme', e); }
+  }
+  // Tüm yazma istekleri (kayıt, sil, düzelt, teslim alma, servis…) tek noktadan izlenir
+  (function () {
+    var f0 = window.fetch;
+    window.fetch = function (url, opt) {
+      var p = f0.apply(this, arguments);
+      try {
+        if (opt && opt.method === 'POST' && typeof API_URL !== 'undefined' && String(url).indexOf(API_URL) === 0) {
+          var g = {}; try { g = JSON.parse(opt.body); } catch (e) {}
+          if (g.islem !== 'giris' && g.islem !== 'bildir' && g.islem !== 'sifreDegistir') {
+            p.then(function (r) { return r.clone().json(); }).then(function (j) { if (j && j.ok) setTimeout(veriDegisti, 400); }).catch(function () {});
+          }
+        }
+      } catch (e) {}
+      return p;
+    };
+  })();
+  // Uygulamaya geri dönülünce açık ekran taze olsun
+  document.addEventListener('visibilitychange', function () {
+    if (document.visibilityState !== 'visible' || !durum.pin) return;
+    var e = document.getElementById('anaPanel');
+    if (e && !e.classList.contains('gizli')) panelYukle(true);
+  });
 </script>
 </body>
 </html>
