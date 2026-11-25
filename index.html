@@ -732,12 +732,15 @@
   function yukle() {
     el('durum').textContent = 'Bağlanıyor…';
     // Telefondaki son kopya varsa ekran hemen açılır; güncel veri arkadan gelip yerine geçer
-    if (!veriUygulandi) {
+    // (Sayfadaki tüm betikler yüklenince uygulanır; yoksa henüz tanımlanmamış işlevler çağrılır.)
+    var kopyaUygula = function () {
+      if (veriUygulandi) return; // güncel veri zaten geldiyse eski kopya uygulanmaz
       try {
         var k = JSON.parse(localStorage.getItem('veriOnbellek') || 'null');
         if (k && k.veri && k.kadi && k.kadi === durum.kadi && durum.pin) veriUygula(k.veri);
       } catch (e) { console.log('önbellek', e); }
-    }
+    };
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', kopyaUygula); else kopyaUygula();
     return api('GET').then(function (j) {
       veriUygula(j.veri);
       try { localStorage.setItem('veriOnbellek', JSON.stringify({ kadi: durum.kadi, veri: j.veri })); } catch (e) {}
@@ -2598,7 +2601,7 @@
   });
 
   // Yeni sürüm kontrolü: GitHub Pages sayfayı ~10 dk önbellekte tutar; telefon eski sürümde kalmasın
-  var SURUM_SABITI = "2026-11-25-4";
+  var SURUM_SABITI = "2026-11-25-5";
   var surumSon = 0;
   function surumKontrol() {
     if (Date.now() - surumSon < 300000) return; // en fazla 5 dakikada bir
