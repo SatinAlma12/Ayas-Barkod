@@ -1139,6 +1139,15 @@
 
   /* ================= Kaydet ================= */
   var sayimOnay = 0;
+  // Kayıttan sonra bildirimi arka planda tetikler; hata olursa kullanıcıyı bekletmez/rahatsız etmez
+  function bildirimTetikle(fis, tur, sonra) {
+    try {
+      fetch(API_URL, { method: 'POST', body: JSON.stringify({ pin: durum.pin, islem: 'bildir', fis: fis, tur: tur }) })
+        .then(function (r) { return r.json(); })
+        .then(function (j) { if (j && j.ok && sonra) sonra(j.sonuc); })
+        .catch(function (e) { console.log('bildirim', e); });
+    } catch (e) { console.log('bildirim', e); }
+  }
   function kaydet() {
     taslakYaz();
     if (iadeGirisi() && !(durum.musteri || '').trim()) { mesaj('Kimden geldiğini yazın.', 'hata'); el('musteriYaz').focus(); return; }
@@ -1153,9 +1162,12 @@
       pin: durum.pin, tur: durum.mod, kaynak: durum.kaynak, hedef: durum.hedef,
       okutan: durum.okutan.trim(), not: durum.not.trim(), musteri: (ayrilanaGiris() || ayrilandanCikis()) ? (durum.musteri || '').trim() : '',
       kimden: iadeGirisi() ? (durum.musteri || '').trim() : '',
+      bildirimSonra: true, // telefona bildirim kayıttan sonra ayrı istekle gider (kayıt daha hızlı döner)
       satirlar: durum.liste.map(function (s) { return { kod: s.kod, barkod: s.barkod, adet: s.adet }; })
     }).then(function (j) {
       var r = j.sonuc;
+      var hedefAdi = durumHedefAdi();
+      if (r.bildirimSonra) bildirimTetikle(r.fisNo, r.bildirimSonra, r.bildirimSonra === 'transfer' ? function (s) { if (s && s.gonderildi) mesaj('Kaydedildi ✓ Fiş No: ' + r.fisNo + ' — ' + r.satirSayisi + ' çeşit, ' + r.toplamAdet + ' adet. ' + hedefAdi + ' deposuna bildirildi.', 'ok'); } : null);
       if (iadeGirisi()) { // yeni yazılan kimden / arıza sonraki girişlerde öneri olarak çıksın
         if (iadeOneri.kimden.indexOf(durum.musteri.trim()) < 0) iadeOneri.kimden.push(durum.musteri.trim());
         var ol = iadeHedefi() ? iadeOneri.iade : iadeOneri.ariza;
@@ -2411,10 +2423,12 @@
   }
   function teslimAl(fis, b) {
     var notEl = el('bkNot_' + fis); b.disabled = true; b.textContent = 'Kaydediliyor…';
-    fetch(API_URL, { method: 'POST', body: JSON.stringify({ pin: durum.pin, islem: 'teslimAl', fis: fis, not: notEl ? notEl.value : '' }) })
+    fetch(API_URL, { method: 'POST', body: JSON.stringify({ pin: durum.pin, islem: 'teslimAl', fis: fis, not: notEl ? notEl.value : '', bildirimSonra: true }) })
       .then(function (r) { return r.json(); }).then(function (j) {
         if (!j.ok) { oturumHatasi(j.hata); throw new Error(j.hata); }
-        b.textContent = 'Teslim alındı ✓'; return zilYukle();
+        b.textContent = 'Teslim alındı ✓';
+        if (j.sonuc && j.sonuc.bildirimSonra) bildirimTetikle(fis, j.sonuc.bildirimSonra); // ilgili depoya bildirim, arka planda
+        return zilYukle();
       }).catch(function (e) { b.disabled = false; b.textContent = 'Teslim aldım'; alert('Kaydedilemedi: ' + e.message); });
   }
   // Uygulama açıkken her dakika ve öne gelince yenile
@@ -2457,17 +2471,38 @@
     if (_osDurum === 'hata' || !_os) return '<div class="bkTel yok">Telefon bildirimi şu an kullanılamıyor (bağlantı ya da tarayıcı desteklemiyor). Zil yine çalışır.</div>';
     if (!_os.Notifications.isPushSupported()) return '<div class="bkTel yok">Bu tarayıcı telefon bildirimini desteklemiyor. Android\'de Chrome, iPhone\'da ana ekrana eklenmiş uygulama kullanın.</div>';
     if (_os.Notifications.permission && _os.User.PushSubscription.optedIn) return '<div class="bkTel acik"><b>Telefon bildirimi açık ✓</b> Bildirimleriniz uygulama kapalıyken de telefonunuza gelir.</div>';
-    if (typeof Notification !== 'undefined' && Notification.permission === 'denied') return '<div class="bkTel yok"><b>Bildirime izin verilmemiş.</b> Telefonun Ayarlar → Bildirimler bölümünden bu uygulamaya (ya da tarayıcıya) izin verin, sonra uygulamayı yeniden açın.</div>';
+    if (typeof Notification !== 'undefined' && Notification.permission === 'denied') return '<div class="bkTel yok"><b>Bildirime izin verilmemiş.</b> <a href="#" onclick="el(\'bkTelefon\').innerHTML=bildirimRehberHtml();return false">Nasıl açılır?</a> Telefonun Ayarlar → Bildirimler bölümünden bu uygulamaya (ya da tarayıcıya) izin verin, sonra uygulamayı yeniden açın.</div>';
     return '<div class="bkTel kapali"><b>Telefon bildirimi kapalı.</b> Açarsanız bildirimleriniz uygulama kapalıyken de telefonunuza gelir.<button class="btn" onclick="telefonBildirimAc(this)">Bildirimleri aç</button></div>';
   }
   function telefonBildirimYenile() { var x = el('bkTelefon'); if (x) x.innerHTML = telefonBildirimHtml(); }
   function telefonBildirimAc(b) {
     if (!_os) return; b.disabled = true; b.textContent = 'İzin isteniyor…';
-    _os.Notifications.requestPermission()
-      .then(function () { return _os.User.PushSubscription.optIn(); })
+    // Telefon izin penceresini hiç göstermezse istek sonsuza kadar bekleyebilir: 8 sn sınır
+    var sinirli = function (pr) { return Promise.race([pr, new Promise(function (r) { setTimeout(r, 8000); })]); };
+    sinirli(_os.Notifications.requestPermission())
+      .catch(function (e) { console.log(e); })
+      .then(function () { // OneSignal penceresi çıkmadıysa tarayıcının kendi izin penceresini dene
+        if (typeof Notification !== 'undefined' && Notification.permission === 'default' && Notification.requestPermission) return sinirli(Notification.requestPermission());
+      })
+      .then(function () { return sinirli(_os.User.PushSubscription.optIn()); })
       .then(function () { _osKadi = null; return osGiris(); })
       .catch(function (e) { console.log(e); })
-      .then(function () { setTimeout(telefonBildirimYenile, 800); });
+      .then(function () { setTimeout(function () {
+        telefonBildirimYenile();
+        if (!(_os.Notifications.permission && _os.User.PushSubscription.optedIn)) { var x = el('bkTelefon'); if (x) x.innerHTML = bildirimRehberHtml(); }
+      }, 1200); });
+  }
+  function bildirimRehberHtml() {
+    var p = typeof Notification !== 'undefined' ? Notification.permission : '';
+    var bas = p === 'granted' ? '<b>İzin var ama telefon kaydı tamamlanmadı.</b> İnternet bağlantısını kontrol edip tekrar deneyin. Olmazsa aşağıdakileri yapın.'
+      : '<b>Telefon izin penceresini göstermedi</b> (daha önce reddedilmiş ya da telefon engelliyor). Şunları yapın:';
+    return '<div class="bkTel yok">' + bas +
+      '<ol style="margin:8px 0 8px 18px;padding:0;line-height:1.5">' +
+      '<li>Telefonun <b>Ayarlar → Uygulamalar → Chrome</b> (ve varsa <b>Ayas Depo</b>) <b>→ Bildirimler → Açık</b>.</li>' +
+      '<li>Chrome\'u açın → sağ üst <b>⋮ → Ayarlar → Site ayarları → Bildirimler</b> → <b>satinalma12.github.io</b> → <b>İzin ver</b>.</li>' +
+      '<li>Uygulamayı tamamen kapatıp yeniden açın, zile girip <b>Bildirimleri aç</b>\'a tekrar basın.</li></ol>' +
+      'iPhone\'da: uygulama ana ekrana eklenmiş simgeden açılmalı; Ayarlar → Bildirimler → Ayas Depo → İzin ver.' +
+      '<button class="btn" style="margin-top:8px" onclick="telefonBildirimAc(this)">Tekrar dene</button></div>';
   }
   // Çıkışta telefonu bu kullanıcıdan ayır (başka kullanıcının bildirimleri gelmesin)
   var cikisYap0 = cikisYap;
