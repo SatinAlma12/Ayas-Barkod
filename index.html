@@ -856,8 +856,8 @@
     if (m === 'GİRİŞ') { durum.kaynak = ''; if (!durum.hedef) durum.hedef = yerler[0]; }
     if (m === 'ÇIKIŞ' || m === 'SAYIM') { durum.hedef = ''; if (!durum.kaynak) durum.kaynak = yerler[0]; }
     if (m === 'TRANSFER') {
-      if (!durum.kaynak) durum.kaynak = yerler[0];
-      if (!durum.hedef || durum.hedef === durum.kaynak) durum.hedef = yerler.filter(function (y) { return y !== durum.kaynak; })[0];
+      if (!durum.kaynak || durum.kaynak === sayimYer) durum.kaynak = yerler.filter(function (y) { return y !== sayimYer; })[0] || yerler[0];
+      if (!durum.hedef || durum.hedef === durum.kaynak || yerListesi('hedef').indexOf(durum.hedef) < 0) durum.hedef = yerListesi('hedef').filter(function (y) { return y !== durum.kaynak; })[0];
     }
     ekraniKur();
   }
@@ -1163,8 +1163,9 @@
       }
       stok = r.stok || stok; if (r.ayrilan) ayrilan = r.ayrilan; durum.liste = []; durum.not = ''; durum.musteri = '';
       ekraniKur();
-      mesaj('Kaydedildi ✓ Fiş No: ' + r.fisNo + ' — ' + r.satirSayisi + ' çeşit, ' + r.toplamAdet + ' adet.' + (r.bildirildi ? ' Depo sorumlusuna bildirildi.' : ''), 'ok');
+      mesaj('Kaydedildi ✓ Fiş No: ' + r.fisNo + ' — ' + r.satirSayisi + ' çeşit, ' + r.toplamAdet + ' adet.' + (r.bildirildi ? ' Depo sorumlusuna bildirildi.' : '') + (r.teslimBekliyor ? ' Depo teslim alınca ' + r.teslimBekliyor + ' stoğuna geçer.' : ''), 'ok');
       if (r.bildirildi && window.zilYukle) setTimeout(zilYukle, 500);
+      if (r.haber && r.haber.gonderildi) mesaj('Kaydedildi ✓ Fiş No: ' + r.fisNo + ' — ' + r.satirSayisi + ' çeşit, ' + r.toplamAdet + ' adet. ' + durumHedefAdi() + ' deposuna bildirildi.', 'ok');
       var ss = el('sayimSonuc');
       if (r.farklar) {
         var farkli = r.farklar.filter(function (f) { return f.fark !== 0; });
@@ -2349,8 +2350,11 @@
       var yeni = gor.indexOf(f.fis) < 0;
       return '<div class="bkFis' + (yeni ? ' yeni' : '') + '"><div class="ust"><b>' + esc(f.fis) + ' → ' + esc(f.hedef) + '</b>' +
         (yeni ? '<span class="bkCip ok">Yeni</span>' : '') + '</div>' +
-        '<div class="alt">Teslim alındı: ' + esc(f.teslim.tarih) + ' · ' + esc(f.teslim.alan) + ' · ' + f.kalemler.length + ' çeşit, ' + f.adet + ' adet</div>' +
-        (f.teslim.not ? '<div class="alt">Not: ' + esc(f.teslim.not) + '</div>' : '') +
+        (f.tip === 'transfer'
+          ? '<div class="alt">Transfer: ' + esc(f.kaynak) + ' → ' + esc(f.hedef) + ' · ' + esc(f.tarih) + ' · ' + esc(f.okutan) + ' · ' + f.kalemler.length + ' çeşit, ' + f.adet + ' adet</div>' +
+            (f.not ? '<div class="alt">Not: ' + esc(f.not) + '</div>' : '')
+          : '<div class="alt">Teslim alındı: ' + esc(f.teslim.tarih) + ' · ' + esc(f.teslim.alan) + ' · ' + f.kalemler.length + ' çeşit, ' + f.adet + ' adet</div>' +
+            (f.teslim.not ? '<div class="alt">Not: ' + esc(f.teslim.not) + '</div>' : '')) +
         '<ul>' + f.kalemler.map(function (k) { return '<li><span>' + esc(k.kod) + ' <small style="color:#5b6475">' + esc(k.ad) + '</small></span><b>× ' + k.adet + '</b></li>'; }).join('') + '</ul></div>';
     }).join('');
   }
@@ -2362,6 +2366,7 @@
     }, 200);
     setTimeout(function () { clearInterval(bekle); }, 15000);
   }
+  function durumHedefAdi() { return (el('hedef') && el('hedef').value) || ''; }
   function bildirimAc() { el('bkToast').classList.remove('goster'); el('bildirimKutu').classList.add('acik'); bildirimCiz(); zilYukle(); }
   function bildirimKapat0() { el('bildirimKutu').classList.remove('acik'); el('bkToast').classList.remove('goster'); }
   function bildirimKapat() { bildirimKapat0(); gelenGoruldu(); zilCiz(); }
