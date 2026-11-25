@@ -1184,6 +1184,14 @@
    * Yalnızca TRANSFER modunda ve "liste_secim" yetkisi olana görünür. Seçilen ürün, mevcut listeye barkod okutulmuş gibi eklenir;
    * stok kontrolü, müşteri (AYRILMIŞ) ve kayıt akışı aynıdır. */
   var lsSecilen = null;
+  // Ürünün depolardaki adetleri: "BAYİ: 45 · E-TİCARET: 3" (stoğu olanlar; gönderilen depo her zaman, kalın)
+  function lsDepolar(kod) {
+    var y = stok[kod] || {};
+    return yerler.filter(function (d) { return d !== sayimYer && (d === durum.kaynak || (y[d] || 0) > 0); }).map(function (d) {
+      var s = esc(d) + ': ' + (y[d] || 0);
+      return d === durum.kaynak ? '<b>' + s + '</b>' : s;
+    }).join(' · ');
+  }
   function lsGoster() { return durum.mod === 'TRANSFER' && yetkiVar('liste_secim'); }
   function lsGuncelle() {
     var k = el('listeSecKutu'); if (!k) return;
@@ -1205,7 +1213,7 @@
     var kutu = el('lsListe');
     if (!uygun.length) { kutu.innerHTML = '<div class="lsBos">' + (q ? esc(kaynak) + ' deposunda "' + esc(el('lsAra').value.trim()) + '" ile eşleşen stoklu ürün yok.' : esc(kaynak) + ' deposunda gönderilebilir stok yok.') + '</div>'; return; }
     kutu.innerHTML = uygun.slice(0, 40).map(function (u) {
-      return '<button type="button" class="lsBtn" data-k="' + esc(u.kod) + '"><b>' + esc(u.ad) + '</b><small>' + esc(u.kod) + ' · ' + esc(kaynak) + ': <b>' + musait(u.kod, kaynak) + '</b> adet</small></button>';
+      return '<button type="button" class="lsBtn" data-k="' + esc(u.kod) + '"><b>' + esc(u.ad) + '</b><small>' + esc(u.kod) + '</small><small>' + lsDepolar(u.kod) + '</small></button>';
     }).join('') + (uygun.length > 40 ? '<div class="lsBos">' + (uygun.length - 40) + ' ürün daha var — aramayı daraltın.</div>' : '');
     kutu.onclick = function (e) {
       var b = e.target.closest('.lsBtn'); if (!b) return;
@@ -1229,7 +1237,7 @@
     if (!lsSecilen) { el('lsSecili').classList.add('gizli'); return; }
     var mv = musait(lsSecilen.kod, durum.kaynak);
     el('lsAd').textContent = lsSecilen.ad;
-    el('lsBilgi').textContent = lsSecilen.kod + ' · ' + durum.kaynak + ': ' + mv + ' adet mevcut';
+    el('lsBilgi').innerHTML = esc(lsSecilen.kod) + '<br>' + lsDepolar(lsSecilen.kod) + ' · gönderilebilir: <b>' + mv + '</b>';
     el('lsAdet').max = Math.max(mv, 1);
     el('lsSecili').classList.remove('gizli');
     el('lsAra').classList.add('gizli');
@@ -2703,7 +2711,7 @@
   });
 
   // Yeni sürüm kontrolü: GitHub Pages sayfayı ~10 dk önbellekte tutar; telefon eski sürümde kalmasın
-  var SURUM_SABITI = "2026-11-25-6";
+  var SURUM_SABITI = "2026-11-25-7";
   var surumSon = 0;
   function surumKontrol() {
     if (Date.now() - surumSon < 300000) return; // en fazla 5 dakikada bir
