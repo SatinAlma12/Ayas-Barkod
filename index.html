@@ -707,10 +707,12 @@
     });
   }
 
-  function yukle() {
-    el('durum').textContent = 'Bağlanıyor…';
-    return api('GET').then(function (j) {
-      var v = j.veri;
+  // Sunucudan (ya da telefondaki son kopyadan) gelen veriyi uygular. İlk uygulamada ekran kurulur; sonrakiler yalnız veriyi tazeler.
+  var veriUygulandi = false;
+  function veriUygula(v) {
+    var eskiYerler = JSON.stringify(typeof yerler === 'undefined' ? [] : yerler);
+    var ilk = !veriUygulandi; veriUygulandi = true;
+    {
       yerler = v.yerler; musteriZorunlu = v.musteriZorunlu || []; iadeYerler = v.iadeYerler || []; iadeOneri = Object.assign({ kimden: [], ariza: [], iade: [] }, v.iadeOneri || {}); ayrilan = v.ayrilan || {}; stok = v.stok || {}; urunByKey = {}; cokluBarkod = {}; personel = v.personel || []; personelDatalist(); okutanAlaniKur();
       sayimYer = v.sayimYer || ''; farkHaric = v.farkHaric || []; girisYerler = v.girisYerler || null;
       // Yer adı değiştiyse (örn. DEPO -> ANA DEPO) telefondaki eski seçimi düzelt
@@ -720,10 +722,25 @@
       v.urunler.forEach(function (u) { anahtarEkle(u.kod, u); u.barkodlar.forEach(function (b) { anahtarEkle(b, u); }); });
       el('durum').textContent = v.urunler.length + ' ürün';
       durum.ben = v.ben || durum.ben; durum.okutan = (durum.ben && durum.ben.ad) || ''; taslakYaz();
-      el('girisEkrani').classList.add('gizli'); el('uygulama').classList.remove('gizli');
+      if (ilk) { el('girisEkrani').classList.add('gizli'); el('uygulama').classList.remove('gizli'); }
       yetkiUygula();
-      yerleriDoldur(); ekraniKur();
-      if (document.body.classList.contains('okutmaYok') && el('servisEkran').classList.contains('gizli')) servisAc();
+      if (ilk || JSON.stringify(yerler) !== eskiYerler) yerleriDoldur();
+      ekraniKur();
+      if (ilk && document.body.classList.contains('okutmaYok') && el('servisEkran').classList.contains('gizli')) servisAc();
+    }
+  }
+  function yukle() {
+    el('durum').textContent = 'Bağlanıyor…';
+    // Telefondaki son kopya varsa ekran hemen açılır; güncel veri arkadan gelip yerine geçer
+    if (!veriUygulandi) {
+      try {
+        var k = JSON.parse(localStorage.getItem('veriOnbellek') || 'null');
+        if (k && k.veri && k.kadi && k.kadi === durum.kadi && durum.pin) veriUygula(k.veri);
+      } catch (e) { console.log('önbellek', e); }
+    }
+    return api('GET').then(function (j) {
+      veriUygula(j.veri);
+      try { localStorage.setItem('veriOnbellek', JSON.stringify({ kadi: durum.kadi, veri: j.veri })); } catch (e) {}
     }).catch(function (e) {
       el('durum').textContent = 'Bağlantı yok';
       if (/^OTURUM/.test(e.message) || !durum.pin) { if (!durum.pin) girisGoster(''); }
@@ -755,6 +772,8 @@
   }
   function cikisYap(msj) {
     kameraKapat(); durum.pin = ''; durum.ben = null; taslakYaz();
+    try { localStorage.removeItem('veriOnbellek'); localStorage.removeItem('panelOnbellek'); } catch (e) {}
+    veriUygulandi = false;
     ['raporlar', 'servisEkran', 'raporBtn', 'servisBtn'].forEach(function (id) { el(id).classList.add('gizli'); });
     document.body.classList.remove('yonetici', 'silYetki', 'duzeltYetki', 'svKabulYetki', 'svSilYetki', 'okutmaYok');
     el('kadiGir').value = durum.kadi || ''; el('sifreGir').value = '';
@@ -2235,9 +2254,18 @@
     if (!zorla && panelVeri && Date.now() - panelZaman < 60000) { panelCiz(); return; }
     panelZaman = Date.now();
     if (!yetkiVar('rapor')) return;
-    var bugun = ymd(new Date()), d = new Date(); d.setDate(d.getDate() - 6);
-    Promise.all([panelGet('?islem=rapor&tur=stok'), panelGet('?islem=rapor&tur=hareket&bas=' + ymd(d) + '&bit=' + bugun), panelGet('?islem=rapor&tur=sayim&bas=' + bugun + '&bit=' + bugun)])
-      .then(function (r) { panelVeri = { stok: r[0].rapor, hareket: r[1].rapor, sayim: r[2].rapor, bugun: bugun }; panelCiz(); })
+    // Açılışta (zorlama yokken) telefondaki son özet hemen gösterilir; güncel özet tek istekle gelip yerine geçer
+    if (!zorla && !panelVeri) {
+      try {
+        var k = JSON.parse(localStorage.getItem('panelOnbellek') || 'null');
+        if (k && k.panel && k.kadi === durum.kadi) { panelVeri = k.panel; panelCiz(); }
+      } catch (e) {}
+    }
+    panelGet('?islem=panel')
+      .then(function (r) {
+        panelVeri = r.panel; panelCiz();
+        try { localStorage.setItem('panelOnbellek', JSON.stringify({ kadi: durum.kadi, panel: r.panel })); } catch (e) {}
+      })
       .catch(function (e) { el('pSonListe').innerHTML = '<div class="bos">Özet alınamadı: ' + kacir(e.message) + '</div>'; });
   }
   function kacir(t) { return String(t == null ? '' : t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
@@ -2249,14 +2277,10 @@
   };
   function panelCiz() {
     if (!panelVeri) return;
-    var st = panelVeri.stok.satirlar || [], hs = panelVeri.hareket.satirlar || [], bugun = panelVeri.bugun;
-    var top = 0; st.forEach(function (x) { top += Number(x.toplam) || 0; });
-    var t = { 'GİRİŞ': 0, 'ÇIKIŞ': 0, 'SAYIM': 0 };
-    hs.forEach(function (x) { if (x.gun === bugun && t.hasOwnProperty(x.tur) && x.not !== 'AÇILIŞ SAYIMI') t[x.tur] += Number(x.adet) || 0; });
-    el('oStok').textContent = sayiYaz(top); el('oGiris').textContent = sayiYaz(t['GİRİŞ']);
-    var sy = 0; ((panelVeri.sayim || {}).satirlar || []).forEach(function (x) { sy += Number(x.sayilan) || 0; });
-    el('oCikis').textContent = sayiYaz(t['ÇIKIŞ']); el('oSayim').textContent = sayiYaz(sy);
-    var son = hs.slice(0, 6);
+    // Sunucudaki 'panel' özeti: { toplam, giris, cikis, sayim, son:[...] }
+    el('oStok').textContent = sayiYaz(panelVeri.toplam); el('oGiris').textContent = sayiYaz(panelVeri.giris);
+    el('oCikis').textContent = sayiYaz(panelVeri.cikis); el('oSayim').textContent = sayiYaz(panelVeri.sayim);
+    var son = panelVeri.son || [];
     el('pSonListe').innerHTML = son.length ? son.map(function (x) {
       var g = TUR_GORUNUM[x.tur] || { c: '#4a5568', d: '<circle cx="12" cy="12" r="4"/>', isaret: '' };
       var yon = x.kaynak && x.hedef ? x.kaynak + ' → ' + x.hedef : (x.hedef || x.kaynak || '');
@@ -2539,6 +2563,7 @@
   function veriDegisti() {
     try {
       panelVeri = null; panelZaman = 0;
+      try { localStorage.removeItem('panelOnbellek'); } catch (e) {} // eski özet bir sonraki açılışta bir an görünmesin
       var acik = function (id) { var e = document.getElementById(id); return e && !e.classList.contains('gizli'); };
       if (acik('anaPanel')) panelYukle(true);
       else if (acik('raporlar') && typeof raporSifre !== 'undefined' && raporSifre) {
@@ -2569,7 +2594,24 @@
     if (document.visibilityState !== 'visible' || !durum.pin) return;
     var e = document.getElementById('anaPanel');
     if (e && !e.classList.contains('gizli')) panelYukle(true);
+    surumKontrol();
   });
+
+  // Yeni sürüm kontrolü: GitHub Pages sayfayı ~10 dk önbellekte tutar; telefon eski sürümde kalmasın
+  var SURUM_SABITI = "2026-11-25-4";
+  var surumSon = 0;
+  function surumKontrol() {
+    if (Date.now() - surumSon < 300000) return; // en fazla 5 dakikada bir
+    surumSon = Date.now();
+    fetch(location.pathname + '?s=' + Date.now(), { cache: 'no-store' }).then(function (r) { return r.text(); }).then(function (t) {
+      var m = t.match(/SURUM_SABITI = "([^"]+)"/);
+      if (m && m[1] !== SURUM_SABITI && location.search.indexOf('v=' + m[1]) < 0) {
+        islemToast('Yeni sürüm var, yenileniyor…');
+        setTimeout(function () { location.replace(location.pathname + '?v=' + m[1]); }, 1200);
+      }
+    }).catch(function () {});
+  }
+  setTimeout(surumKontrol, 4000);
 </script>
 </body>
 </html>
