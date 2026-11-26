@@ -284,6 +284,14 @@
   .spForm .btn { margin-top: 0; }
   .spForm input[type=date] { width: 100%; padding: 12px; font-size: 16px; border: 1px solid #d5dbe6; border-radius: 10px; background: #fff; box-sizing: border-box; font-family: inherit; min-height: 50px; }
   #spCikisKutu { margin-top: 4px; }
+  .spAc { position: relative; }
+  .spAc input { margin-bottom: 0; }
+  .spOneri { position: absolute; left: 0; right: 0; top: 100%; margin-top: 4px; background: #fff; border: 1px solid #d5dbe6; border-radius: 10px; box-shadow: 0 10px 28px rgba(18,34,74,.18); max-height: 320px; overflow-y: auto; z-index: 60; }
+  .spOneri div { padding: 9px 12px; cursor: pointer; border-bottom: 1px solid #f0f2f6; }
+  .spOneri div:last-child { border-bottom: 0; }
+  .spOneri div b { display: block; font-size: 14px; color: #1b2540; } .spOneri div small { color: #6b7488; font-size: 12px; }
+  .spOneri div.aktif, .spOneri div:hover { background: #eef3ff; }
+  .spOneri .yok { color: #8a93a6; cursor: default; font-size: 13px; }
 
   @media (min-width: 1024px) {
     body { padding: 0 0 0 248px; }
@@ -544,8 +552,8 @@
     <div class="spUst"><strong>Sipariş dökümü</strong><div style="display:flex;gap:6px;flex-wrap:wrap"><button class="btn spDuzenYetki" onclick="spFormAc()">+ Yeni sipariş</button><button class="btn ikincil" onclick="spExcel()">Excel</button><button class="btn ikincil" onclick="spYukle()" aria-label="Yenile">↻</button></div></div>
     <div id="spForm" class="spForm gizli">
       <input type="hidden" id="spNo">
-      <label>Ürün (stok kodu)</label><input type="text" id="spUrun" list="spUrunListe" autocomplete="off" placeholder="Kodu veya adını yazın" oninput="spFormStok()"><datalist id="spUrunListe"></datalist>
-      <label>Müşteri</label><input type="text" id="spMusteri" list="spMusteriListe" autocomplete="off" placeholder="Firma adı"><datalist id="spMusteriListe"></datalist>
+      <label>Ürün (stok kodu)</label><div class="spAc"><input type="text" id="spUrun" autocomplete="off" placeholder="Kodu veya adını yazın (örn. AGF 140)"><div id="spUrunOneri" class="spOneri gizli"></div></div>
+      <label>Müşteri</label><div class="spAc"><input type="text" id="spMusteri" autocomplete="off" placeholder="Firma adı"><div id="spMusteriOneri" class="spOneri gizli"></div></div>
       <div class="iki"><div><label>Sipariş tarihi</label><input type="date" id="spTarih"></div><div><label>Not</label><input type="text" id="spNot" autocomplete="off" placeholder="Stand, iskonto…"></div></div>
       <div class="iki"><div><label>Sipariş adedi</label><input type="number" id="spAdet" min="1" step="1" inputmode="numeric"></div><div><label>Ayrılan (opsiyon)</label><input type="number" id="spAyrilan" min="0" step="1" inputmode="numeric" placeholder="0"></div></div>
       <div id="spFormStok" class="mesaj bilgi gizli"></div>
@@ -2631,8 +2639,6 @@
   }
   function spFormAc(no) {
     var x = no && spVeri ? spVeri.satirlar.filter(function (y) { return y.no === no; })[0] : null;
-    el('spUrunListe').innerHTML = (spUrunler || []).map(function (u) { return '<option value="' + esc(u.kod) + '">' + esc(u.ad) + '</option>'; }).join('');
-    el('spMusteriListe').innerHTML = ((spVeri && spVeri.musteriler) || []).map(function (m) { return '<option value="' + esc(m) + '">'; }).join('');
     el('spNo').value = x ? x.no : ''; el('spUrun').value = x ? x.kod : ''; el('spMusteri').value = x ? x.musteri : '';
     el('spTarih').value = x && /^\d{4}-/.test(x.tarih) ? x.tarih : ymd(new Date());
     el('spAdet').value = x ? x.adet : ''; el('spAyrilan').value = x ? x.ayrilan : ''; el('spNot').value = x ? x.not.replace(/\s*\[[^\]]*\]/g, '') : '';
@@ -2641,6 +2647,33 @@
     el('spForm').classList.remove('gizli'); spFormStok();
     el('siparisEkran').scrollIntoView({ behavior: 'smooth' }); (x ? el('spAdet') : el('spUrun')).focus();
   }
+  // Kendi açılır listemiz (tarayıcının datalist'i masaüstü uygulamada yanlış yerde açılıyor)
+  function spOneriKur(inputId, kutuId, kaynak, sec) {
+    var inp = el(inputId), kutu = el(kutuId), liste = [], aktif = -1;
+    var ciz = function () {
+      var t = inp.value.trim().toLocaleUpperCase('tr').split(/\s+/).filter(Boolean);
+      liste = kaynak().filter(function (x) { var h = (x.b + ' ' + (x.k || '')).toLocaleUpperCase('tr'); return t.every(function (p) { return h.indexOf(p) >= 0; }); });
+      if (t.length) liste.sort(function (a, b) { var q = t[0], A = a.b.toLocaleUpperCase('tr'), B = b.b.toLocaleUpperCase('tr'); var x = (A.indexOf(q) === 0 || A.indexOf('M-' + q) === 0) ? 0 : 1, y = (B.indexOf(q) === 0 || B.indexOf('M-' + q) === 0) ? 0 : 1; return x - y; });
+      liste = liste.slice(0, 60); aktif = -1;
+      kutu.innerHTML = liste.length ? liste.map(function (x, i) { return '<div data-i="' + i + '"><b>' + esc(x.b) + '</b>' + (x.k ? '<small>' + esc(x.k) + '</small>' : '') + '</div>'; }).join('')
+        : (inp.value.trim() ? '<div class="yok">Eşleşen yok' + (kutuId === 'spMusteriOneri' ? ' — yeni müşteri olarak kaydedilir' : '') + '</div>' : '');
+      kutu.classList.toggle('gizli', !kutu.innerHTML);
+    };
+    var isaretle = function () { kutu.querySelectorAll('[data-i]').forEach(function (d, i) { d.classList.toggle('aktif', i === aktif); if (i === aktif) d.scrollIntoView({ block: 'nearest' }); }); };
+    var secim = function (i) { var x = liste[i]; if (!x) return; inp.value = x.b; kutu.classList.add('gizli'); if (sec) sec(x); };
+    inp.addEventListener('focus', ciz); inp.addEventListener('input', function () { ciz(); if (sec) sec(null); });
+    inp.addEventListener('blur', function () { setTimeout(function () { kutu.classList.add('gizli'); }, 150); });
+    inp.addEventListener('keydown', function (e) {
+      if (kutu.classList.contains('gizli')) return;
+      if (e.key === 'ArrowDown') { aktif = Math.min(aktif + 1, liste.length - 1); isaretle(); e.preventDefault(); }
+      else if (e.key === 'ArrowUp') { aktif = Math.max(aktif - 1, 0); isaretle(); e.preventDefault(); }
+      else if (e.key === 'Enter' && aktif >= 0) { secim(aktif); e.preventDefault(); }
+      else if (e.key === 'Escape') kutu.classList.add('gizli');
+    });
+    kutu.addEventListener('mousedown', function (e) { var d = e.target.closest('[data-i]'); if (d) { e.preventDefault(); secim(Number(d.dataset.i)); } });
+  }
+  spOneriKur('spUrun', 'spUrunOneri', function () { return (spUrunler || []).map(function (u) { return { b: u.kod, k: u.ad }; }); }, function () { spFormStok(); });
+  spOneriKur('spMusteri', 'spMusteriOneri', function () { return ((spVeri && spVeri.musteriler) || []).map(function (m) { return { b: m }; }); });
   function spFormKapat() { el('spForm').classList.add('gizli'); }
   function spFormStok() {
     var u = spUrunBul(el('spUrun').value), b = el('spFormStok');
