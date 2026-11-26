@@ -257,6 +257,11 @@
   .spUst .btn { width: auto; margin: 0; padding: 9px 14px; }
   .spFiltre { display: grid; grid-template-columns: 1fr 190px; gap: 8px; }
   .spFiltre input, .spFiltre select { margin: 0; }
+  .spFiltre2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 8px; margin-top: 8px; align-items: end; }
+  .spFiltre2 label { font-size: 12px; margin: 0 0 4px; display: block; color: #5b6475; }
+  .spFiltre2 select, .spFiltre2 input { margin: 0; }
+  .spFiltre2 input[type=date] { width: 100%; padding: 12px; font-size: 15px; border: 1px solid #d5dbe6; border-radius: 10px; background: #fff; box-sizing: border-box; font-family: inherit; min-height: 48px; }
+  .spTemizle .btn { width: 100%; margin: 0; min-height: 48px; }
   .spSecim { display: flex; align-items: center; gap: 8px; font-size: 14px; margin: 8px 0 4px; color: #33415c; }
   .spSecim input { width: auto; margin: 0; }
   #spOzet { font-size: 13px; color: #5b6475; margin: 6px 0; }
@@ -562,6 +567,13 @@
       <div id="spFormMesaj" class="mesaj"></div>
     </div>
     <div class="spFiltre"><input type="text" id="spAra" placeholder="Ara: ürün, kod, müşteri, not…" oninput="spCiz()" autocomplete="off"><select id="spDurumSec" onchange="spYukle()"><option value="acik">Açık siparişler</option><option value="tumu">Kapananlar dahil</option></select></div>
+    <div class="spFiltre2">
+      <div><label>Ürün</label><select id="spUrunF" onchange="spCiz()"><option value="">Tüm ürünler</option></select></div>
+      <div><label>Firma</label><select id="spFirmaF" onchange="spCiz()"><option value="">Tüm firmalar</option></select></div>
+      <div><label>Sipariş tarihi (başlangıç)</label><input type="date" id="spBas" onchange="spCiz()"></div>
+      <div><label>Sipariş tarihi (bitiş)</label><input type="date" id="spBit" onchange="spCiz()"></div>
+      <div class="spTemizle"><button class="btn ikincil" onclick="spFiltreTemizle()">Filtreyi temizle</button></div>
+    </div>
     <label class="spSecim"><input type="checkbox" id="spSorun" onchange="spCiz()"> Sadece stoğu yetmeyen / fazla ayrılan ürünler</label>
     <div id="spOzet"></div>
     <div id="spListe"><div class="bos">Yükleniyor…</div></div>
@@ -2614,32 +2626,52 @@
     });
     return sira.map(function (k) { var x = g[k]; x.serbest = x.stok - x.ayrilan; x.eksik = Math.max(0, x.bekleyen - x.stok); x.ayrilmamis = x.bekleyen - x.ayrilan; return x; });
   }
+  function spFiltreTemizle() { ['spAra', 'spUrunF', 'spFirmaF', 'spBas', 'spBit'].forEach(function (i) { el(i).value = ''; }); el('spSorun').checked = false; spCiz(); }
+  function spSecenek(id, bos, liste) {
+    var s = el(id), v = s.value;
+    s.innerHTML = '<option value="">' + bos + '</option>' + liste.map(function (x) { return '<option value="' + esc(x[0]) + '">' + esc(x[1]) + '</option>'; }).join('');
+    s.value = liste.some(function (x) { return x[0] === v; }) ? v : '';
+  }
+  // Ekrandaki filtrelere uyan satır mı? (ürün, firma, tarih aralığı, arama)
+  function spUyar(g, x) {
+    var u = el('spUrunF').value, f = el('spFirmaF').value, b = el('spBas').value, t = el('spBit').value;
+    var ara = el('spAra').value.trim().toLocaleUpperCase('tr');
+    if (u && g.kod !== u) return false;
+    if (f && x.musteri !== f) return false;
+    if (b && !(x.tarih && x.tarih >= b)) return false;
+    if (t && !(x.tarih && x.tarih <= t)) return false;
+    return !ara || (g.kod + ' ' + g.ad + ' ' + x.musteri + ' ' + x.not + ' ' + x.no).toLocaleUpperCase('tr').indexOf(ara) >= 0;
+  }
   function spCiz() {
     if (!spVeri) return;
-    var ara = el('spAra').value.trim().toLocaleUpperCase('tr'), sorun = el('spSorun').checked, duz = yetkiVar('siparis_duzenle');
-    var gruplar = spGruplar(), acikSay = 0, sorunlu = 0, html = [];
+    var sorun = el('spSorun').checked, duz = yetkiVar('siparis_duzenle');
+    var gruplar = spGruplar(), acikSay = 0, sorunlu = 0, html = [], gosterilen = 0;
+    spSecenek('spUrunF', 'Tüm ürünler', gruplar.map(function (g) { return [g.kod, g.kod + ' — ' + g.ad]; }));
+    var fm = {}; spVeri.satirlar.forEach(function (x) { fm[x.musteri] = 1; });
+    spSecenek('spFirmaF', 'Tüm firmalar', Object.keys(fm).sort(function (a, b) { return a.localeCompare(b, 'tr'); }).map(function (m) { return [m, m]; }));
     gruplar.forEach(function (g) {
       var sorunVar = g.eksik > 0 || g.serbest < 0; if (sorunVar) sorunlu++;
       g.satirlar.forEach(function (x) { if (x.durum === 'AÇIK') acikSay++; });
       if (sorun && !sorunVar) return;
-      var urunEslesir = !ara || (g.kod + ' ' + g.ad).toLocaleUpperCase('tr').indexOf(ara) >= 0;
-      var satirlar = g.satirlar.filter(function (x) { return urunEslesir || (x.musteri + ' ' + x.not + ' ' + x.no).toLocaleUpperCase('tr').indexOf(ara) >= 0; });
+      var satirlar = g.satirlar.filter(function (x) { return spUyar(g, x); });
       if (!satirlar.length) return;
+      gosterilen += satirlar.length;
       var cip = function (t, v, c) { return '<span class="spCip ' + (c || '') + '">' + t + ' ' + v + '</span>'; };
       var sb = g.serbest < 0 ? cip('Fazla ayrılmış', spSayi(-g.serbest), 'kirmizi') : (g.serbest > 0 && g.ayrilmamis > 0 ? cip('Dağıtılabilir', spSayi(Math.min(g.serbest, g.ayrilmamis)), 'sari') : cip('Serbest', spSayi(g.serbest), 'yesil'));
-      var n = 0;
+      var sira = {}, n = 0; g.satirlar.forEach(function (x) { if (x.durum === 'AÇIK') sira[x.no] = ++n; });  // öncelik sırası filtreden bağımsız
       html.push('<div class="spGrup"><div class="spBas"><div><b>' + esc(g.kod) + '</b><small>' + esc(g.ad) + (g.kalan !== g.stok ? ' · tüm depolar (KALAN) ' + spSayi(g.kalan) : '') + '</small></div><div class="spCipler">' +
         cip('Stok', spSayi(g.stok)) + cip('Sipariş', spSayi(g.bekleyen)) + cip('Ayrılan', spSayi(g.ayrilan)) + sb + (g.eksik > 0 ? cip('Eksik', spSayi(g.eksik), 'kirmizi') : '') + '</div></div>' +
         '<div class="spSarma"><table class="spTablo"><thead><tr><th></th><th>Müşteri</th><th>Sipariş tarihi</th><th class="s">Sipariş</th><th class="s">Sevk</th><th class="s">Ayrılan</th><th class="s">Ayrılmadı</th><th>Not</th><th></th></tr></thead><tbody>' +
         satirlar.map(function (x) {
           var acik = x.durum === 'AÇIK', kalan = Math.max(0, x.adet - x.sevk - x.ayrilan);
           var btn = !duz ? '' : (acik ? '<button class="spDuz" onclick="spFormAc(\'' + esc(x.no) + '\')">Düzenle</button>' : '<button class="spDuz" onclick="spDurumDegis(\'' + esc(x.no) + '\',\'ac\')">Aç</button>');
-          return '<tr class="' + (acik ? '' : 'kapali') + '"' + (duz && acik ? ' style="cursor:pointer" onclick="if(event.target.tagName!==\'BUTTON\')spFormAc(\'' + esc(x.no) + '\')"' : '') + '><td class="sira">' + (acik ? (++n) + '.' : '') + '</td><td><b>' + esc(x.musteri) + '</b>' + (acik ? '' : ' <small>(' + esc(x.durum.toLocaleLowerCase('tr')) + ')</small>') + '</td><td>' + spTarihYaz(x.tarih) +
+          return '<tr class="' + (acik ? '' : 'kapali') + '"' + (duz && acik ? ' style="cursor:pointer" onclick="if(event.target.tagName!==\'BUTTON\')spFormAc(\'' + esc(x.no) + '\')"' : '') + '><td class="sira">' + (acik ? sira[x.no] + '.' : '') + '</td><td><b>' + esc(x.musteri) + '</b>' + (acik ? '' : ' <small>(' + esc(x.durum.toLocaleLowerCase('tr')) + ')</small>') + '</td><td>' + spTarihYaz(x.tarih) +
             '</td><td class="s">' + spSayi(x.adet) + '</td><td class="s">' + (x.sevk ? spSayi(x.sevk) : '—') + '</td><td class="s"><b>' + spSayi(x.ayrilan) + '</b></td><td class="s' + (acik && kalan ? ' eksi' : '') + '">' + (acik ? spSayi(kalan) : '—') +
             '</td><td class="spNot">' + esc(x.not) + '</td><td class="s">' + btn + '</td></tr>';
         }).join('') + '</tbody></table></div></div>');
     });
-    el('spOzet').innerHTML = spSayi(acikSay) + ' açık sipariş · ' + spSayi(gruplar.length) + ' ürün' + (sorunlu ? ' · <b style="color:#a8221a">' + sorunlu + ' üründe stok yetmiyor / fazla ayrılmış</b>' : '') +
+    var filtreli = ['spAra', 'spUrunF', 'spFirmaF', 'spBas', 'spBit'].some(function (i) { return el(i).value; }) || sorun;
+    el('spOzet').innerHTML = (filtreli ? '<b>Filtre: ' + spSayi(gosterilen) + ' satır gösteriliyor</b> · ' : '') + spSayi(acikSay) + ' açık sipariş · ' + spSayi(gruplar.length) + ' ürün' + (sorunlu ? ' · <b style="color:#a8221a">' + sorunlu + ' üründe stok yetmiyor / fazla ayrılmış</b>' : '') +
       ' · Stok = kullanılabilir (ayrılmış, iade, arızalı, teslim bekleyen hariç)';
     el('spListe').innerHTML = html.join('') || '<div class="bos">' + (spVeri.satirlar.length ? 'Filtreye uyan sipariş yok.' : 'Henüz sipariş yok. "+ Yeni sipariş" ile ekleyin.') + '</div>';
   }
@@ -2720,13 +2752,17 @@
     if (!spVeri || !spVeri.satirlar.length) { alert('İndirilecek sipariş yok.'); return; }
     xlsxHazir().then(function () {
       var wb = XLSX.utils.book_new(), satir = [];
+      var sorun = el('spSorun').checked;
       spGruplar().forEach(function (g) {
+        if (sorun && !(g.eksik > 0 || g.serbest < 0)) return;
         g.satirlar.forEach(function (x) {
+          if (!spUyar(g, x)) return;
           satir.push([g.kod, g.ad, x.musteri, spTarihYaz(x.tarih), x.adet, x.sevk, x.ayrilan, Math.max(0, x.adet - x.sevk - x.ayrilan), x.not, x.durum, g.stok, g.bekleyen, g.ayrilan, g.serbest, g.eksik]);
         });
       });
       sayfaEkle(wb, 'Sipariş Dökümü', ['Stok Kodu', 'Ürün Adı', 'Müşteri', 'Sipariş Tarihi', 'Sipariş', 'Sevk', 'Ayrılan', 'Ayrılmadı', 'Not', 'Durum', 'Stok (kullanılabilir)', 'Toplam açık sipariş', 'Toplam ayrılan', 'Serbest', 'Eksik'],
         satir, [18, 30, 24, 13, 8, 7, 8, 9, 28, 10, 12, 12, 12, 9, 8]);
+      if (!satir.length) { alert('Filtreye uyan sipariş yok.'); return; }
       XLSX.writeFile(wb, 'Siparis_Dokumu_' + ymd(new Date()) + '.xlsx');
     });
   }
