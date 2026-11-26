@@ -86,14 +86,6 @@
   #urunSecKutu .kart { max-width: 480px; width: 100%; max-height: 85vh; overflow: auto; margin: 0; }
   #urunSecKutu .secBtn { display: block; width: 100%; text-align: left; padding: 12px; margin: 6px 0; border: 1px solid #c9d3ea; border-radius: 10px; background: #fff; font-size: 15px; cursor: pointer; }
   #urunSecKutu .secBtn small { display: block; color: #5b6475; font-size: 12px; margin-top: 2px; }
-  /* Barkodsuz ürün seçimi (satış transferi) */
-  #listeSecKutu { margin-top: 14px; padding-top: 12px; border-top: 1px dashed #cdd3dd; }
-  #lsListe { max-height: 280px; overflow-y: auto; margin-top: 6px; border-radius: 10px; }
-  #lsListe .lsBtn { display: block; width: 100%; text-align: left; padding: 11px 12px; margin: 0 0 6px; border: 1px solid #c9d3ea; border-radius: 10px; background: #fff; font-size: 15px; cursor: pointer; font-family: inherit; }
-  #lsListe .lsBtn:hover { background: #f1f5ff; }
-  #lsListe .lsBtn small, #lsSecili small { display: block; color: #5b6475; font-size: 12px; margin-top: 2px; }
-  #lsListe .lsBos { padding: 10px 4px; color: #5b6475; font-size: 14px; }
-  #lsSecili { margin-top: 8px; padding: 12px; border: 2px solid #1f55d6; border-radius: 12px; background: #f4f7ff; }
   #kameraKutu.acik { display: block; }
   #video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
   #cerceve { position: absolute; left: 6%; right: 6%; top: 50%; height: 26vh; transform: translateY(-50%); border: 3px solid rgba(255,255,255,.9); border-radius: 12px; box-shadow: 0 0 0 4000px rgba(0,0,0,.45); transition: border-color .15s; }
@@ -261,6 +253,37 @@
   body.girisModu #girisEkrani strong { display: block; text-align: center; font-size: 17px; margin-bottom: 6px; }
   body.okutmaYok #altMenu [data-n="okutma"], body.okutmaYok #altMenu .okutBuyuk, body.okutmaYok #yanMenu [data-n="okutma"] { display: none; }
   .navGizli { display: none !important; }
+  .spUst { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+  .spUst .btn { width: auto; margin: 0; padding: 9px 14px; }
+  .spFiltre { display: grid; grid-template-columns: 1fr 190px; gap: 8px; }
+  .spFiltre input, .spFiltre select { margin: 0; }
+  .spSecim { display: flex; align-items: center; gap: 8px; font-size: 14px; margin: 8px 0 4px; color: #33415c; }
+  .spSecim input { width: auto; margin: 0; }
+  #spOzet { font-size: 13px; color: #5b6475; margin: 6px 0; }
+  .spGrup { border: 1px solid #dfe4ee; border-radius: 12px; margin: 12px 0; overflow: hidden; background: #fff; }
+  .spBas { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 10px 12px; background: #f4f7fc; flex-wrap: wrap; }
+  .spBas b { font-size: 15px; } .spBas small { color: #6b7488; display: block; font-size: 12px; }
+  .spCipler { display: flex; gap: 6px; flex-wrap: wrap; }
+  .spCip { font-size: 12px; padding: 4px 9px; border-radius: 999px; background: #e7ecf6; color: #33415c; font-weight: 600; white-space: nowrap; }
+  .spCip.yesil { background: #e1f3e6; color: #1b6e35; } .spCip.sari { background: #fff1c7; color: #7a5200; } .spCip.kirmizi { background: #fde0de; color: #a8221a; }
+  .spSarma { overflow-x: auto; }
+  .spTablo { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .spTablo th { font-size: 11px; color: #6b7488; font-weight: 600; text-align: left; padding: 7px 8px; border-bottom: 1px solid #e3e8f0; white-space: nowrap; }
+  .spTablo td { padding: 8px; border-bottom: 1px solid #eef1f6; vertical-align: top; }
+  .spTablo tr:last-child td { border-bottom: 0; }
+  .spTablo .s { text-align: right; white-space: nowrap; }
+  .spTablo .sira { color: #8a93a6; width: 18px; }
+  @media (max-width: 600px) { .spTablo { font-size: 12px; } .spTablo th, .spTablo td { padding: 7px 5px; } }
+  .spTablo tr.kapali td { color: #9aa3b2; }
+  .spTablo .spNot { color: #6b7488; font-size: 12px; max-width: 220px; }
+  .spTablo .eksi { color: #a8221a; font-weight: 700; }
+  .spDuz { border: 0; background: none; color: #1f55d6; font-weight: 600; cursor: pointer; padding: 0 4px; font-size: 13px; }
+  body.spDuzenYok .spDuzenYetki { display: none !important; }
+  .spForm { border: 1.5px solid #1f55d6; border-radius: 12px; padding: 12px; margin: 4px 0 12px; background: #f7f9ff; }
+  .spForm .iki { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .spForm .btn { margin-top: 0; }
+  .spForm input[type=date] { width: 100%; padding: 12px; font-size: 16px; border: 1px solid #d5dbe6; border-radius: 10px; background: #fff; box-sizing: border-box; font-family: inherit; min-height: 50px; }
+  #spCikisKutu { margin-top: 4px; }
 
   @media (min-width: 1024px) {
     body { padding: 0 0 0 248px; }
@@ -390,6 +413,7 @@
   <button data-n="okutma" onclick="navGit('okutma')"><svg class="ikon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2M7 8v8M10 8v8M14 8v8M17 8v8"/></svg> Okutma</button>
   <button data-n="servis" onclick="navGit('servis')"><svg class="ikon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4z"/></svg> Servis</button>
   <button data-n="rapor" onclick="navGit('rapor')"><svg class="ikon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg> Raporlar</button>
+  <button data-n="siparis" class="navGizli" onclick="navGit('siparis')"><svg class="ikon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 12h6M9 16h4"/></svg> Siparişler</button>
   <button data-n="personel" class="yonetimBtn" onclick="navGit('personel')"><svg class="ikon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="4"/><path d="M2 21c0-4 3-7 7-7s7 3 7 7"/><path d="M17 4a4 4 0 0 1 0 8M22 21c0-3-1.5-5.5-4-6.5"/></svg> Kullanıcılar</button>
   <div class="kullanici">
     <div class="kisiSatir"><div class="avatar" id="navAvatar"></div><div><b id="navAd"></b><small id="navRol"></small></div></div>
@@ -402,6 +426,7 @@
   <button data-n="okutma" onclick="navGit('okutma')"><svg class="ikon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2M7 8v8M10 8v8M14 8v8M17 8v8"/></svg> Okutma</button>
   <button data-n="servis" onclick="navGit('servis')"><svg class="ikon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4z"/></svg> Servis</button>
   <button data-n="rapor" onclick="navGit('rapor')"><svg class="ikon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg> Raporlar</button>
+  <button data-n="siparis" class="navGizli" onclick="navGit('siparis')"><svg class="ikon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 12h6M9 16h4"/></svg> Sipariş</button>
   <button data-n="ayar" onclick="navGit('ayar')"><svg class="ikon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg> Menü</button>
 </nav>
 <header>
@@ -515,6 +540,23 @@
   </div>
 
   <!-- Raporlar (salt okunur) -->
+  <div id="siparisEkran" class="kart gizli">
+    <div class="spUst"><strong>Sipariş dökümü</strong><div style="display:flex;gap:6px;flex-wrap:wrap"><button class="btn spDuzenYetki" onclick="spFormAc()">+ Yeni sipariş</button><button class="btn ikincil" onclick="spExcel()">Excel</button><button class="btn ikincil" onclick="spYukle()" aria-label="Yenile">↻</button></div></div>
+    <div id="spForm" class="spForm gizli">
+      <input type="hidden" id="spNo">
+      <label>Ürün (stok kodu)</label><input type="text" id="spUrun" list="spUrunListe" autocomplete="off" placeholder="Kodu veya adını yazın" oninput="spFormStok()"><datalist id="spUrunListe"></datalist>
+      <label>Müşteri</label><input type="text" id="spMusteri" list="spMusteriListe" autocomplete="off" placeholder="Firma adı"><datalist id="spMusteriListe"></datalist>
+      <div class="iki"><div><label>Sipariş tarihi</label><input type="date" id="spTarih"></div><div><label>Not</label><input type="text" id="spNot" autocomplete="off" placeholder="Stand, iskonto…"></div></div>
+      <div class="iki"><div><label>Sipariş adedi</label><input type="number" id="spAdet" min="1" step="1" inputmode="numeric"></div><div><label>Ayrılan (opsiyon)</label><input type="number" id="spAyrilan" min="0" step="1" inputmode="numeric" placeholder="0"></div></div>
+      <div id="spFormStok" class="mesaj bilgi gizli"></div>
+      <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap"><button class="btn" style="width:auto" onclick="spKaydet()">Kaydet</button><button class="btn ikincil" style="width:auto" onclick="spFormKapat()">Vazgeç</button><span id="spFormIslem" style="display:flex;gap:8px;flex-wrap:wrap"></span></div>
+      <div id="spFormMesaj" class="mesaj"></div>
+    </div>
+    <div class="spFiltre"><input type="text" id="spAra" placeholder="Ara: ürün, kod, müşteri, not…" oninput="spCiz()" autocomplete="off"><select id="spDurumSec" onchange="spYukle()"><option value="acik">Açık siparişler</option><option value="tumu">Kapananlar dahil</option></select></div>
+    <label class="spSecim"><input type="checkbox" id="spSorun" onchange="spCiz()"> Sadece stoğu yetmeyen / fazla ayrılan ürünler</label>
+    <div id="spOzet"></div>
+    <div id="spListe"><div class="bos">Yükleniyor…</div></div>
+  </div>
   <div id="raporlar" class="kart gizli">
     <div class="satir" style="align-items:center;margin-bottom:8px"><div><strong>Raporlar</strong></div><button class="btn dar ikincil" onclick="raporAcKapat()">← Okutmaya dön</button></div>
     <div id="raporKilit" class="gizli">
@@ -594,6 +636,11 @@
         <datalist id="arizaListe"></datalist>
         <select id="musteriSec" onchange="durum.musteri=this.value;taslakYaz();listeyiCiz()"></select>
       </div>
+      <div id="spCikisKutu" class="gizli">
+        <label>Hangi müşterinin siparişi? (isteğe bağlı)</label>
+        <select id="spCikisSec" onchange="durum.siparisMusteri=this.value;spCikisBilgi()"></select>
+        <div id="spCikisBilgi" class="mesaj bilgi gizli"></div>
+      </div>
       <div id="kilitNot" class="mesaj bilgi gizli">İşlemi veya yeri değiştirmek için önce listeyi kaydedin ya da temizleyin.</div>
 
       <label>İşlemi yapan</label>
@@ -641,20 +688,6 @@
       <div class="satir">
         <div><input type="text" id="elle" placeholder="Barkod / stok kodu" autocomplete="off" onkeydown="if(event.key==='Enter'){elleEkle();}"></div>
         <button class="btn dar" onclick="elleEkle()">Ekle</button>
-      </div>
-      <!-- Barkodsuz transfer (satış): listeden ürün seç, adet yaz. Yalnızca "liste_secim" yetkisi olanlar ve TRANSFER modunda görünür. -->
-      <div id="listeSecKutu" class="gizli">
-        <label for="lsAra">Ya da ürünü listeden seçin (barkodsuz)</label>
-        <input type="text" id="lsAra" placeholder="Ürün adı veya stok kodu yazın…" autocomplete="off" oninput="lsCiz()" onfocus="lsCiz()" onkeydown="if(event.key==='Enter'){lsEnter();}">
-        <div id="lsListe"></div>
-        <div id="lsSecili" class="gizli">
-          <div><b id="lsAd"></b><small id="lsBilgi"></small></div>
-          <div class="satir" style="margin-top:8px">
-            <div><label for="lsAdet" style="margin-top:0">Adet</label><input type="number" id="lsAdet" min="1" step="1" inputmode="numeric" value="1" onkeydown="if(event.key==='Enter'){lsEkle();}"></div>
-            <button class="btn dar" onclick="lsEkle()">Listeye ekle</button>
-            <button class="btn dar ikincil" onclick="lsVazgec()">Vazgeç</button>
-          </div>
-        </div>
       </div>
       <div id="mesaj" class="mesaj"></div>
       <div id="sayimSonuc" class="mesaj bilgi gizli"></div>
@@ -705,7 +738,7 @@
   var VARSAYILAN_ARIZA = ['Motor arızası', 'Kanat kırık', 'Gövde hasarı', 'Elektrik / kablo', 'Ses / titreşim', 'Nakliye hasarı', 'Kondansatör', 'Diğer'];
   var VARSAYILAN_IADE = ['Yanlış ürün', 'Müşteri vazgeçti', 'Fazla sipariş', 'Hasarlı geldi', 'Arıza şikayeti (kontrol edilecek)', 'Diğer'];
   function iadeHedefi() { return durum.hedef === 'İADE'; } // false ise ARIZALI
-  var urunByKey = {}, stok = {}, tumUrunler = [];
+  var urunByKey = {}, stok = {};
 
   /* ================= Hafıza (telefonda kalır) ================= */
   function taslakYaz() {
@@ -729,44 +762,24 @@
     });
   }
 
-  // Sunucudan (ya da telefondaki son kopyadan) gelen veriyi uygular. İlk uygulamada ekran kurulur; sonrakiler yalnız veriyi tazeler.
-  var veriUygulandi = false;
-  function veriUygula(v) {
-    var eskiYerler = JSON.stringify(typeof yerler === 'undefined' ? [] : yerler);
-    var ilk = !veriUygulandi; veriUygulandi = true;
-    {
+  function yukle() {
+    el('durum').textContent = 'Bağlanıyor…';
+    return api('GET').then(function (j) {
+      var v = j.veri;
       yerler = v.yerler; musteriZorunlu = v.musteriZorunlu || []; iadeYerler = v.iadeYerler || []; iadeOneri = Object.assign({ kimden: [], ariza: [], iade: [] }, v.iadeOneri || {}); ayrilan = v.ayrilan || {}; stok = v.stok || {}; urunByKey = {}; cokluBarkod = {}; personel = v.personel || []; personelDatalist(); okutanAlaniKur();
       sayimYer = v.sayimYer || ''; farkHaric = v.farkHaric || []; girisYerler = v.girisYerler || null;
       // Yer adı değiştiyse (örn. DEPO -> ANA DEPO) telefondaki eski seçimi düzelt
       if (durum.kaynak && yerler.indexOf(durum.kaynak) < 0) durum.kaynak = yerler[0];
       if (durum.hedef && yerler.indexOf(durum.hedef) < 0) durum.hedef = yerler[0];
       if (durum.mod === 'GİRİŞ' && !durum.hedef) durum.hedef = yerler[0];
+      spUrunler = v.urunler; siparisAcik = v.siparisAcik || {};
       v.urunler.forEach(function (u) { anahtarEkle(u.kod, u); u.barkodlar.forEach(function (b) { anahtarEkle(b, u); }); });
-      tumUrunler = v.urunler.slice().sort(function (a, b) { return a.kod < b.kod ? -1 : (a.kod > b.kod ? 1 : 0); });
       el('durum').textContent = v.urunler.length + ' ürün';
       durum.ben = v.ben || durum.ben; durum.okutan = (durum.ben && durum.ben.ad) || ''; taslakYaz();
-      if (ilk) { el('girisEkrani').classList.add('gizli'); el('uygulama').classList.remove('gizli'); }
+      el('girisEkrani').classList.add('gizli'); el('uygulama').classList.remove('gizli');
       yetkiUygula();
-      if (ilk || JSON.stringify(yerler) !== eskiYerler) yerleriDoldur();
-      ekraniKur();
-      if (ilk && document.body.classList.contains('okutmaYok') && el('servisEkran').classList.contains('gizli')) servisAc();
-    }
-  }
-  function yukle() {
-    el('durum').textContent = 'Bağlanıyor…';
-    // Telefondaki son kopya varsa ekran hemen açılır; güncel veri arkadan gelip yerine geçer
-    // (Sayfadaki tüm betikler yüklenince uygulanır; yoksa henüz tanımlanmamış işlevler çağrılır.)
-    var kopyaUygula = function () {
-      if (veriUygulandi) return; // güncel veri zaten geldiyse eski kopya uygulanmaz
-      try {
-        var k = JSON.parse(localStorage.getItem('veriOnbellek') || 'null');
-        if (k && k.veri && k.kadi && k.kadi === durum.kadi && durum.pin) veriUygula(k.veri);
-      } catch (e) { console.log('önbellek', e); }
-    };
-    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', kopyaUygula); else kopyaUygula();
-    return api('GET').then(function (j) {
-      veriUygula(j.veri);
-      try { localStorage.setItem('veriOnbellek', JSON.stringify({ kadi: durum.kadi, veri: j.veri })); } catch (e) {}
+      yerleriDoldur(); ekraniKur();
+      if (document.body.classList.contains('okutmaYok') && el('servisEkran').classList.contains('gizli')) servisAc();
     }).catch(function (e) {
       el('durum').textContent = 'Bağlantı yok';
       if (/^OTURUM/.test(e.message) || !durum.pin) { if (!durum.pin) girisGoster(''); }
@@ -798,16 +811,14 @@
   }
   function cikisYap(msj) {
     kameraKapat(); durum.pin = ''; durum.ben = null; taslakYaz();
-    try { localStorage.removeItem('veriOnbellek'); localStorage.removeItem('panelOnbellek'); } catch (e) {}
-    veriUygulandi = false;
     ['raporlar', 'servisEkran', 'raporBtn', 'servisBtn'].forEach(function (id) { el(id).classList.add('gizli'); });
     document.body.classList.remove('yonetici', 'silYetki', 'duzeltYetki', 'svKabulYetki', 'svSilYetki', 'okutmaYok');
     el('kadiGir').value = durum.kadi || ''; el('sifreGir').value = '';
     girisGoster(msj || '');
   }
   // Yetki kodları sunucudakiyle aynı (Kod.gs → YETKILER)
-  var YETKI_KISA = { okut_giris: 'Giriş', teslim_al: 'Teslim alma', bilgi_eticaret: 'E-tic. gelen bildirimi', bilgi_bayi: 'Bayi gelen bildirimi', bilgi_ihracat: 'İhracat gelen bildirimi', bilgi_showroom: 'Showroom gelen bildirimi', okut_transfer: 'Transfer', liste_secim: 'Listeden seçerek transfer', okut_cikis: 'Çıkış', okut_sayim: 'Sayım', rapor: 'Raporlar', duzelt: 'Düzeltme', sil: 'Hareket silme',
-    sv_kabul: 'Servis kabul', sv_depo: 'Servis depo', sv_servis: 'Servis teknik', sv_satis: 'Servis satış', sv_sil: 'Servis silme', admin: 'Yönetici' };
+  var YETKI_KISA = { okut_giris: 'Giriş', teslim_al: 'Teslim alma', bilgi_eticaret: 'E-tic. gelen bildirimi', bilgi_bayi: 'Bayi gelen bildirimi', bilgi_ihracat: 'İhracat gelen bildirimi', bilgi_showroom: 'Showroom gelen bildirimi', okut_transfer: 'Transfer', okut_cikis: 'Çıkış', okut_sayim: 'Sayım', rapor: 'Raporlar', duzelt: 'Düzeltme', sil: 'Hareket silme',
+    siparis_gor: 'Sipariş görme', siparis_duzenle: 'Sipariş düzenleme', sv_kabul: 'Servis kabul', sv_depo: 'Servis depo', sv_servis: 'Servis teknik', sv_satis: 'Servis satış', sv_sil: 'Servis silme', admin: 'Yönetici' };
   var MOD_YETKI = { 'GİRİŞ': 'okut_giris', 'TRANSFER': 'okut_transfer', 'ÇIKIŞ': 'okut_cikis', 'SAYIM': 'okut_sayim' };
   function yetkiVar(k) { var b = durum.ben || {}; return !!b.admin || (b.yetkiler || []).indexOf(k) >= 0; }
   function yetkiUygula() {
@@ -897,14 +908,10 @@
 
   function modSec(m) {
     if (durum.liste.length && m !== durum.mod) return;
-    var oncekiMod = durum.mod;
     durum.mod = m;
     if (m === 'GİRİŞ') { durum.kaynak = ''; if (!durum.hedef) durum.hedef = yerler[0]; }
     if (m === 'ÇIKIŞ' || m === 'SAYIM') { durum.hedef = ''; if (!durum.kaynak) durum.kaynak = yerler[0]; }
     if (m === 'TRANSFER') {
-      // Satış (listeden seçerek transfer) genelde BAYİ deposundan dağıtır
-      var tercih = yetkiVar('liste_secim') && !durum.liste.length && yerler.indexOf('BAYİ') >= 0 ? 'BAYİ' : '';
-      if (tercih && oncekiMod !== 'TRANSFER') durum.kaynak = tercih;
       if (!durum.kaynak || durum.kaynak === sayimYer) durum.kaynak = yerler.filter(function (y) { return y !== sayimYer; })[0] || yerler[0];
       if (!durum.hedef || durum.hedef === durum.kaynak || yerListesi('hedef').indexOf(durum.hedef) < 0) durum.hedef = yerListesi('hedef').filter(function (y) { return y !== durum.kaynak; })[0];
     }
@@ -972,7 +979,6 @@
     el('not').placeholder = iade ? (iadeHedefi() ? 'Örn. Yanlış ürün' : 'Örn. Motor arızası') : m === 'ÇIKIŞ' ? 'Örn. ABC Ltd / Trendyol 12345' : (m === 'SAYIM' ? 'Örn. A rafı' : 'Örn. iş emri no');
     var baslik = { 'GİRİŞ': (iade ? (iadeHedefi() ? 'Giriş: İade → ' : 'Giriş: Arızalı ürün → ') : 'Giriş: Montaj → ') + durum.hedef, 'TRANSFER': 'Transfer: ' + durum.kaynak + ' → ' + durum.hedef, 'ÇIKIŞ': 'Çıkış: ' + durum.kaynak + ' → Müşteri', 'SAYIM': 'Sayım: ' + durum.kaynak };
     el('listeBaslik').textContent = baslik[m];
-    lsGuncelle();
     listeyiCiz();
   }
 
@@ -1180,88 +1186,6 @@
   }
   function satirSil(i) { durum.liste.splice(i, 1); ekraniKur(); }
 
-  /* ================= Barkodsuz ürün seçimi (satış transferi) =================
-   * Yalnızca TRANSFER modunda ve "liste_secim" yetkisi olana görünür. Seçilen ürün, mevcut listeye barkod okutulmuş gibi eklenir;
-   * stok kontrolü, müşteri (AYRILMIŞ) ve kayıt akışı aynıdır. */
-  var lsSecilen = null;
-  // Ürünün depolardaki adetleri: "BAYİ: 45 · E-TİCARET: 3" (stoğu olanlar; gönderilen depo her zaman, kalın)
-  function lsDepolar(kod) {
-    var y = stok[kod] || {};
-    return yerler.filter(function (d) { return d !== sayimYer && (d === durum.kaynak || (y[d] || 0) > 0); }).map(function (d) {
-      var s = esc(d) + ': ' + (y[d] || 0);
-      return d === durum.kaynak ? '<b>' + s + '</b>' : s;
-    }).join(' · ');
-  }
-  function lsGoster() { return durum.mod === 'TRANSFER' && yetkiVar('liste_secim'); }
-  function lsGuncelle() {
-    var k = el('listeSecKutu'); if (!k) return;
-    var g = lsGoster();
-    k.classList.toggle('gizli', !g);
-    if (!g) { lsSecilen = null; el('lsSecili').classList.add('gizli'); el('lsAra').classList.remove('gizli'); return; }
-    if (lsSecilen) lsSeciliCiz(); // kaynak depo değişti: mevcut adet güncellensin
-    if (el('lsAra').value.trim() || document.activeElement === el('lsAra')) lsCiz();
-  }
-  function lsCiz() {
-    if (!lsGoster() || lsSecilen) return;
-    var q = el('lsAra').value.trim().toLocaleUpperCase('tr-TR'), kaynak = durum.kaynak;
-    var terimler = q ? q.split(/\s+/) : [];
-    var uygun = tumUrunler.filter(function (u) {
-      if (musait(u.kod, kaynak) <= 0) return false; // gönderilebilecek stoğu olmayan gizli
-      var metin = (u.kod + ' ' + u.ad).toLocaleUpperCase('tr-TR');
-      return terimler.every(function (t) { return metin.indexOf(t) >= 0; });
-    });
-    var kutu = el('lsListe');
-    if (!uygun.length) { kutu.innerHTML = '<div class="lsBos">' + (q ? esc(kaynak) + ' deposunda "' + esc(el('lsAra').value.trim()) + '" ile eşleşen stoklu ürün yok.' : esc(kaynak) + ' deposunda gönderilebilir stok yok.') + '</div>'; return; }
-    kutu.innerHTML = uygun.slice(0, 40).map(function (u) {
-      return '<button type="button" class="lsBtn" data-k="' + esc(u.kod) + '"><b>' + esc(u.ad) + '</b><small>' + esc(u.kod) + '</small><small>' + lsDepolar(u.kod) + '</small></button>';
-    }).join('') + (uygun.length > 40 ? '<div class="lsBos">' + (uygun.length - 40) + ' ürün daha var — aramayı daraltın.</div>' : '');
-    kutu.onclick = function (e) {
-      var b = e.target.closest('.lsBtn'); if (!b) return;
-      lsSec(b.dataset.k);
-    };
-  }
-  function lsEnter() {
-    if (lsSecilen) { lsEkle(); return; }
-    var b = el('lsListe').querySelectorAll('.lsBtn');
-    if (b.length === 1) lsSec(b[0].dataset.k);
-  }
-  function lsSec(kod) {
-    var u = tumUrunler.filter(function (x) { return x.kod === kod; })[0]; if (!u) return;
-    lsSecilen = u;
-    el('lsListe').innerHTML = ''; el('lsAra').value = '';
-    el('lsAdet').value = 1;
-    lsSeciliCiz();
-    el('lsAdet').focus(); el('lsAdet').select();
-  }
-  function lsSeciliCiz() {
-    if (!lsSecilen) { el('lsSecili').classList.add('gizli'); return; }
-    var mv = musait(lsSecilen.kod, durum.kaynak);
-    el('lsAd').textContent = lsSecilen.ad;
-    el('lsBilgi').innerHTML = esc(lsSecilen.kod) + '<br>' + lsDepolar(lsSecilen.kod) + ' · gönderilebilir: <b>' + mv + '</b>';
-    el('lsAdet').max = Math.max(mv, 1);
-    el('lsSecili').classList.remove('gizli');
-    el('lsAra').classList.add('gizli');
-  }
-  function lsVazgec() {
-    lsSecilen = null;
-    el('lsSecili').classList.add('gizli'); el('lsAra').classList.remove('gizli');
-    lsCiz(); el('lsAra').focus();
-  }
-  function lsEkle() {
-    if (!lsSecilen) return;
-    var a = Number(el('lsAdet').value), mv = musait(lsSecilen.kod, durum.kaynak);
-    if (!(a >= 1) || Math.floor(a) !== a) { mesaj('Adet 1 veya daha fazla, tam sayı olmalı.', 'hata'); el('lsAdet').focus(); return; }
-    var var_ = durum.liste.filter(function (s) { return s.kod === lsSecilen.kod; })[0];
-    var toplam = a + (var_ ? var_.adet : 0);
-    if (toplam > mv) { mesaj(durum.kaynak + ' deposunda ' + lsSecilen.kod + ' için en fazla ' + mv + ' adet gönderilebilir' + (var_ ? ' (listede zaten ' + var_.adet + ' var)' : '') + '.', 'hata'); el('lsAdet').focus(); return; }
-    if (var_) var_.adet = toplam; else durum.liste.unshift({ kod: lsSecilen.kod, ad: lsSecilen.ad, barkod: '', adet: a });
-    var ad = lsSecilen.ad;
-    lsSecilen = null; el('lsSecili').classList.add('gizli'); el('lsAra').classList.remove('gizli');
-    mesaj('✓ ' + ad + ' × ' + a + ' listeye eklendi.', 'ok');
-    ekraniKur();
-    el('lsAra').focus();
-  }
-
   var temizleOnay = 0;
   function listeyiTemizle() {
     if (!durum.liste.length) return;
@@ -1271,20 +1195,11 @@
 
   /* ================= Kaydet ================= */
   var sayimOnay = 0;
-  // Kayıttan sonra bildirimi arka planda tetikler; hata olursa kullanıcıyı bekletmez/rahatsız etmez
-  function bildirimTetikle(fis, tur, sonra) {
-    try {
-      fetch(API_URL, { method: 'POST', body: JSON.stringify({ pin: durum.pin, islem: 'bildir', fis: fis, tur: tur }) })
-        .then(function (r) { return r.json(); })
-        .then(function (j) { if (j && j.ok && sonra) sonra(j.sonuc); })
-        .catch(function (e) { console.log('bildirim', e); });
-    } catch (e) { console.log('bildirim', e); }
-  }
   function kaydet() {
     taslakYaz();
     if (iadeGirisi() && !(durum.musteri || '').trim()) { mesaj('Kimden geldiğini yazın.', 'hata'); el('musteriYaz').focus(); return; }
     if (iadeGirisi() && !durum.not.trim()) { mesaj((iadeHedefi() ? 'İade' : 'Arıza') + ' sebebini yazın.', 'hata'); el('not').focus(); return; }
-    if (durum.mod === 'ÇIKIŞ' && !durum.not.trim() && !ayrilandanCikis()) { mesaj('Çıkışta müşteri / sipariş bilgisi zorunlu.', 'hata'); el('not').focus(); return; }
+    if (durum.mod === 'ÇIKIŞ' && !durum.not.trim() && !ayrilandanCikis() && !durum.siparisMusteri) { mesaj('Çıkışta müşteri / sipariş bilgisi zorunlu.', 'hata'); el('not').focus(); return; }
     if (durum.mod === 'TRANSFER' && durum.kaynak === durum.hedef) { mesaj('Nereden ve nereye aynı olamaz.', 'hata'); return; }
     if ((ayrilanaGiris() || ayrilandanCikis()) && !(durum.musteri || '').trim()) { mesaj('Müşteri seçilmeli / yazılmalı.', 'hata'); return; }
     // Sayım stoğu değiştirmez (yalnız karşılaştırma); çift onay gerekmez
@@ -1294,21 +1209,20 @@
       pin: durum.pin, tur: durum.mod, kaynak: durum.kaynak, hedef: durum.hedef,
       okutan: durum.okutan.trim(), not: durum.not.trim(), musteri: (ayrilanaGiris() || ayrilandanCikis()) ? (durum.musteri || '').trim() : '',
       kimden: iadeGirisi() ? (durum.musteri || '').trim() : '',
-      bildirimSonra: true, // telefona bildirim kayıttan sonra ayrı istekle gider (kayıt daha hızlı döner)
+      siparisMusteri: durum.mod === 'ÇIKIŞ' ? (durum.siparisMusteri || '') : '',
       satirlar: durum.liste.map(function (s) { return { kod: s.kod, barkod: s.barkod, adet: s.adet }; })
     }).then(function (j) {
       var r = j.sonuc;
-      var hedefAdi = durumHedefAdi();
-      if (r.bildirimSonra) bildirimTetikle(r.fisNo, r.bildirimSonra, r.bildirimSonra === 'transfer' ? function (s) { if (s && s.gonderildi) mesaj('Kaydedildi ✓ Fiş No: ' + r.fisNo + ' — ' + r.satirSayisi + ' çeşit, ' + r.toplamAdet + ' adet. ' + hedefAdi + ' deposuna bildirildi.', 'ok'); } : null);
       if (iadeGirisi()) { // yeni yazılan kimden / arıza sonraki girişlerde öneri olarak çıksın
         if (iadeOneri.kimden.indexOf(durum.musteri.trim()) < 0) iadeOneri.kimden.push(durum.musteri.trim());
         var ol = iadeHedefi() ? iadeOneri.iade : iadeOneri.ariza;
         if (ol.indexOf(durum.not.trim()) < 0) ol.push(durum.not.trim());
       }
-      stok = r.stok || stok; if (r.ayrilan) ayrilan = r.ayrilan; durum.liste = []; durum.not = ''; durum.musteri = '';
+      stok = r.stok || stok; if (r.ayrilan) ayrilan = r.ayrilan; durum.liste = []; durum.not = ''; durum.musteri = ''; durum.siparisMusteri = ''; if (r.siparisAcik) siparisAcik = r.siparisAcik;
       ekraniKur();
       mesaj('Kaydedildi ✓ Fiş No: ' + r.fisNo + ' — ' + r.satirSayisi + ' çeşit, ' + r.toplamAdet + ' adet.' + (r.bildirildi ? ' Depo sorumlusuna bildirildi.' : '') + (r.teslimBekliyor ? ' Depo teslim alınca ' + r.teslimBekliyor + ' stoğuna geçer.' : ''), 'ok');
       if (r.bildirildi && window.zilYukle) setTimeout(zilYukle, 500);
+      if (r.siparis || r.siparisHata) setTimeout(function () { spCikisMesaj(r); }, 0);
       if (r.haber && r.haber.gonderildi) mesaj('Kaydedildi ✓ Fiş No: ' + r.fisNo + ' — ' + r.satirSayisi + ' çeşit, ' + r.toplamAdet + ' adet. ' + durumHedefAdi() + ' deposuna bildirildi.', 'ok');
       var ss = el('sayimSonuc');
       if (r.farklar) {
@@ -1389,7 +1303,6 @@
   function raporYukle() {
     var t = raporTuru;
     if (!raporSifre) { raporKilitGoster(''); return; }
-    window._raporZaman = Date.now();
     el('raporBilgi').textContent = 'Yükleniyor…'; el('raporListe').innerHTML = ''; el('fisSilBtn').classList.add('gizli');
     var q = '?islem=rapor&tur=' + t + '&pin=' + encodeURIComponent(durum.pin) + '&rs=' + encodeURIComponent(raporSifre);
     if (t === 'hareket' || t === 'sayim' || t === 'iade') q += '&bas=' + el('tarihBas').value + '&bit=' + el('tarihBit').value;
@@ -1599,26 +1512,25 @@
     silIstegi(f, '', f + ' fişinin TAMAMI (' + filtreliSatirlar().length + ' satır)');
   }
   function silIstegi(fis, kod, tanim) {
-    // Tek onay: sonrası otomatik. Silen kişiyi sunucu oturumdan alır; sebep otomatik yazılır, kayıt yine "Silinenler" sayfasında saklanır.
-    if (!confirm('Silinecek:\n' + tanim + '\n\nStok buna göre yeniden hesaplanır. Kayıt "Silinenler" sayfasına taşınır. Silinsin mi?')) return;
-    var silen = (durum.okutan || '').trim() || ((durum.ben && durum.ben.ad) || '');
-    var sebep = 'Rapor ekranından silindi';
-    if (!silmeSifre) silmeSifre = 'oturum';
-    // Ekrandan hemen kaldır (sunucu onaylayınca yeniden yüklenir; hata olursa geri gelir)
-    var r0 = raporVeri[raporTuru];
-    if (r0 && r0.satirlar) { r0.satirlar = r0.satirlar.filter(function (x) { return !(x.fis === fis && (!kod || x.kod === kod)); }); raporCiz(); }
+    if (!confirm('Silinecek:\n' + tanim + '\n\nStok buna göre yeniden hesaplanır. Kayıt "Silinenler" sayfasına taşınır. Devam edilsin mi?')) return;
+    var sebep = prompt('Silme sebebi (zorunlu):', 'Yanlış okutma');
+    if (!sebep || !sebep.trim()) { alert('Sebep yazılmadan silinemez.'); return; }
+    var silen = (durum.okutan || '').trim() || (prompt('Adınız:') || '').trim();
+    if (!silen) return;
+    if (!silmeSifre) { var y = prompt('Silme için yönetici şifresi:'); if (!y) return; silmeSifre = y.trim(); }
     el('raporBilgi').textContent = 'Siliniyor…';
-    api('POST', { islem: 'sil', pin: durum.pin, ypin: silmeSifre, fis: fis, kod: kod, silen: silen, sebep: sebep })
+    api('POST', { islem: 'sil', pin: durum.pin, ypin: silmeSifre, fis: fis, kod: kod, silen: silen, sebep: sebep.trim() })
       .then(function (j) {
         stok = j.sonuc.stok || stok;
         raporVeri = {};
         if (!kod) el('raporAra').value = '';
         raporYukle();
-        islemToast('Silindi ✓ ' + tanim);
+        mesaj('Silindi: ' + tanim, 'ok');
+        alert('Silindi ✓ (' + j.sonuc.toplam + ' satır "Silinenler" sayfasına taşındı)');
       })
       .catch(function (e) {
         if (/YÖNETİCİ PIN hatalı/.test(e.message)) silmeSifre = '';
-        raporVeri = {}; raporYukle(); // silinemediyse satır geri gelsin
+        raporCiz();
         alert('SİLİNEMEDİ: ' + e.message);
       });
   }
@@ -2049,7 +1961,7 @@
   }
   var P_ETIKET = {}, P_SABLON = {};
   var P_GRUP = [
-    ['Okutma', ['okut_giris', 'okut_transfer', 'liste_secim', 'okut_cikis', 'okut_sayim']],
+    ['Okutma', ['okut_giris', 'okut_transfer', 'okut_cikis', 'okut_sayim']],
     ['Bildirim', ['teslim_al', 'bilgi_eticaret', 'bilgi_bayi', 'bilgi_ihracat', 'bilgi_showroom']],
     ['Raporlar ve hareketler', ['rapor', 'duzelt', 'sil']],
     ['Servis', ['sv_kabul', 'sv_depo', 'sv_servis', 'sv_satis', 'sv_sil']],
@@ -2367,18 +2279,9 @@
     if (!zorla && panelVeri && Date.now() - panelZaman < 60000) { panelCiz(); return; }
     panelZaman = Date.now();
     if (!yetkiVar('rapor')) return;
-    // Açılışta (zorlama yokken) telefondaki son özet hemen gösterilir; güncel özet tek istekle gelip yerine geçer
-    if (!zorla && !panelVeri) {
-      try {
-        var k = JSON.parse(localStorage.getItem('panelOnbellek') || 'null');
-        if (k && k.panel && k.kadi === durum.kadi) { panelVeri = k.panel; panelCiz(); }
-      } catch (e) {}
-    }
-    panelGet('?islem=panel')
-      .then(function (r) {
-        panelVeri = r.panel; panelCiz();
-        try { localStorage.setItem('panelOnbellek', JSON.stringify({ kadi: durum.kadi, panel: r.panel })); } catch (e) {}
-      })
+    var bugun = ymd(new Date()), d = new Date(); d.setDate(d.getDate() - 6);
+    Promise.all([panelGet('?islem=rapor&tur=stok'), panelGet('?islem=rapor&tur=hareket&bas=' + ymd(d) + '&bit=' + bugun), panelGet('?islem=rapor&tur=sayim&bas=' + bugun + '&bit=' + bugun)])
+      .then(function (r) { panelVeri = { stok: r[0].rapor, hareket: r[1].rapor, sayim: r[2].rapor, bugun: bugun }; panelCiz(); })
       .catch(function (e) { el('pSonListe').innerHTML = '<div class="bos">Özet alınamadı: ' + kacir(e.message) + '</div>'; });
   }
   function kacir(t) { return String(t == null ? '' : t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
@@ -2390,10 +2293,14 @@
   };
   function panelCiz() {
     if (!panelVeri) return;
-    // Sunucudaki 'panel' özeti: { toplam, giris, cikis, sayim, son:[...] }
-    el('oStok').textContent = sayiYaz(panelVeri.toplam); el('oGiris').textContent = sayiYaz(panelVeri.giris);
-    el('oCikis').textContent = sayiYaz(panelVeri.cikis); el('oSayim').textContent = sayiYaz(panelVeri.sayim);
-    var son = panelVeri.son || [];
+    var st = panelVeri.stok.satirlar || [], hs = panelVeri.hareket.satirlar || [], bugun = panelVeri.bugun;
+    var top = 0; st.forEach(function (x) { top += Number(x.toplam) || 0; });
+    var t = { 'GİRİŞ': 0, 'ÇIKIŞ': 0, 'SAYIM': 0 };
+    hs.forEach(function (x) { if (x.gun === bugun && t.hasOwnProperty(x.tur) && x.not !== 'AÇILIŞ SAYIMI') t[x.tur] += Number(x.adet) || 0; });
+    el('oStok').textContent = sayiYaz(top); el('oGiris').textContent = sayiYaz(t['GİRİŞ']);
+    var sy = 0; ((panelVeri.sayim || {}).satirlar || []).forEach(function (x) { sy += Number(x.sayilan) || 0; });
+    el('oCikis').textContent = sayiYaz(t['ÇIKIŞ']); el('oSayim').textContent = sayiYaz(sy);
+    var son = hs.slice(0, 6);
     el('pSonListe').innerHTML = son.length ? son.map(function (x) {
       var g = TUR_GORUNUM[x.tur] || { c: '#4a5568', d: '<circle cx="12" cy="12" r="4"/>', isaret: '' };
       var yon = x.kaynak && x.hedef ? x.kaynak + ' → ' + x.hedef : (x.hedef || x.kaynak || '');
@@ -2562,12 +2469,10 @@
   }
   function teslimAl(fis, b) {
     var notEl = el('bkNot_' + fis); b.disabled = true; b.textContent = 'Kaydediliyor…';
-    fetch(API_URL, { method: 'POST', body: JSON.stringify({ pin: durum.pin, islem: 'teslimAl', fis: fis, not: notEl ? notEl.value : '', bildirimSonra: true }) })
+    fetch(API_URL, { method: 'POST', body: JSON.stringify({ pin: durum.pin, islem: 'teslimAl', fis: fis, not: notEl ? notEl.value : '' }) })
       .then(function (r) { return r.json(); }).then(function (j) {
         if (!j.ok) { oturumHatasi(j.hata); throw new Error(j.hata); }
-        b.textContent = 'Teslim alındı ✓';
-        if (j.sonuc && j.sonuc.bildirimSonra) bildirimTetikle(fis, j.sonuc.bildirimSonra); // ilgili depoya bildirim, arka planda
-        return zilYukle();
+        b.textContent = 'Teslim alındı ✓'; return zilYukle();
       }).catch(function (e) { b.disabled = false; b.textContent = 'Teslim aldım'; alert('Kaydedilemedi: ' + e.message); });
   }
   // Uygulama açıkken her dakika ve öne gelince yenile
@@ -2660,71 +2565,175 @@
 </script>
 
 <script>
-  /* ===== Otomatik yenileme: her başarılı yazma işleminden sonra ekranlar kendini günceller ===== */
-  // Kısa, engellemeyen bildirim (alert yerine)
-  function islemToast(t) {
-    var x = document.getElementById('islemToast');
-    if (!x) {
-      x = document.createElement('div'); x.id = 'islemToast'; x.setAttribute('role', 'status');
-      x.style.cssText = 'position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom) + 90px);transform:translateX(-50%);z-index:95;background:#1e8e3e;color:#fff;font-weight:600;border-radius:12px;padding:12px 16px;box-shadow:0 8px 24px rgba(0,0,0,.25);max-width:90vw;transition:opacity .25s;opacity:0;pointer-events:none';
-      document.body.appendChild(x);
+  /* ===== Sipariş dökümü: müşteri siparişleri + ayrımlar, stok sistemden (KULLANILABİLİR) ===== */
+  var spUrunler, siparisAcik, spVeri = null;
+  function spYetki() { return yetkiVar('siparis_gor') || yetkiVar('siparis_duzenle'); }
+  function spSayi(n) { return Number(n || 0).toLocaleString('tr-TR'); }
+  function spTarihYaz(t) { var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(t || ''); return m ? m[3] + '.' + m[2] + '.' + m[1] : (t || '—'); }
+  function siparisAc() {
+    if (!durum.ben || !spYetki()) return;
+    if (typeof akis !== 'undefined' && akis) kameraKapat();
+    ['uygulama', 'raporlar', 'servisEkran', 'anaPanel'].forEach(function (id) { el(id).classList.add('gizli'); });
+    el('siparisEkran').classList.remove('gizli');
+    document.body.classList.toggle('spDuzenYok', !yetkiVar('siparis_duzenle'));
+    window.scrollTo({ top: 0 });
+    spYukle(); navGuncelle();
+  }
+  function spYukle() {
+    if (!spVeri) el('spListe').innerHTML = '<div class="bos">Yükleniyor…</div>';
+    return panelGet('?islem=siparis' + (el('spDurumSec').value === 'tumu' ? '&kapali=1' : '')).then(function (j) { spVeri = j.siparis; spCiz(); })
+      .catch(function (e) { el('spListe').innerHTML = '<div class="bos">' + esc(e.message) + '</div>'; });
+  }
+  // Ürün başına toplamlar (filtreden bağımsız: müşteri filtrelense de stok tablosu doğru kalır)
+  function spGruplar() {
+    var g = {}, sira = [];
+    (spVeri ? spVeri.satirlar : []).forEach(function (x) {
+      if (!g[x.kod]) { var st = (spVeri.stok || {})[x.kod] || {}; g[x.kod] = { kod: x.kod, ad: x.ad, stok: st.kul || 0, kalan: st.kalan || 0, bekleyen: 0, ayrilan: 0, satirlar: [] }; sira.push(x.kod); }
+      var k = g[x.kod]; k.satirlar.push(x);
+      if (x.durum === 'AÇIK') { k.bekleyen += Math.max(0, x.adet - x.sevk); k.ayrilan += x.ayrilan; }
+    });
+    return sira.map(function (k) { var x = g[k]; x.serbest = x.stok - x.ayrilan; x.eksik = Math.max(0, x.bekleyen - x.stok); x.ayrilmamis = x.bekleyen - x.ayrilan; return x; });
+  }
+  function spCiz() {
+    if (!spVeri) return;
+    var ara = el('spAra').value.trim().toLocaleUpperCase('tr'), sorun = el('spSorun').checked, duz = yetkiVar('siparis_duzenle');
+    var gruplar = spGruplar(), acikSay = 0, sorunlu = 0, html = [];
+    gruplar.forEach(function (g) {
+      var sorunVar = g.eksik > 0 || g.serbest < 0; if (sorunVar) sorunlu++;
+      g.satirlar.forEach(function (x) { if (x.durum === 'AÇIK') acikSay++; });
+      if (sorun && !sorunVar) return;
+      var urunEslesir = !ara || (g.kod + ' ' + g.ad).toLocaleUpperCase('tr').indexOf(ara) >= 0;
+      var satirlar = g.satirlar.filter(function (x) { return urunEslesir || (x.musteri + ' ' + x.not + ' ' + x.no).toLocaleUpperCase('tr').indexOf(ara) >= 0; });
+      if (!satirlar.length) return;
+      var cip = function (t, v, c) { return '<span class="spCip ' + (c || '') + '">' + t + ' ' + v + '</span>'; };
+      var sb = g.serbest < 0 ? cip('Fazla ayrılmış', spSayi(-g.serbest), 'kirmizi') : (g.serbest > 0 && g.ayrilmamis > 0 ? cip('Dağıtılabilir', spSayi(Math.min(g.serbest, g.ayrilmamis)), 'sari') : cip('Serbest', spSayi(g.serbest), 'yesil'));
+      var n = 0;
+      html.push('<div class="spGrup"><div class="spBas"><div><b>' + esc(g.kod) + '</b><small>' + esc(g.ad) + (g.kalan !== g.stok ? ' · tüm depolar (KALAN) ' + spSayi(g.kalan) : '') + '</small></div><div class="spCipler">' +
+        cip('Stok', spSayi(g.stok)) + cip('Sipariş', spSayi(g.bekleyen)) + cip('Ayrılan', spSayi(g.ayrilan)) + sb + (g.eksik > 0 ? cip('Eksik', spSayi(g.eksik), 'kirmizi') : '') + '</div></div>' +
+        '<div class="spSarma"><table class="spTablo"><thead><tr><th></th><th>Müşteri</th><th>Sipariş tarihi</th><th class="s">Sipariş</th><th class="s">Sevk</th><th class="s">Ayrılan</th><th class="s">Ayrılmadı</th><th>Not</th><th></th></tr></thead><tbody>' +
+        satirlar.map(function (x) {
+          var acik = x.durum === 'AÇIK', kalan = Math.max(0, x.adet - x.sevk - x.ayrilan);
+          var btn = !duz ? '' : (acik ? '<button class="spDuz" onclick="spFormAc(\'' + esc(x.no) + '\')">Düzenle</button>' : '<button class="spDuz" onclick="spDurumDegis(\'' + esc(x.no) + '\',\'ac\')">Aç</button>');
+          return '<tr class="' + (acik ? '' : 'kapali') + '"' + (duz && acik ? ' style="cursor:pointer" onclick="if(event.target.tagName!==\'BUTTON\')spFormAc(\'' + esc(x.no) + '\')"' : '') + '><td class="sira">' + (acik ? (++n) + '.' : '') + '</td><td><b>' + esc(x.musteri) + '</b>' + (acik ? '' : ' <small>(' + esc(x.durum.toLocaleLowerCase('tr')) + ')</small>') + '</td><td>' + spTarihYaz(x.tarih) +
+            '</td><td class="s">' + spSayi(x.adet) + '</td><td class="s">' + (x.sevk ? spSayi(x.sevk) : '—') + '</td><td class="s"><b>' + spSayi(x.ayrilan) + '</b></td><td class="s' + (acik && kalan ? ' eksi' : '') + '">' + (acik ? spSayi(kalan) : '—') +
+            '</td><td class="spNot">' + esc(x.not) + '</td><td class="s">' + btn + '</td></tr>';
+        }).join('') + '</tbody></table></div></div>');
+    });
+    el('spOzet').innerHTML = spSayi(acikSay) + ' açık sipariş · ' + spSayi(gruplar.length) + ' ürün' + (sorunlu ? ' · <b style="color:#a8221a">' + sorunlu + ' üründe stok yetmiyor / fazla ayrılmış</b>' : '') +
+      ' · Stok = kullanılabilir (ayrılmış, iade, arızalı, teslim bekleyen hariç)';
+    el('spListe').innerHTML = html.join('') || '<div class="bos">' + (spVeri.satirlar.length ? 'Filtreye uyan sipariş yok.' : 'Henüz sipariş yok. "+ Yeni sipariş" ile ekleyin.') + '</div>';
+  }
+  function spUrunBul(t) {
+    t = (t || '').trim().toLocaleUpperCase('tr'); if (!t) return null;
+    var l = spUrunler || [];
+    return l.filter(function (u) { return u.kod.toLocaleUpperCase('tr') === t; })[0] || l.filter(function (u) { return (u.barkodlar || []).indexOf(t) >= 0; })[0] ||
+      l.filter(function (u) { return (u.kod + ' — ' + u.ad).toLocaleUpperCase('tr') === t; })[0] || null;
+  }
+  function spFormAc(no) {
+    var x = no && spVeri ? spVeri.satirlar.filter(function (y) { return y.no === no; })[0] : null;
+    el('spUrunListe').innerHTML = (spUrunler || []).map(function (u) { return '<option value="' + esc(u.kod) + '">' + esc(u.ad) + '</option>'; }).join('');
+    el('spMusteriListe').innerHTML = ((spVeri && spVeri.musteriler) || []).map(function (m) { return '<option value="' + esc(m) + '">'; }).join('');
+    el('spNo').value = x ? x.no : ''; el('spUrun').value = x ? x.kod : ''; el('spMusteri').value = x ? x.musteri : '';
+    el('spTarih').value = x && /^\d{4}-/.test(x.tarih) ? x.tarih : ymd(new Date());
+    el('spAdet').value = x ? x.adet : ''; el('spAyrilan').value = x ? x.ayrilan : ''; el('spNot').value = x ? x.not.replace(/\s*\[[^\]]*\]/g, '') : '';
+    el('spFormIslem').innerHTML = x ? '<button class="btn ikincil" style="width:auto" onclick="spDurumDegis(\'' + esc(x.no) + '\',\'kapat\')">Tamamlandı say</button><button class="btn ikincil" style="width:auto;color:#a8221a" onclick="spDurumDegis(\'' + esc(x.no) + '\',\'iptal\')">İptal et</button>' : '';
+    el('spFormMesaj').className = 'mesaj';
+    el('spForm').classList.remove('gizli'); spFormStok();
+    el('siparisEkran').scrollIntoView({ behavior: 'smooth' }); (x ? el('spAdet') : el('spUrun')).focus();
+  }
+  function spFormKapat() { el('spForm').classList.add('gizli'); }
+  function spFormStok() {
+    var u = spUrunBul(el('spUrun').value), b = el('spFormStok');
+    if (!u) { b.classList.add('gizli'); return; }
+    var g = spGruplar().filter(function (x) { return x.kod === u.kod; })[0];
+    var st = g ? g.stok : null;
+    if (st === null) { var s = (stok || {})[u.kod]; st = null; }
+    b.innerHTML = '<b>' + esc(u.ad) + '</b>' + (g ? ' — stok ' + spSayi(g.stok) + ' · açık sipariş ' + spSayi(g.bekleyen) + ' · ayrılan ' + spSayi(g.ayrilan) + ' · <b>serbest ' + spSayi(g.serbest) + '</b>' : ' — bu üründe açık sipariş yok');
+    b.classList.remove('gizli');
+  }
+  function spKaydet() {
+    var u = spUrunBul(el('spUrun').value), m = el('spFormMesaj');
+    var hata = function (t) { m.textContent = t; m.className = 'mesaj hata'; };
+    if (!u) return hata('Ürün listede bulunamadı. Stok kodunu listeden seçin.');
+    if (!el('spMusteri').value.trim()) return hata('Müşteri yazın.');
+    var adet = Number(el('spAdet').value), ayr = Number(el('spAyrilan').value || 0);
+    if (!(adet >= 1) || adet % 1) return hata('Sipariş adedi 1 veya daha büyük tam sayı olmalı.');
+    if (ayr < 0 || ayr % 1) return hata('Ayrılan 0 veya daha büyük tam sayı olmalı.');
+    m.textContent = 'Kaydediliyor…'; m.className = 'mesaj bilgi';
+    api('POST', { pin: durum.pin, islem: 'siparisKaydet', no: el('spNo').value, kod: u.kod, musteri: el('spMusteri').value.trim(), tarih: el('spTarih').value,
+      adet: adet, ayrilan: ayr, not: el('spNot').value.trim() })
+      .then(function (j) { spFormKapat(); return spYukle().then(function () { el('spOzet').insertAdjacentHTML('afterbegin', '<b style="color:#1b6e35">Kaydedildi ✓ ' + esc(j.sonuc.no) + '</b> · '); }); })
+      .catch(function (e) { hata(e.message); });
+  }
+  function spDurumDegis(no, d) {
+    var t = { kapat: 'Bu sipariş tamamlandı sayılıp listeden kaldırılsın mı? (Ayrılan adet serbest kalır)', iptal: 'Bu sipariş İPTAL edilsin mi?', ac: 'Bu sipariş yeniden açılsın mı?' }[d];
+    if (!confirm(t)) return;
+    api('POST', { pin: durum.pin, islem: 'siparisDurum', no: no, durum: d }).then(function () { spFormKapat(); spYukle(); }).catch(function (e) { alert(e.message); });
+  }
+  function spExcel() {
+    if (!spVeri || !spVeri.satirlar.length) { alert('İndirilecek sipariş yok.'); return; }
+    xlsxHazir().then(function () {
+      var wb = XLSX.utils.book_new(), satir = [];
+      spGruplar().forEach(function (g) {
+        g.satirlar.forEach(function (x) {
+          satir.push([g.kod, g.ad, x.musteri, spTarihYaz(x.tarih), x.adet, x.sevk, x.ayrilan, Math.max(0, x.adet - x.sevk - x.ayrilan), x.not, x.durum, g.stok, g.bekleyen, g.ayrilan, g.serbest, g.eksik]);
+        });
+      });
+      sayfaEkle(wb, 'Sipariş Dökümü', ['Stok Kodu', 'Ürün Adı', 'Müşteri', 'Sipariş Tarihi', 'Sipariş', 'Sevk', 'Ayrılan', 'Ayrılmadı', 'Not', 'Durum', 'Stok (kullanılabilir)', 'Toplam açık sipariş', 'Toplam ayrılan', 'Serbest', 'Eksik'],
+        satir, [18, 30, 24, 13, 8, 7, 8, 9, 28, 10, 12, 12, 12, 9, 8]);
+      XLSX.writeFile(wb, 'Siparis_Dokumu_' + ymd(new Date()) + '.xlsx');
+    });
+  }
+  // ÇIKIŞ ekranı: sevk edilen mal seçilen müşterinin siparişinden düşer
+  function spCikisKur() {
+    var k = el('spCikisKutu'), acik = siparisAcik || {}, ms = Object.keys(acik).sort(function (a, b) { return a.localeCompare(b, 'tr'); });
+    var goster = durum.mod === 'ÇIKIŞ' && ms.length > 0;
+    k.classList.toggle('gizli', !goster);
+    if (durum.mod !== 'ÇIKIŞ') durum.siparisMusteri = '';
+    if (!goster) return;
+    if (!durum.siparisMusteri && durum.musteri) { var e = ms.filter(function (m) { return m.toLocaleUpperCase('tr') === durum.musteri.trim().toLocaleUpperCase('tr'); })[0]; if (e) durum.siparisMusteri = e; }
+    if (durum.siparisMusteri && ms.indexOf(durum.siparisMusteri) < 0) durum.siparisMusteri = '';
+    el('spCikisSec').innerHTML = '<option value="">— Siparişe bağlama —</option>' + ms.map(function (m) { return '<option value="' + esc(m) + '">' + esc(m) + '</option>'; }).join('');
+    el('spCikisSec').value = durum.siparisMusteri || '';
+    spCikisBilgi();
+  }
+  function spCikisBilgi() {
+    var b = el('spCikisBilgi'), m = durum.siparisMusteri, a = m ? (siparisAcik || {})[m] : null;
+    var nt = el('not'); if (nt) { if (nt.dataset.ph === undefined) nt.dataset.ph = nt.placeholder; nt.placeholder = a ? 'Boş bırakılabilir (fişe "Sipariş: ' + m + '" yazılır)' : nt.dataset.ph; }
+    if (!a) { b.classList.add('gizli'); return; }
+    b.innerHTML = '<b>' + esc(m) + '</b> açık sipariş: ' + Object.keys(a).map(function (k) { return esc(k) + ' × ' + a[k]; }).join(', ') + '<br>Kaydedince okutulan adet bu siparişten düşer (stok her zamanki gibi çıkıştan düşer).';
+    b.classList.remove('gizli');
+  }
+  function spCikisMesaj(r) {
+    var d = el('mesaj');
+    if (r.siparisHata) { d.textContent += ' (Sipariş düşülemedi: ' + r.siparisHata + ')'; return; }
+    var p = (r.siparis || []).map(function (x) { return x.kod + ' ' + x.dusulen + (x.kapanan ? ' (tamamlandı)' : '') + (x.fazla ? ' · ' + x.fazla + ' adet siparişte yoktu' : ''); });
+    if (p.length) d.textContent += ' Siparişten düşüldü: ' + p.join(', ') + '.';
+  }
+  var ekraniKur0 = ekraniKur;
+  ekraniKur = function () { ekraniKur0.apply(this, arguments); try { spCikisKur(); } catch (e) { console.log(e); } };
+  // Menü / ekran geçişleri
+  var navGitSp = navGit;
+  navGit = function (n) { if (n === 'siparis') { siparisAc(); return; } el('siparisEkran').classList.add('gizli'); navGitSp(n); };
+  var navGuncelleSp = navGuncelle;
+  navGuncelle = function () {
+    navGuncelleSp();
+    var var_ = !!durum.ben && spYetki();
+    document.querySelectorAll('#yanMenu [data-n="siparis"], #altMenu [data-n="siparis"]').forEach(function (x) { x.classList.toggle('navGizli', !var_); });
+    if (!el('siparisEkran').classList.contains('gizli')) {
+      if (!var_ || !el('girisEkrani').classList.contains('gizli')) { el('siparisEkran').classList.add('gizli'); return; }
+      document.querySelectorAll('#yanMenu [data-n], #altMenu [data-n]').forEach(function (x) { x.classList.toggle('secili', x.dataset.n === 'siparis'); });
+      el('sayfaBaslik').textContent = 'Sipariş dökümü';
     }
-    x.textContent = t; x.style.opacity = '1';
-    clearTimeout(islemToast.z); islemToast.z = setTimeout(function () { x.style.opacity = '0'; }, 4000);
-  }
-  // Veri değişti: bellekteki özetleri at, görünen ekranı yenile
-  function veriDegisti() {
-    try {
-      panelVeri = null; panelZaman = 0;
-      try { localStorage.removeItem('panelOnbellek'); } catch (e) {} // eski özet bir sonraki açılışta bir an görünmesin
-      var acik = function (id) { var e = document.getElementById(id); return e && !e.classList.contains('gizli'); };
-      if (acik('anaPanel')) panelYukle(true);
-      else if (acik('raporlar') && typeof raporSifre !== 'undefined' && raporSifre) {
-        // Rapor ekranı açıksa: işlemi yapan işlev zaten yeniledi mi? (yeniyse tekrar yükleme)
-        if (Date.now() - (window._raporZaman || 0) > 3000) raporYukle();
-      } else raporVeri = {}; // rapor ekranı kapalıyken: bir sonraki açılışta taze yüklensin
-      if (window.zilYukle) zilYukle();
-    } catch (e) { console.log('yenileme', e); }
-  }
-  // Tüm yazma istekleri (kayıt, sil, düzelt, teslim alma, servis…) tek noktadan izlenir
-  (function () {
-    var f0 = window.fetch;
-    window.fetch = function (url, opt) {
-      var p = f0.apply(this, arguments);
-      try {
-        if (opt && opt.method === 'POST' && typeof API_URL !== 'undefined' && String(url).indexOf(API_URL) === 0) {
-          var g = {}; try { g = JSON.parse(opt.body); } catch (e) {}
-          if (g.islem !== 'giris' && g.islem !== 'bildir' && g.islem !== 'sifreDegistir') {
-            p.then(function (r) { return r.clone().json(); }).then(function (j) { if (j && j.ok) setTimeout(veriDegisti, 400); }).catch(function () {});
-          }
-        }
-      } catch (e) {}
-      return p;
-    };
-  })();
-  // Uygulamaya geri dönülünce açık ekran taze olsun
-  document.addEventListener('visibilitychange', function () {
-    if (document.visibilityState !== 'visible' || !durum.pin) return;
-    var e = document.getElementById('anaPanel');
-    if (e && !e.classList.contains('gizli')) panelYukle(true);
-    surumKontrol();
+  };
+  // Başka bir ekran açılırsa (zil, kısayol vb.) sipariş ekranı kapanır
+  ['uygulama', 'raporlar', 'servisEkran', 'anaPanel'].forEach(function (id) {
+    new MutationObserver(function () { if (!el(id).classList.contains('gizli') && !el('siparisEkran').classList.contains('gizli')) el('siparisEkran').classList.add('gizli'); }).observe(el(id), { attributes: true, attributeFilter: ['class'] });
   });
-
-  // Yeni sürüm kontrolü: GitHub Pages sayfayı ~10 dk önbellekte tutar; telefon eski sürümde kalmasın
-  var SURUM_SABITI = "2026-11-25-7";
-  var surumSon = 0;
-  function surumKontrol() {
-    if (Date.now() - surumSon < 300000) return; // en fazla 5 dakikada bir
-    surumSon = Date.now();
-    fetch(location.pathname + '?s=' + Date.now(), { cache: 'no-store' }).then(function (r) { return r.text(); }).then(function (t) {
-      var m = t.match(/SURUM_SABITI = "([^"]+)"/);
-      if (m && m[1] !== SURUM_SABITI && location.search.indexOf('v=' + m[1]) < 0) {
-        islemToast('Yeni sürüm var, yenileniyor…');
-        setTimeout(function () { location.replace(location.pathname + '?v=' + m[1]); }, 1200);
-      }
-    }).catch(function () {});
-  }
-  setTimeout(surumKontrol, 4000);
+  new MutationObserver(function () { navGuncelle(); }).observe(el('siparisEkran'), { attributes: true, attributeFilter: ['class'] });
+  var cikisYapSp = cikisYap;
+  cikisYap = function (m) { el('siparisEkran').classList.add('gizli'); spVeri = null; return cikisYapSp(m); };
+  navGuncelle();
 </script>
 </body>
 </html>
