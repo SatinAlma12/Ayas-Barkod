@@ -1987,6 +1987,7 @@
     ['Bildirim', ['teslim_al', 'bilgi_eticaret', 'bilgi_bayi', 'bilgi_ihracat', 'bilgi_showroom']],
     ['Raporlar ve hareketler', ['rapor', 'duzelt', 'sil']],
     ['Servis', ['sv_kabul', 'sv_depo', 'sv_servis', 'sv_satis', 'sv_sil']],
+    ['Sipariş', ['siparis_gor', 'siparis_duzenle']],
     ['Yönetim', ['admin']]
   ];
   var SABLON_AD = { depo: 'Depo', servis: 'Montaj', satis: 'Satış temsilcisi', rapor: '+ Raporlar', admin: 'Yönetici' };
@@ -1996,6 +1997,11 @@
     fetch(API_URL + '?islem=kullanicilar&pin=' + encodeURIComponent(durum.pin)).then(function (r) { return r.json(); }).then(function (j) {
       if (!j.ok) { oturumHatasi(j.hata); throw new Error(j.hata); }
       P_ETIKET = j.yetkiler || {}; P_SABLON = j.sablonlar || {};
+      // Listede grubu olmayan yeni yetkiler "Diğer" altında gösterilir
+      var gruplu = {}; P_GRUP.forEach(function (g) { g[1].forEach(function (k) { gruplu[k] = 1; }); });
+      var diger = Object.keys(P_ETIKET).filter(function (k) { return !gruplu[k]; });
+      P_GRUP = P_GRUP.filter(function (g) { return g[0] !== 'Diğer'; });
+      if (diger.length) P_GRUP.splice(P_GRUP.length - 1, 0, ['Diğer', diger]);
       kullanicilariCiz(j.kullanicilar); m.className = 'mesaj';
     }).catch(function (e) { m.className = 'mesaj hata'; m.textContent = e.message; });
   }
