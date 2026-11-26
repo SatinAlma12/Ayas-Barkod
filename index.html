@@ -556,6 +556,7 @@
       <label>Müşteri</label><div class="spAc"><input type="text" id="spMusteri" autocomplete="off" placeholder="Firma adı"><div id="spMusteriOneri" class="spOneri gizli"></div></div>
       <div class="iki"><div><label>Sipariş tarihi</label><input type="date" id="spTarih"></div><div><label>Not</label><input type="text" id="spNot" autocomplete="off" placeholder="Stand, iskonto…"></div></div>
       <div class="iki"><div><label>Sipariş adedi</label><input type="number" id="spAdet" min="1" step="1" inputmode="numeric"></div><div><label>Ayrılan (opsiyon)</label><input type="number" id="spAyrilan" min="0" step="1" inputmode="numeric" placeholder="0"></div></div>
+      <div id="spSevkSatir" class="iki gizli"><div><label>Sevk edilen</label><input type="number" id="spSevk" min="0" step="1" inputmode="numeric"></div><div style="font-size:12px;color:#6b7488;align-self:end;padding-bottom:8px">Çıkış siparişe bağlanmadan yapıldıysa sevk edilen adedi buradan girin. Stok değişmez.</div></div>
       <div id="spFormStok" class="mesaj bilgi gizli"></div>
       <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap"><button class="btn" style="width:auto" onclick="spKaydet()">Kaydet</button><button class="btn ikincil" style="width:auto" onclick="spFormKapat()">Vazgeç</button><span id="spFormIslem" style="display:flex;gap:8px;flex-wrap:wrap"></span></div>
       <div id="spFormMesaj" class="mesaj"></div>
@@ -1230,6 +1231,7 @@
       ekraniKur();
       mesaj('Kaydedildi ✓ Fiş No: ' + r.fisNo + ' — ' + r.satirSayisi + ' çeşit, ' + r.toplamAdet + ' adet.' + (r.bildirildi ? ' Depo sorumlusuna bildirildi.' : '') + (r.teslimBekliyor ? ' Depo teslim alınca ' + r.teslimBekliyor + ' stoğuna geçer.' : ''), 'ok');
       if (r.bildirildi && window.zilYukle) setTimeout(zilYukle, 500);
+      spAcikZaman = 0; spVeri = null;
       if (r.siparis || r.siparisHata) setTimeout(function () { spCikisMesaj(r); }, 0);
       if (r.haber && r.haber.gonderildi) mesaj('Kaydedildi ✓ Fiş No: ' + r.fisNo + ' — ' + r.satirSayisi + ' çeşit, ' + r.toplamAdet + ' adet. ' + durumHedefAdi() + ' deposuna bildirildi.', 'ok');
       var ss = el('sayimSonuc');
@@ -1520,9 +1522,8 @@
     silIstegi(f, '', f + ' fişinin TAMAMI (' + filtreliSatirlar().length + ' satır)');
   }
   function silIstegi(fis, kod, tanim) {
-    if (!confirm('Silinecek:\n' + tanim + '\n\nStok buna göre yeniden hesaplanır. Kayıt "Silinenler" sayfasına taşınır. Devam edilsin mi?')) return;
-    var sebep = prompt('Silme sebebi (zorunlu):', 'Yanlış okutma');
-    if (!sebep || !sebep.trim()) { alert('Sebep yazılmadan silinemez.'); return; }
+    if (!confirm('Silinsin mi?\n' + tanim)) return;
+    var sebep = 'Silindi';
     var silen = (durum.okutan || '').trim() || (prompt('Adınız:') || '').trim();
     if (!silen) return;
     if (!silmeSifre) { var y = prompt('Silme için yönetici şifresi:'); if (!y) return; silmeSifre = y.trim(); }
@@ -1533,8 +1534,9 @@
         raporVeri = {};
         if (!kod) el('raporAra').value = '';
         raporYukle();
-        mesaj('Silindi: ' + tanim, 'ok');
-        alert('Silindi ✓ (' + j.sonuc.toplam + ' satır "Silinenler" sayfasına taşındı)');
+        mesaj('Silindi: ' + tanim + (j.sonuc.siparisGeri ? ' · siparişteki sevk geri alındı' : ''), 'ok');
+        el('raporBilgi').textContent = 'Silindi ✓ ' + tanim + (j.sonuc.siparisGeri ? ' · siparişteki sevk geri alındı' : '');
+        spVeri = null; spAcikZaman = 0;
       })
       .catch(function (e) {
         if (/YÖNETİCİ PIN hatalı/.test(e.message)) silmeSifre = '';
@@ -2574,7 +2576,15 @@
 
 <script>
   /* ===== Sipariş dökümü: müşteri siparişleri + ayrımlar, stok sistemden (KULLANILABİLİR) ===== */
-  var spUrunler, siparisAcik, spVeri = null;
+  var spUrunler, siparisAcik, spVeri = null, spSonYukle = 0;
+  // Sipariş ekranı açıkken: pencereye dönülünce ve her 45 sn'de bir kendiliğinden yenilenir (form açıkken değil)
+  function spOtomatik() {
+    if (!el('siparisEkran') || el('siparisEkran').classList.contains('gizli') || !el('spForm').classList.contains('gizli') || document.hidden) return;
+    if (Date.now() - spSonYukle > 8000) spYukle();
+  }
+  setInterval(function () { if (Date.now() - spSonYukle > 45000) spOtomatik(); }, 5000);
+  window.addEventListener('focus', spOtomatik);
+  document.addEventListener('visibilitychange', spOtomatik);
   function spYetki() { return yetkiVar('siparis_gor') || yetkiVar('siparis_duzenle'); }
   function spSayi(n) { return Number(n || 0).toLocaleString('tr-TR'); }
   function spTarihYaz(t) { var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(t || ''); return m ? m[3] + '.' + m[2] + '.' + m[1] : (t || '—'); }
@@ -2589,7 +2599,9 @@
   }
   function spYukle() {
     if (!spVeri) el('spListe').innerHTML = '<div class="bos">Yükleniyor…</div>';
-    return panelGet('?islem=siparis' + (el('spDurumSec').value === 'tumu' ? '&kapali=1' : '')).then(function (j) { spVeri = j.siparis; spCiz(); })
+    else el('spOzet').innerHTML = '<b style="color:#1f55d6">Güncelleniyor…</b>';
+    spSonYukle = Date.now();
+    return panelGet('?islem=siparis' + (el('spDurumSec').value === 'tumu' ? '&kapali=1' : '') + '&_=' + Date.now()).then(function (j) { spVeri = j.siparis; spCiz(); })
       .catch(function (e) { el('spListe').innerHTML = '<div class="bos">' + esc(e.message) + '</div>'; });
   }
   // Ürün başına toplamlar (filtreden bağımsız: müşteri filtrelense de stok tablosu doğru kalır)
@@ -2642,6 +2654,7 @@
     el('spNo').value = x ? x.no : ''; el('spUrun').value = x ? x.kod : ''; el('spMusteri').value = x ? x.musteri : '';
     el('spTarih').value = x && /^\d{4}-/.test(x.tarih) ? x.tarih : ymd(new Date());
     el('spAdet').value = x ? x.adet : ''; el('spAyrilan').value = x ? x.ayrilan : ''; el('spNot').value = x ? x.not.replace(/\s*\[[^\]]*\]/g, '') : '';
+    el('spSevkSatir').classList.toggle('gizli', !x); el('spSevk').value = x ? x.sevk : '';
     el('spFormIslem').innerHTML = x ? '<button class="btn ikincil" style="width:auto" onclick="spDurumDegis(\'' + esc(x.no) + '\',\'kapat\')">Tamamlandı say</button><button class="btn ikincil" style="width:auto;color:#a8221a" onclick="spDurumDegis(\'' + esc(x.no) + '\',\'iptal\')">İptal et</button>' : '';
     el('spFormMesaj').className = 'mesaj';
     el('spForm').classList.remove('gizli'); spFormStok();
@@ -2694,14 +2707,14 @@
     if (ayr < 0 || ayr % 1) return hata('Ayrılan 0 veya daha büyük tam sayı olmalı.');
     m.textContent = 'Kaydediliyor…'; m.className = 'mesaj bilgi';
     api('POST', { pin: durum.pin, islem: 'siparisKaydet', no: el('spNo').value, kod: u.kod, musteri: el('spMusteri').value.trim(), tarih: el('spTarih').value,
-      adet: adet, ayrilan: ayr, not: el('spNot').value.trim() })
-      .then(function (j) { spFormKapat(); return spYukle().then(function () { el('spOzet').insertAdjacentHTML('afterbegin', '<b style="color:#1b6e35">Kaydedildi ✓ ' + esc(j.sonuc.no) + '</b> · '); }); })
+      adet: adet, ayrilan: ayr, not: el('spNot').value.trim(), sevk: el('spNo').value ? el('spSevk').value : '' })
+      .then(function (j) { spFormKapat(); spAcikZaman = 0; return spYukle().then(function () { el('spOzet').insertAdjacentHTML('afterbegin', '<b style="color:#1b6e35">Kaydedildi ✓ ' + esc(j.sonuc.no) + '</b> · '); }); })
       .catch(function (e) { hata(e.message); });
   }
   function spDurumDegis(no, d) {
     var t = { kapat: 'Bu sipariş tamamlandı sayılıp listeden kaldırılsın mı? (Ayrılan adet serbest kalır)', iptal: 'Bu sipariş İPTAL edilsin mi?', ac: 'Bu sipariş yeniden açılsın mı?' }[d];
     if (!confirm(t)) return;
-    api('POST', { pin: durum.pin, islem: 'siparisDurum', no: no, durum: d }).then(function () { spFormKapat(); spYukle(); }).catch(function (e) { alert(e.message); });
+    api('POST', { pin: durum.pin, islem: 'siparisDurum', no: no, durum: d }).then(function () { spFormKapat(); spAcikZaman = 0; spYukle(); }).catch(function (e) { alert(e.message); });
   }
   function spExcel() {
     if (!spVeri || !spVeri.satirlar.length) { alert('İndirilecek sipariş yok.'); return; }
@@ -2718,7 +2731,13 @@
     });
   }
   // ÇIKIŞ ekranı: sevk edilen mal seçilen müşterinin siparişinden düşer
+  var spAcikZaman = 0;
   function spCikisKur() {
+    // Çıkış ekranına her gelişte açık siparişleri sunucudan taze al (başka kullanıcının girdiği siparişler de gelsin)
+    if (durum.mod === 'ÇIKIŞ' && durum.pin && Date.now() - spAcikZaman > 15000) {
+      spAcikZaman = Date.now();
+      panelGet('?islem=siparisAcik&_=' + Date.now()).then(function (j) { siparisAcik = j.siparisAcik || {}; spCikisKur(); }).catch(function () { spAcikZaman = 0; });
+    }
     var k = el('spCikisKutu'), acik = siparisAcik || {}, ms = Object.keys(acik).sort(function (a, b) { return a.localeCompare(b, 'tr'); });
     var goster = durum.mod === 'ÇIKIŞ' && ms.length > 0;
     k.classList.toggle('gizli', !goster);
@@ -2737,6 +2756,12 @@
     b.innerHTML = '<b>' + esc(m) + '</b> açık sipariş: ' + Object.keys(a).map(function (k) { return esc(k) + ' × ' + a[k]; }).join(', ') + '<br>Kaydedince okutulan adet bu siparişten düşer (stok her zamanki gibi çıkıştan düşer).';
     b.classList.remove('gizli');
   }
+  // Not alanına siparişi olan firmanın adı yazılırsa sipariş seçimi kendiliğinden yapılır
+  el('not').addEventListener('input', function () {
+    if (durum.mod !== 'ÇIKIŞ' || durum.siparisMusteri) return;
+    var t = this.value.trim().toLocaleUpperCase('tr'), e = Object.keys(siparisAcik || {}).filter(function (m) { return m.toLocaleUpperCase('tr') === t; })[0];
+    if (e) { durum.siparisMusteri = e; el('spCikisSec').value = e; spCikisBilgi(); }
+  });
   function spCikisMesaj(r) {
     var d = el('mesaj');
     if (r.siparisHata) { d.textContent += ' (Sipariş düşülemedi: ' + r.siparisHata + ')'; return; }
