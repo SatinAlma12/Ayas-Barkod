@@ -281,6 +281,7 @@
   @media (max-width: 600px) { .spTablo { font-size: 12px; } .spTablo th, .spTablo td { padding: 7px 5px; } }
   .spTablo tr.kapali td { color: #9aa3b2; }
   .spTablo .spNot { color: #6b7488; font-size: 12px; max-width: 220px; }
+  .spTablo .spStok { color: #1f55d6; font-weight: 600; }
   .spTablo .eksi { color: #a8221a; font-weight: 700; }
   .spDuz { border: 0; background: none; color: #1f55d6; font-weight: 600; cursor: pointer; padding: 0 4px; font-size: 13px; }
   body.spDuzenYok .spDuzenYetki { display: none !important; }
@@ -2667,12 +2668,12 @@
       var sira = {}, n = 0; g.satirlar.forEach(function (x) { if (x.durum === 'AÇIK') sira[x.no] = ++n; });  // öncelik sırası filtreden bağımsız
       html.push('<div class="spGrup"><div class="spBas"><div><b>' + esc(g.kod) + '</b><small>' + esc(g.ad) + (g.kalan !== g.stok ? ' · tüm depolar (KALAN) ' + spSayi(g.kalan) : '') + '</small></div><div class="spCipler">' +
         cip('Stok', spSayi(g.stok)) + cip('Sipariş', spSayi(g.bekleyen)) + cip('Ayrılan', spSayi(g.ayrilan)) + sb + (g.eksik > 0 ? cip('Eksik', spSayi(g.eksik), 'kirmizi') : '') + '</div></div>' +
-        '<div class="spSarma"><table class="spTablo"><thead><tr><th></th><th>Müşteri</th><th>Sipariş tarihi</th><th class="s">Sipariş</th><th class="s">Sevk</th><th class="s">Ayrılan</th><th class="s">Ayrılmadı</th><th>Not</th><th></th></tr></thead><tbody>' +
+        '<div class="spSarma"><table class="spTablo"><thead><tr><th></th><th>Müşteri</th><th>Sipariş tarihi</th><th class="s">Sipariş</th><th class="s">Stok</th><th class="s">Ayrılan</th><th class="s">Sevk</th><th>Not</th><th></th></tr></thead><tbody>' +
         satirlar.map(function (x) {
           var acik = x.durum === 'AÇIK', kalan = Math.max(0, x.adet - x.sevk - x.ayrilan);
           var btn = !duz ? '' : (acik ? '<button class="spDuz" onclick="spFormAc(\'' + esc(x.no) + '\')">Düzenle</button>' : '<button class="spDuz" onclick="spDurumDegis(\'' + esc(x.no) + '\',\'ac\')">Aç</button>');
           return '<tr class="' + (acik ? '' : 'kapali') + '"' + (duz && acik ? ' style="cursor:pointer" onclick="if(event.target.tagName!==\'BUTTON\')spFormAc(\'' + esc(x.no) + '\')"' : '') + '><td class="sira">' + (acik ? sira[x.no] + '.' : '') + '</td><td><b>' + esc(x.musteri) + '</b>' + (acik ? '' : ' <small>(' + esc(x.durum.toLocaleLowerCase('tr')) + ')</small>') + '</td><td>' + spTarihYaz(x.tarih) +
-            '</td><td class="s">' + spSayi(x.adet) + '</td><td class="s">' + (x.sevk ? spSayi(x.sevk) : '—') + '</td><td class="s"><b>' + spSayi(x.ayrilan) + '</b></td><td class="s' + (acik && kalan ? ' eksi' : '') + '">' + (acik ? spSayi(kalan) : '—') +
+            '</td><td class="s">' + spSayi(x.adet) + '</td><td class="s spStok">' + spSayi(g.stok) + '</td><td class="s"><b>' + spSayi(x.ayrilan) + '</b></td><td class="s">' + (x.sevk ? spSayi(x.sevk) : '—') +
             '</td><td class="spNot">' + esc(x.not) + '</td><td class="s">' + btn + '</td></tr>';
         }).join('') + '</tbody></table></div></div>');
     });
@@ -2763,11 +2764,11 @@
         if (sorun && !(g.eksik > 0 || g.serbest < 0)) return;
         g.satirlar.forEach(function (x) {
           if (!spUyar(g, x)) return;
-          satir.push([g.kod, g.ad, x.musteri, spTarihYaz(x.tarih), x.adet, x.sevk, x.ayrilan, Math.max(0, x.adet - x.sevk - x.ayrilan), x.not, x.durum, g.stok, g.bekleyen, g.ayrilan, g.serbest, g.eksik]);
+          satir.push([g.kod, g.ad, x.musteri, spTarihYaz(x.tarih), x.adet, g.stok, x.ayrilan, x.sevk, x.not, x.durum, g.bekleyen, g.ayrilan, g.serbest, g.eksik]);
         });
       });
-      sayfaEkle(wb, 'Sipariş Dökümü', ['Stok Kodu', 'Ürün Adı', 'Müşteri', 'Sipariş Tarihi', 'Sipariş', 'Sevk', 'Ayrılan', 'Ayrılmadı', 'Not', 'Durum', 'Stok (kullanılabilir)', 'Toplam açık sipariş', 'Toplam ayrılan', 'Serbest', 'Eksik'],
-        satir, [18, 30, 24, 13, 8, 7, 8, 9, 28, 10, 12, 12, 12, 9, 8]);
+      sayfaEkle(wb, 'Sipariş Dökümü', ['Stok Kodu', 'Ürün Adı', 'Müşteri', 'Sipariş Tarihi', 'Sipariş', 'Stok', 'Ayrılan', 'Sevk', 'Not', 'Durum', 'Toplam açık sipariş', 'Toplam ayrılan', 'Serbest', 'Eksik'],
+        satir, [18, 30, 24, 13, 8, 8, 8, 7, 28, 10, 12, 12, 9, 8]);
       if (!satir.length) { alert('Filtreye uyan sipariş yok.'); return; }
       XLSX.writeFile(wb, 'Siparis_Dokumu_' + ymd(new Date()) + '.xlsx');
     });
