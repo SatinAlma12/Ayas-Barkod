@@ -142,6 +142,7 @@
   .rozet { display: inline-block; padding: 1px 6px; border-radius: 6px; font-size: 11px; font-weight: 700; color: #fff; }
   .rozet.TESLİM { background: #00796b; }
   .tslm { font-size: 12px; font-weight: 600; color: #1b6e35; margin-top: 2px; } .tslm.bek { color: #a15c00; }
+  .tslm.adim { display: inline !important; font-size: inherit; font-weight: 700; margin: 0; }
   .rozet.GİRİŞ { background: #1e8e3e; } .rozet.TRANSFER { background: #e37400; } .rozet.ÇIKIŞ { background: #d93025; } .rozet.SAYIM { background: #7b1fa2; }
   .yerler { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin-top: 4px; text-align: center; font-size: 12px; color: #5b6475; }
   .yerler b { display: block; font-size: 15px; color: #1d2433; }
@@ -635,7 +636,7 @@
       <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap"><button class="btn" style="width:auto" onclick="spKaydet()">Kaydet</button><button class="btn ikincil" style="width:auto" onclick="spFormKapat()">Vazgeç</button><span id="spFormIslem" style="display:flex;gap:8px;flex-wrap:wrap"></span></div>
       <div id="spFormMesaj" class="mesaj"></div>
     </div>
-    <div class="spFiltre"><input type="text" id="spAra" placeholder="Ara: ürün, kod, müşteri, not…" oninput="spCiz()" autocomplete="off"><select id="spDurumSec" onchange="spYukle()"><option value="acik">Açık siparişler</option><option value="kapali">Kapalı siparişler</option></select></div>
+    <div class="spFiltre"><input type="text" id="spAra" placeholder="Ara: ürün, kod, müşteri, not…" oninput="spCiz()" autocomplete="off"><select id="spDurumSec" onchange="spYukle()"><option value="acik">Açık siparişler</option><option value="kapali">Kapalı siparişler</option><option value="tumu">Tüm siparişler</option></select></div>
     <div class="spFiltre2">
       <div><label>Ürün</label><select id="spUrunF" onchange="spCiz()"><option value="">Tüm ürünler</option></select></div>
       <div><label>Firma</label><select id="spFirmaF" onchange="spCiz()"><option value="">Tüm firmalar</option></select></div>
@@ -1491,7 +1492,7 @@
       } else if (raporTuru === 'hareket') {
         html += '<div class="rsatir"><div class="ust"><span><span class="rozet ' + esc(s.tur) + '">' + esc(s.tur) + '</span> <b>' + esc(s.kod) + '</b></span><span><b>' + s.adet + ' ad.</b>' + (s.sanal ? '' : (duzeltilebilir(s) ? '<button class="silbtn duzbtn" style="color:#254BA0" onclick="satirDuzelt(' + i + ')">Düzelt</button>' : '') + '<button class="silbtn" onclick="satirSilRapor(' + i + ')">Sil</button>') + '</span></div>' +
           '<div class="alt">' + esc(s.ad) + '</div>' +
-          '<div class="alt">' + esc(s.kaynak) + ' → ' + esc(s.hedef) + (s.not ? ' · ' + esc(s.not) : '') + '</div>' +
+          '<div class="alt">' + esc(s.kaynak) + ' → ' + esc(s.hedef) + teslimAdim(s) + (s.not ? ' · ' + esc(s.not) : '') + '</div>' +
           (s.musteri ? '<div class="musteri">Müşteri: ' + esc(s.musteri) + '</div>' : '') + teslimSatiri(s) +
           '<div class="alt">' + esc(s.tarih) + ' · <span class="fislink" onclick="fisFiltre(\'' + esc(s.fis) + '\')">' + esc(s.fis) + '</span> · ' + (s.sanal ? 'Teslim alan: ' : '') + esc(s.okutan) + '</div></div>';
       } else if (raporTuru === 'iade') {
@@ -1580,9 +1581,16 @@
 
   // ---- Silme (yönetici PIN + sebep; kayıt "Silinenler" sayfasına taşınır) ----
   // ---- Adet düzeltme (örn. montaj 10 yazmış, depo 9 saymış) ----
+  // Montaj girişinin son adımı: MONTAJ → BAYİ → DEPO TESLİM
+  function teslimAdim(s, kacis) {
+    var e = kacis || esc;
+    if (s.tur === 'TESLİM' || s.teslim === 'ALINDI') return ' → <span class="tslm adim">DEPO TESLİM ✓</span>';
+    if (s.teslim === 'BEKLİYOR') return ' → <span class="tslm adim bek">depo teslimi bekleniyor</span>';
+    return '';
+  }
   function teslimSatiri(s) {
-    if (s.teslim === 'ALINDI') return '<div class="tslm">✓ Depo teslim aldı · ' + esc(s.teslimAlan || '') + ' · ' + esc(s.teslimTarih || '') + '</div>';
-    if (s.teslim === 'BEKLİYOR') return '<div class="tslm bek">⏳ Depo teslimi bekleniyor (stoğa henüz geçmedi)</div>';
+    if (s.teslim === 'ALINDI') return '<div class="tslm" style="font-weight:500">Teslim alan: ' + esc(s.teslimAlan || '') + ' · ' + esc(s.teslimTarih || '') + '</div>';
+    if (s.teslim === 'BEKLİYOR') return '<div class="tslm bek" style="font-weight:500">Stoğa depo teslim alınca geçer</div>';
     return '';
   }
   function duzeltilebilir(s) { return ['GİRİŞ', 'TRANSFER', 'ÇIKIŞ'].indexOf(s.tur) >= 0 && !/^(ARZ|IAD)-\d+/.test(s.not || ''); }
@@ -2418,8 +2426,8 @@
       var g = TUR_GORUNUM[x.tur] || { c: '#4a5568', d: '<circle cx="12" cy="12" r="4"/>', isaret: '' };
       var yon = x.kaynak && x.hedef ? x.kaynak + ' → ' + x.hedef : (x.hedef || x.kaynak || '');
       return '<div class="sonSatir" style="--c:' + g.c + '"><svg class="ikon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + g.d + '</svg>' +
-        '<div><b>' + kacir(x.kod) + '</b><small>' + kacir(x.tarih) + ' · ' + kacir(x.tur === 'TESLİM' ? 'TESLİM ALINDI' : x.tur) + (yon ? ' · ' + kacir(yon) : '') + (x.tur === 'TESLİM' ? ' · ' + kacir(x.okutan) : '') + '</small>' +
-          (x.teslim === 'ALINDI' ? '<small style="color:#1b6e35;font-weight:600">✓ Teslim alındı · ' + kacir(x.teslimAlan || '') + '</small>' : x.teslim === 'BEKLİYOR' ? '<small style="color:#a15c00;font-weight:600">⏳ Teslim bekleniyor</small>' : '') + '</div>' +
+        '<div><b>' + kacir(x.kod) + '</b><small>' + kacir(x.tarih) + ' · ' + kacir(x.tur) + (yon ? ' · ' + kacir(yon) : '') + teslimAdim(x, kacir) +
+          (x.tur === 'TESLİM' ? ' · ' + kacir(x.okutan) : x.teslim === 'ALINDI' ? ' · ' + kacir(x.teslimAlan || '') : '') + '</small></div>' +
         '<span class="adet">' + g.isaret + sayiYaz(x.adet) + '</span></div>';
     }).join('') : '<div class="bos">Son 7 günde işlem yok.</div>';
   }
@@ -2705,7 +2713,7 @@
     if (!spVeri) el('spListe').innerHTML = '<div class="bos">Yükleniyor…</div>';
     else el('spOzet').innerHTML = '<b style="color:#1f55d6">Güncelleniyor…</b>';
     spSonYukle = Date.now();
-    return panelGet('?islem=siparis' + (el('spDurumSec').value === 'kapali' ? '&kapali=1&sadeceKapali=1' : '') + '&_=' + Date.now()).then(function (j) { spVeri = j.siparis; spCiz(); })
+    return panelGet('?islem=siparis' + (el('spDurumSec').value === 'kapali' ? '&kapali=1&sadeceKapali=1' : el('spDurumSec').value === 'tumu' ? '&kapali=1' : '') + '&_=' + Date.now()).then(function (j) { spVeri = j.siparis; spCiz(); })
       .catch(function (e) { el('spListe').innerHTML = '<div class="bos">' + esc(e.message) + '</div>'; });
   }
   // Ürün başına toplamlar (filtreden bağımsız: müşteri filtrelense de stok tablosu doğru kalır)
