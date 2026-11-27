@@ -142,7 +142,7 @@
   .rozet { display: inline-block; padding: 1px 6px; border-radius: 6px; font-size: 11px; font-weight: 700; color: #fff; }
   .rozet.TESLİM { background: #00796b; }
   .tslm { font-size: 12px; font-weight: 600; color: #1b6e35; margin-top: 2px; } .tslm.bek { color: #a15c00; }
-  .tslm.adim { display: inline !important; font-size: inherit; font-weight: 700; margin: 0; }
+  .tslmP { color: #1b6e35 !important; font-weight: 600; } .tslmP.bek { color: #a15c00 !important; }
   .rozet.GİRİŞ { background: #1e8e3e; } .rozet.TRANSFER { background: #e37400; } .rozet.ÇIKIŞ { background: #d93025; } .rozet.SAYIM { background: #7b1fa2; }
   .yerler { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin-top: 4px; text-align: center; font-size: 12px; color: #5b6475; }
   .yerler b { display: block; font-size: 15px; color: #1d2433; }
@@ -311,6 +311,7 @@
   .spUst { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
   .spUst .btn { width: auto; margin: 0; padding: 9px 14px; }
   .spFiltre { display: grid; grid-template-columns: 1fr 190px; gap: 8px; }
+  @media (max-width: 560px) { .spFiltre { grid-template-columns: 1fr; } }
   .spFiltre input, .spFiltre select { margin: 0; }
   .spFiltre2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 8px; margin-top: 8px; align-items: end; }
   .spFiltre2 label { font-size: 12px; margin: 0 0 4px; display: block; color: #5b6475; }
@@ -636,7 +637,7 @@
       <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap"><button class="btn" style="width:auto" onclick="spKaydet()">Kaydet</button><button class="btn ikincil" style="width:auto" onclick="spFormKapat()">Vazgeç</button><span id="spFormIslem" style="display:flex;gap:8px;flex-wrap:wrap"></span></div>
       <div id="spFormMesaj" class="mesaj"></div>
     </div>
-    <div class="spFiltre"><input type="text" id="spAra" placeholder="Ara: ürün, kod, müşteri, not…" oninput="spCiz()" autocomplete="off"><select id="spDurumSec" onchange="spYukle()"><option value="acik">Açık siparişler</option><option value="kapali">Kapalı siparişler</option><option value="tumu">Tüm siparişler</option></select></div>
+    <div class="spFiltre"><input type="text" id="spAra" placeholder="Ara: ürün, kod, müşteri, not…" oninput="spCiz()" autocomplete="off"><select id="spDurumSec" onchange="spYukle()"><option value="acik">Açık Siparişler</option><option value="kapali">Kapalı Siparişler</option><option value="tumu">Tüm Siparişler</option></select></div>
     <div class="spFiltre2">
       <div><label>Ürün</label><select id="spUrunF" onchange="spCiz()"><option value="">Tüm ürünler</option></select></div>
       <div><label>Firma</label><select id="spFirmaF" onchange="spCiz()"><option value="">Tüm firmalar</option></select></div>
@@ -1490,7 +1491,7 @@
             (hucre ? '<div class="yerler">' + hucre + '</div>' : '<div class="alt">Hiçbir depoda stok yok</div>') + dokum(s) + sayimSatiri(s) + '</div>';
         }
       } else if (raporTuru === 'hareket') {
-        html += '<div class="rsatir"><div class="ust"><span><span class="rozet ' + esc(s.tur) + '">' + esc(s.tur) + '</span> <b>' + esc(s.kod) + '</b></span><span><b>' + s.adet + ' ad.</b>' + (s.sanal ? '' : (duzeltilebilir(s) ? '<button class="silbtn duzbtn" style="color:#254BA0" onclick="satirDuzelt(' + i + ')">Düzelt</button>' : '') + '<button class="silbtn" onclick="satirSilRapor(' + i + ')">Sil</button>') + '</span></div>' +
+        html += '<div class="rsatir"><div class="ust"><span><span class="rozet ' + esc(s.tur) + '">' + esc(s.tur) + '</span> <b>' + esc(s.kod) + '</b></span><span><b>' + s.adet + ' ADET</b>' + (s.sanal ? '' : (duzeltilebilir(s) ? '<button class="silbtn duzbtn" style="color:#254BA0" onclick="satirDuzelt(' + i + ')">Düzelt</button>' : '') + '<button class="silbtn" onclick="satirSilRapor(' + i + ')">Sil</button>') + '</span></div>' +
           '<div class="alt">' + esc(s.ad) + '</div>' +
           '<div class="alt">' + esc(s.kaynak) + ' → ' + esc(s.hedef) + teslimAdim(s) + (s.not ? ' · ' + esc(s.not) : '') + '</div>' +
           (s.musteri ? '<div class="musteri">Müşteri: ' + esc(s.musteri) + '</div>' : '') + teslimSatiri(s) +
@@ -1500,7 +1501,7 @@
         var detay = s.sonuc === 'GELDİ'
           ? '<div class="musteri">Kimden: <b>' + esc(s.kimden || '—') + '</b> · Sebep: <b>' + esc(s.ariza || '—') + '</b></div>'
           : (s.not ? '<div class="musteri">' + esc(s.not) + '</div>' : '');
-        html += '<div class="rsatir"><div class="ust"><span><span class="rozet ' + esc(s.sonuc.split(' ')[0]) + '">' + esc(s.sonuc) + '</span> <b>' + esc(s.kod) + '</b><span class="yerEtiket">' + esc(s.yer || '') + '</span></span><span><b>' + s.adet + ' ad.</b>' + (s.sanal ? '' : (duzeltilebilir(s) ? '<button class="silbtn duzbtn" style="color:#254BA0" onclick="satirDuzelt(' + i + ')">Düzelt</button>' : '') + '<button class="silbtn" onclick="satirSilRapor(' + i + ')">Sil</button>') + '</span></div>' +
+        html += '<div class="rsatir"><div class="ust"><span><span class="rozet ' + esc(s.sonuc.split(' ')[0]) + '">' + esc(s.sonuc) + '</span> <b>' + esc(s.kod) + '</b><span class="yerEtiket">' + esc(s.yer || '') + '</span></span><span><b>' + s.adet + ' ADET</b>' + (s.sanal ? '' : (duzeltilebilir(s) ? '<button class="silbtn duzbtn" style="color:#254BA0" onclick="satirDuzelt(' + i + ')">Düzelt</button>' : '') + '<button class="silbtn" onclick="satirSilRapor(' + i + ')">Sil</button>') + '</span></div>' +
           '<div class="alt">' + esc(s.ad) + '</div>' +
           '<div class="alt">' + esc(nereye) + '</div>' + detay +
           '<div class="alt">' + esc(s.tarih) + ' · <span class="fislink" onclick="fisFiltre(\'' + esc(s.fis) + '\')">' + esc(s.fis) + '</span> · ' + esc(s.okutan) + '</div></div>';
@@ -1509,7 +1510,7 @@
           var tm = 0, ck = 0; liste.forEach(function (x) { if (x.musteri === s.musteri) { tm += x.adet; ck++; } });
           html += '<div class="grupBaslik"><span>' + esc(s.musteri) + '</span><span>' + ck + ' çeşit · ' + tm + ' adet</span></div>';
         }
-        html += '<div class="rsatir"><div class="ust"><span><b>' + esc(s.kod) + '</b></span><b' + (s.adet < 0 ? ' class="eksi"' : '') + '>' + s.adet + ' ad.</b></div><div class="alt">' + esc(s.ad) + '</div></div>';
+        html += '<div class="rsatir"><div class="ust"><span><b>' + esc(s.kod) + '</b></span><b' + (s.adet < 0 ? ' class="eksi"' : '') + '>' + s.adet + ' ADET</b></div><div class="alt">' + esc(s.ad) + '</div></div>';
       } else {
         html += '<div class="rsatir"><div class="ust"><span><b>' + esc(s.kod) + '</b> · ' + esc(s.yer) + '</span><span><b' + (s.fark < 0 ? ' class="eksi"' : '') + '>' + (s.fark > 0 ? '+' : '') + s.fark + '</b><button class="silbtn" onclick="satirSilRapor(' + i + ')">Sil</button></span></div>' +
           '<div class="alt">' + esc(s.ad) + ' · sistem ' + s.sistem + ' · sayılan ' + s.sayilan + (s.not ? ' · ' + esc(s.not) : '') + '</div>' +
@@ -1521,7 +1522,7 @@
       var bek = iadeBekleyen(r, ara2);
       var ust = '<div class="bolumBaslik">Şu an bekleyen (' + bek.reduce(function (a, b) { return a + b.adet; }, 0) + ' adet, ' + bek.length + ' kayıt)</div>';
       ust += bek.length ? bek.map(function (b) {
-        return '<div class="rsatir ' + (b.yer === 'ARIZALI' ? 'bitti' : 'kritik') + '"><div class="ust"><span><b>' + esc(b.kod) + '</b><span class="yerEtiket">' + esc(b.yer) + '</span></span><b>' + b.adet + ' ad.</b></div><div class="alt">' + esc(b.ad) + '</div>' +
+        return '<div class="rsatir ' + (b.yer === 'ARIZALI' ? 'bitti' : 'kritik') + '"><div class="ust"><span><b>' + esc(b.kod) + '</b><span class="yerEtiket">' + esc(b.yer) + '</span></span><b>' + b.adet + ' ADET</b></div><div class="alt">' + esc(b.ad) + '</div>' +
           '<div class="musteri">Kimden: <b>' + esc(b.kimden || '—') + '</b> · Sebep: <b>' + esc(b.ariza || '—') + '</b></div>' +
           (b.aktarim ? '<div class="alt">Aktarım: ' + esc(b.aktarim) + '</div>' : '') +
           '<div class="alt">' + (b.gun ? 'Geliş ' + b.gun.split('-').reverse().join('.') + ' · <b>' + b.bekleme + ' gündür bekliyor</b> · ' + esc(b.fis) : '') + '</div></div>';
@@ -1584,13 +1585,11 @@
   // Montaj girişinin son adımı: MONTAJ → BAYİ → DEPO TESLİM
   function teslimAdim(s, kacis) {
     var e = kacis || esc;
-    if (s.tur === 'TESLİM' || s.teslim === 'ALINDI') return ' → <span class="tslm adim">DEPO TESLİM ✓</span>';
-    if (s.teslim === 'BEKLİYOR') return ' → <span class="tslm adim bek">depo teslimi bekleniyor</span>';
     return '';
   }
   function teslimSatiri(s) {
-    if (s.teslim === 'ALINDI') return '<div class="tslm" style="font-weight:500">Teslim alan: ' + esc(s.teslimAlan || '') + ' · ' + esc(s.teslimTarih || '') + '</div>';
-    if (s.teslim === 'BEKLİYOR') return '<div class="tslm bek" style="font-weight:500">Stoğa depo teslim alınca geçer</div>';
+    if (s.teslim === 'ALINDI') return '<div class="tslm">✓ Teslim alındı · ' + esc(s.teslimAlan || '') + ' · ' + esc(s.teslimTarih || '') + '</div>';
+    if (s.teslim === 'BEKLİYOR') return '<div class="tslm bek">⏳ Teslim bekleniyor</div>';
     return '';
   }
   function duzeltilebilir(s) { return ['GİRİŞ', 'TRANSFER', 'ÇIKIŞ'].indexOf(s.tur) >= 0 && !/^(ARZ|IAD)-\d+/.test(s.not || ''); }
@@ -2426,8 +2425,8 @@
       var g = TUR_GORUNUM[x.tur] || { c: '#4a5568', d: '<circle cx="12" cy="12" r="4"/>', isaret: '' };
       var yon = x.kaynak && x.hedef ? x.kaynak + ' → ' + x.hedef : (x.hedef || x.kaynak || '');
       return '<div class="sonSatir" style="--c:' + g.c + '"><svg class="ikon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + g.d + '</svg>' +
-        '<div><b>' + kacir(x.kod) + '</b><small>' + kacir(x.tarih) + ' · ' + kacir(x.tur) + (yon ? ' · ' + kacir(yon) : '') + teslimAdim(x, kacir) +
-          (x.tur === 'TESLİM' ? ' · ' + kacir(x.okutan) : x.teslim === 'ALINDI' ? ' · ' + kacir(x.teslimAlan || '') : '') + '</small></div>' +
+        '<div><b>' + kacir(x.kod) + '</b><small>' + kacir(x.tarih) + ' · ' + kacir(x.tur === 'TESLİM' ? 'TESLİM ALINDI' : x.tur) + (yon ? ' · ' + kacir(yon) : '') + (x.tur === 'TESLİM' ? ' · ' + kacir(x.okutan) : '') + '</small>' +
+          (x.teslim === 'ALINDI' ? '<small class="tslmP">✓ Teslim alındı · ' + kacir(x.teslimAlan || '') + '</small>' : x.teslim === 'BEKLİYOR' ? '<small class="tslmP bek">⏳ Teslim bekleniyor</small>' : '') + '</div>' +
         '<span class="adet">' + g.isaret + sayiYaz(x.adet) + '</span></div>';
     }).join('') : '<div class="bos">Son 7 günde işlem yok.</div>';
   }
@@ -2774,7 +2773,7 @@
         }).join('') + '</tbody></table></div></div>');
     });
     var filtreli = ['spAra', 'spUrunF', 'spFirmaF', 'spBas', 'spBit'].some(function (i) { return el(i).value; }) || sorun;
-    el('spOzet').innerHTML = (filtreli ? '<b>Filtre: ' + spSayi(gosterilen) + ' satır gösteriliyor</b> · ' : '') + (el('spDurumSec').value === 'kapali' ? spSayi(spVeri.satirlar.length) + ' kapalı sipariş (tamamlanan / iptal) · ' : spSayi(acikSay) + ' açık sipariş · ') + spSayi(gruplar.length) + ' ürün' + (sorunlu ? ' · <b style="color:#a8221a">' + sorunlu + ' üründe stok yetmiyor / fazla ayrılmış</b>' : '') +
+    el('spOzet').innerHTML = (filtreli ? '<b>Filtre: ' + spSayi(gosterilen) + ' satır gösteriliyor</b> · ' : '') + (el('spDurumSec').value === 'kapali' ? spSayi(spVeri.satirlar.length) + ' kapalı sipariş (tamamlanan / iptal) · ' : el('spDurumSec').value === 'tumu' ? spSayi(spVeri.satirlar.length) + ' sipariş (' + spSayi(acikSay) + ' açık, ' + spSayi(spVeri.satirlar.length - acikSay) + ' kapalı) · ' : spSayi(acikSay) + ' açık sipariş · ') + spSayi(gruplar.length) + ' ürün' + (sorunlu ? ' · <b style="color:#a8221a">' + sorunlu + ' üründe stok yetmiyor / fazla ayrılmış</b>' : '') +
       ' · Stok = kullanılabilir (ayrılmış, iade, arızalı, teslim bekleyen hariç)';
     el('spListe').innerHTML = html.join('') || '<div class="bos">' + (spVeri.satirlar.length ? 'Filtreye uyan sipariş yok.' : 'Henüz sipariş yok. "+ Yeni sipariş" ile ekleyin.') + '</div>';
   }
@@ -3230,6 +3229,44 @@
     return Object.keys(a).sort(function (x, y) { return x.localeCompare(y, 'tr'); }).map(function (m) { return { b: m }; });
   }, function (x) { if (x) { durum.paletMusteri = x.b; taslakYaz(); } });
   el('paletMusteri').addEventListener('change', function () { durum.paletMusteri = this.value; taslakYaz(); });
+</script>
+
+<script>
+  /* ===== Yazım: Netsis gibi Her Kelime Büyük (yalnız düğme / başlık / etiket / menü / sütun adları) ===== */
+  var BH_KUCUK = { 've': 1, 'ile': 1, 'veya': 1, 'ya': 1, 'da': 1, 'de': 1 };
+  function bbHarf(t) {
+    return String(t).replace(/\S+/g, function (w, i) {
+      var m = w.match(/[A-Za-zÇĞİÖŞÜçğıöşü]/); if (!m) return w;
+      var j = w.indexOf(m[0]), h = w.slice(j);
+      if (/[0-9@]/.test(w) || /^(http|www\.)/i.test(h)) return w;                      // kod, adres
+      if (/[A-ZÇĞİÖŞÜ][^\s]*[A-ZÇĞİÖŞÜ]/.test(h) || /[a-zçğıöşü][^\s]*[A-ZÇĞİÖŞÜ]/.test(h)) return w; // KISALTMA / karışık
+      if (i > 0 && BH_KUCUK[h.toLocaleLowerCase('tr')]) return w;
+      h = h.charAt(0).toLocaleUpperCase('tr') + h.slice(1);
+      h = h.replace(/-([a-zçğıöşü])/g, function (x, c) { return '-' + c.toLocaleUpperCase('tr'); });
+      return w.slice(0, j) + h;
+    });
+  }
+  var BH_SECICI = 'button, label, th, summary, h1, h2, h3, legend, .baslikK, .sonBaslik b, .bolumBaslik, .spUst strong, .istUst b, #sayfaBaslik, #listeBaslik, .spCip, .plRozet, .rozetK, .istKutu small, .tslm, .tslmP, .grupBaslik span:first-child, strong, .ozet small, .istDetayBas b, .istLejant span:not(.istIpucu), .plKart h3';
+  var BH_HAM = ['spUrunF', 'spFirmaF', 'musteriSec', 'spCikisSec', 'okutan', 'kaynak', 'hedef'];   // içinde veri (isim) olan listeler
+  function bbUygula() {
+    document.querySelectorAll(BH_SECICI).forEach(function (e) {
+      if (e.closest('.bbHam, .spOneri, input, textarea, select')) return;
+      var w = document.createTreeWalker(e, NodeFilter.SHOW_TEXT), n;
+      while ((n = w.nextNode())) { var y = bbHarf(n.nodeValue); if (y !== n.nodeValue) n.nodeValue = y; }
+    });
+    document.querySelectorAll('select option').forEach(function (o) {
+      var sel = o.parentNode && o.parentNode.closest ? o.parentNode.closest('select') : null;
+      if (!sel) return;
+      if ((BH_HAM.indexOf(sel.id) >= 0 || sel.hasAttribute('data-rol') || sel.classList.contains('bbHam')) && o.value !== '') return;   // veri listesinde yalnız 'Tümü' türü seçenek
+      var y = bbHarf(o.textContent); if (y !== o.textContent) o.textContent = y;
+    });
+  }
+  (function () {
+    var z = 0;
+    new MutationObserver(function () { if (z) return; z = setTimeout(function () { z = 0; bbUygula(); }, 30); })
+      .observe(document.body, { childList: true, subtree: true, characterData: true });
+    bbUygula();
+  })();
 </script>
 </body>
 </html>
