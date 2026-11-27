@@ -140,6 +140,8 @@
   .grupBaslik { background: #f3e8fd; color: #4a148c; padding: 8px; border-radius: 8px; margin-top: 10px; display: flex; justify-content: space-between; font-weight: 700; font-size: 14px; }
   .rsatir b.eksi { color: #b3261e; }
   .rozet { display: inline-block; padding: 1px 6px; border-radius: 6px; font-size: 11px; font-weight: 700; color: #fff; }
+  .rozet.TESLİM { background: #00796b; }
+  .tslm { font-size: 12px; font-weight: 600; color: #1b6e35; margin-top: 2px; } .tslm.bek { color: #a15c00; }
   .rozet.GİRİŞ { background: #1e8e3e; } .rozet.TRANSFER { background: #e37400; } .rozet.ÇIKIŞ { background: #d93025; } .rozet.SAYIM { background: #7b1fa2; }
   .yerler { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin-top: 4px; text-align: center; font-size: 12px; color: #5b6475; }
   .yerler b { display: block; font-size: 15px; color: #1d2433; }
@@ -633,7 +635,7 @@
       <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap"><button class="btn" style="width:auto" onclick="spKaydet()">Kaydet</button><button class="btn ikincil" style="width:auto" onclick="spFormKapat()">Vazgeç</button><span id="spFormIslem" style="display:flex;gap:8px;flex-wrap:wrap"></span></div>
       <div id="spFormMesaj" class="mesaj"></div>
     </div>
-    <div class="spFiltre"><input type="text" id="spAra" placeholder="Ara: ürün, kod, müşteri, not…" oninput="spCiz()" autocomplete="off"><select id="spDurumSec" onchange="spYukle()"><option value="acik">Açık siparişler</option><option value="tumu">Kapananlar dahil</option></select></div>
+    <div class="spFiltre"><input type="text" id="spAra" placeholder="Ara: ürün, kod, müşteri, not…" oninput="spCiz()" autocomplete="off"><select id="spDurumSec" onchange="spYukle()"><option value="acik">Açık siparişler</option><option value="kapali">Kapalı siparişler</option></select></div>
     <div class="spFiltre2">
       <div><label>Ürün</label><select id="spUrunF" onchange="spCiz()"><option value="">Tüm ürünler</option></select></div>
       <div><label>Firma</label><select id="spFirmaF" onchange="spCiz()"><option value="">Tüm firmalar</option></select></div>
@@ -1487,17 +1489,17 @@
             (hucre ? '<div class="yerler">' + hucre + '</div>' : '<div class="alt">Hiçbir depoda stok yok</div>') + dokum(s) + sayimSatiri(s) + '</div>';
         }
       } else if (raporTuru === 'hareket') {
-        html += '<div class="rsatir"><div class="ust"><span><span class="rozet ' + esc(s.tur) + '">' + esc(s.tur) + '</span> <b>' + esc(s.kod) + '</b></span><span><b>' + s.adet + ' ad.</b>' + (duzeltilebilir(s) ? '<button class="silbtn duzbtn" style="color:#254BA0" onclick="satirDuzelt(' + i + ')">Düzelt</button>' : '') + '<button class="silbtn" onclick="satirSilRapor(' + i + ')">Sil</button></span></div>' +
+        html += '<div class="rsatir"><div class="ust"><span><span class="rozet ' + esc(s.tur) + '">' + esc(s.tur) + '</span> <b>' + esc(s.kod) + '</b></span><span><b>' + s.adet + ' ad.</b>' + (s.sanal ? '' : (duzeltilebilir(s) ? '<button class="silbtn duzbtn" style="color:#254BA0" onclick="satirDuzelt(' + i + ')">Düzelt</button>' : '') + '<button class="silbtn" onclick="satirSilRapor(' + i + ')">Sil</button>') + '</span></div>' +
           '<div class="alt">' + esc(s.ad) + '</div>' +
           '<div class="alt">' + esc(s.kaynak) + ' → ' + esc(s.hedef) + (s.not ? ' · ' + esc(s.not) : '') + '</div>' +
-          (s.musteri ? '<div class="musteri">Müşteri: ' + esc(s.musteri) + '</div>' : '') +
-          '<div class="alt">' + esc(s.tarih) + ' · <span class="fislink" onclick="fisFiltre(\'' + esc(s.fis) + '\')">' + esc(s.fis) + '</span> · ' + esc(s.okutan) + '</div></div>';
+          (s.musteri ? '<div class="musteri">Müşteri: ' + esc(s.musteri) + '</div>' : '') + teslimSatiri(s) +
+          '<div class="alt">' + esc(s.tarih) + ' · <span class="fislink" onclick="fisFiltre(\'' + esc(s.fis) + '\')">' + esc(s.fis) + '</span> · ' + (s.sanal ? 'Teslim alan: ' : '') + esc(s.okutan) + '</div></div>';
       } else if (raporTuru === 'iade') {
         var nereye = s.sonuc === 'GELDİ' ? (s.kaynak + ' → ' + s.hedef) : (s.kaynak + ' → ' + s.hedef);
         var detay = s.sonuc === 'GELDİ'
           ? '<div class="musteri">Kimden: <b>' + esc(s.kimden || '—') + '</b> · Sebep: <b>' + esc(s.ariza || '—') + '</b></div>'
           : (s.not ? '<div class="musteri">' + esc(s.not) + '</div>' : '');
-        html += '<div class="rsatir"><div class="ust"><span><span class="rozet ' + esc(s.sonuc.split(' ')[0]) + '">' + esc(s.sonuc) + '</span> <b>' + esc(s.kod) + '</b><span class="yerEtiket">' + esc(s.yer || '') + '</span></span><span><b>' + s.adet + ' ad.</b>' + (duzeltilebilir(s) ? '<button class="silbtn duzbtn" style="color:#254BA0" onclick="satirDuzelt(' + i + ')">Düzelt</button>' : '') + '<button class="silbtn" onclick="satirSilRapor(' + i + ')">Sil</button></span></div>' +
+        html += '<div class="rsatir"><div class="ust"><span><span class="rozet ' + esc(s.sonuc.split(' ')[0]) + '">' + esc(s.sonuc) + '</span> <b>' + esc(s.kod) + '</b><span class="yerEtiket">' + esc(s.yer || '') + '</span></span><span><b>' + s.adet + ' ad.</b>' + (s.sanal ? '' : (duzeltilebilir(s) ? '<button class="silbtn duzbtn" style="color:#254BA0" onclick="satirDuzelt(' + i + ')">Düzelt</button>' : '') + '<button class="silbtn" onclick="satirSilRapor(' + i + ')">Sil</button>') + '</span></div>' +
           '<div class="alt">' + esc(s.ad) + '</div>' +
           '<div class="alt">' + esc(nereye) + '</div>' + detay +
           '<div class="alt">' + esc(s.tarih) + ' · <span class="fislink" onclick="fisFiltre(\'' + esc(s.fis) + '\')">' + esc(s.fis) + '</span> · ' + esc(s.okutan) + '</div></div>';
@@ -1578,6 +1580,11 @@
 
   // ---- Silme (yönetici PIN + sebep; kayıt "Silinenler" sayfasına taşınır) ----
   // ---- Adet düzeltme (örn. montaj 10 yazmış, depo 9 saymış) ----
+  function teslimSatiri(s) {
+    if (s.teslim === 'ALINDI') return '<div class="tslm">✓ Depo teslim aldı · ' + esc(s.teslimAlan || '') + ' · ' + esc(s.teslimTarih || '') + '</div>';
+    if (s.teslim === 'BEKLİYOR') return '<div class="tslm bek">⏳ Depo teslimi bekleniyor (stoğa henüz geçmedi)</div>';
+    return '';
+  }
   function duzeltilebilir(s) { return ['GİRİŞ', 'TRANSFER', 'ÇIKIŞ'].indexOf(s.tur) >= 0 && !/^(ARZ|IAD)-\d+/.test(s.not || ''); }
   function satirDuzelt(i) {
     var s = filtreliSatirlar()[i]; if (!s) return;
@@ -2394,6 +2401,7 @@
     'GİRİŞ': { c: '#1e8e3e', d: '<path d="M12 4v16M5 13l7 7 7-7"/>', isaret: '+' },
     'ÇIKIŞ': { c: '#d32f2f', d: '<path d="M12 20V4M5 11l7-7 7 7"/>', isaret: '−' },
     'TRANSFER': { c: '#c25e00', d: '<path d="M4 8h15M15 4l4 4-4 4M20 16H5M9 12l-4 4 4 4"/>', isaret: '' },
+    'TESLİM': { c: '#00796b', d: '<path d="M4 12l5 5L20 6"/>', isaret: '' },
     'SAYIM': { c: '#6a1b9a', d: '<rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1M9 13l2 2 4-4"/>', isaret: '' }
   };
   function panelCiz() {
@@ -2410,7 +2418,8 @@
       var g = TUR_GORUNUM[x.tur] || { c: '#4a5568', d: '<circle cx="12" cy="12" r="4"/>', isaret: '' };
       var yon = x.kaynak && x.hedef ? x.kaynak + ' → ' + x.hedef : (x.hedef || x.kaynak || '');
       return '<div class="sonSatir" style="--c:' + g.c + '"><svg class="ikon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + g.d + '</svg>' +
-        '<div><b>' + kacir(x.kod) + '</b><small>' + kacir(x.tarih) + ' · ' + kacir(x.tur) + (yon ? ' · ' + kacir(yon) : '') + '</small></div>' +
+        '<div><b>' + kacir(x.kod) + '</b><small>' + kacir(x.tarih) + ' · ' + kacir(x.tur === 'TESLİM' ? 'TESLİM ALINDI' : x.tur) + (yon ? ' · ' + kacir(yon) : '') + (x.tur === 'TESLİM' ? ' · ' + kacir(x.okutan) : '') + '</small>' +
+          (x.teslim === 'ALINDI' ? '<small style="color:#1b6e35;font-weight:600">✓ Teslim alındı · ' + kacir(x.teslimAlan || '') + '</small>' : x.teslim === 'BEKLİYOR' ? '<small style="color:#a15c00;font-weight:600">⏳ Teslim bekleniyor</small>' : '') + '</div>' +
         '<span class="adet">' + g.isaret + sayiYaz(x.adet) + '</span></div>';
     }).join('') : '<div class="bos">Son 7 günde işlem yok.</div>';
   }
@@ -2696,7 +2705,7 @@
     if (!spVeri) el('spListe').innerHTML = '<div class="bos">Yükleniyor…</div>';
     else el('spOzet').innerHTML = '<b style="color:#1f55d6">Güncelleniyor…</b>';
     spSonYukle = Date.now();
-    return panelGet('?islem=siparis' + (el('spDurumSec').value === 'tumu' ? '&kapali=1' : '') + '&_=' + Date.now()).then(function (j) { spVeri = j.siparis; spCiz(); })
+    return panelGet('?islem=siparis' + (el('spDurumSec').value === 'kapali' ? '&kapali=1&sadeceKapali=1' : '') + '&_=' + Date.now()).then(function (j) { spVeri = j.siparis; spCiz(); })
       .catch(function (e) { el('spListe').innerHTML = '<div class="bos">' + esc(e.message) + '</div>'; });
   }
   // Ürün başına toplamlar (filtreden bağımsız: müşteri filtrelense de stok tablosu doğru kalır)
@@ -2745,7 +2754,8 @@
       var sb = g.serbest < 0 ? cip('Fazla ayrılmış', spSayi(-g.serbest), 'kirmizi') : (g.serbest > 0 && g.ayrilmamis > 0 ? cip('Dağıtılabilir', spSayi(Math.min(g.serbest, g.ayrilmamis)), 'sari') : cip('Serbest', spSayi(g.serbest), 'yesil'));
       var sira = {}, n = 0; g.satirlar.forEach(function (x) { if (x.durum === 'AÇIK') sira[x.no] = ++n; });  // öncelik sırası filtreden bağımsız
       html.push('<div class="spGrup"><div class="spBas"><div><b>' + esc(g.kod) + '</b><small>' + esc(g.ad) + (g.kalan !== g.stok ? ' · tüm depolar (KALAN) ' + spSayi(g.kalan) : '') + '</small></div><div class="spCipler">' +
-        cip('Stok', spSayi(g.stok)) + cip('Sipariş', spSayi(g.bekleyen)) + cip('Ayrılan', spSayi(g.ayrilan)) + (g.palet ? cip('Palette', spSayi(g.palet)) : '') + sb + (g.eksik > 0 ? cip('Eksik', spSayi(g.eksik), 'kirmizi') : '') + '</div></div>' +
+        (el('spDurumSec').value === 'kapali' ? cip('Stok', spSayi(g.stok)) + cip('Kapalı sipariş', spSayi(satirlar.length)) :
+        cip('Stok', spSayi(g.stok)) + cip('Sipariş', spSayi(g.bekleyen)) + cip('Ayrılan', spSayi(g.ayrilan)) + (g.palet ? cip('Palette', spSayi(g.palet)) : '') + sb + (g.eksik > 0 ? cip('Eksik', spSayi(g.eksik), 'kirmizi') : '')) + '</div></div>' +
         '<div class="spSarma"><table class="spTablo"><thead><tr><th></th><th>Müşteri</th><th>Sipariş tarihi</th><th class="s">Sipariş</th><th class="s">Stok</th><th class="s">Ayrılan</th><th class="s">Sevk</th><th>Not</th><th></th></tr></thead><tbody>' +
         satirlar.map(function (x) {
           var acik = x.durum === 'AÇIK', kalan = Math.max(0, x.adet - x.sevk - x.ayrilan);
@@ -2756,7 +2766,7 @@
         }).join('') + '</tbody></table></div></div>');
     });
     var filtreli = ['spAra', 'spUrunF', 'spFirmaF', 'spBas', 'spBit'].some(function (i) { return el(i).value; }) || sorun;
-    el('spOzet').innerHTML = (filtreli ? '<b>Filtre: ' + spSayi(gosterilen) + ' satır gösteriliyor</b> · ' : '') + spSayi(acikSay) + ' açık sipariş · ' + spSayi(gruplar.length) + ' ürün' + (sorunlu ? ' · <b style="color:#a8221a">' + sorunlu + ' üründe stok yetmiyor / fazla ayrılmış</b>' : '') +
+    el('spOzet').innerHTML = (filtreli ? '<b>Filtre: ' + spSayi(gosterilen) + ' satır gösteriliyor</b> · ' : '') + (el('spDurumSec').value === 'kapali' ? spSayi(spVeri.satirlar.length) + ' kapalı sipariş (tamamlanan / iptal) · ' : spSayi(acikSay) + ' açık sipariş · ') + spSayi(gruplar.length) + ' ürün' + (sorunlu ? ' · <b style="color:#a8221a">' + sorunlu + ' üründe stok yetmiyor / fazla ayrılmış</b>' : '') +
       ' · Stok = kullanılabilir (ayrılmış, iade, arızalı, teslim bekleyen hariç)';
     el('spListe').innerHTML = html.join('') || '<div class="bos">' + (spVeri.satirlar.length ? 'Filtreye uyan sipariş yok.' : 'Henüz sipariş yok. "+ Yeni sipariş" ile ekleyin.') + '</div>';
   }
