@@ -253,6 +253,37 @@
   body.girisModu #girisEkrani strong { display: block; text-align: center; font-size: 17px; margin-bottom: 6px; }
   body.okutmaYok #altMenu [data-n="okutma"], body.okutmaYok #altMenu .okutBuyuk, body.okutmaYok #yanMenu [data-n="okutma"] { display: none; }
   .navGizli { display: none !important; }
+  .istKart { margin-top: 14px; }
+  .istUst { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; }
+  .istUst b { font-size: 16px; }
+  .istSekme { display: inline-flex; background: #eef2f8; border-radius: 10px; padding: 3px; }
+  .istSekme button { border: 0; background: none; padding: 7px 14px; border-radius: 8px; font: inherit; font-size: 14px; font-weight: 600; color: #5b6475; cursor: pointer; }
+  .istSekme button.secili { background: #fff; color: #1f55d6; box-shadow: 0 1px 3px rgba(18,34,74,.12); }
+  .istKutular { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-bottom: 14px; }
+  .istKutu { border: 1px solid #e3e8f0; border-radius: 12px; padding: 10px 12px; cursor: pointer; background: #fff; text-align: left; font: inherit; }
+  .istKutu.secili { border-color: #1f55d6; box-shadow: 0 0 0 1px #1f55d6 inset; }
+  .istKutu small { display: block; color: #6b7488; font-size: 12px; font-weight: 600; }
+  .istKutu .g { display: block; font-size: 22px; font-weight: 700; color: #1e8e3e; line-height: 1.25; }
+  .istKutu .c { font-size: 13px; color: #c62828; font-weight: 600; }
+  .istGrafik { display: flex; align-items: flex-end; gap: 4px; height: 190px; padding: 18px 2px 0; border-bottom: 1px solid #dfe4ee; overflow-x: auto; }
+  .istSutun { flex: 1 0 30px; display: flex; flex-direction: column; align-items: center; height: 100%; cursor: pointer; border-radius: 8px 8px 0 0; }
+  .istSutun:hover { background: #f3f6fb; } .istSutun.secili { background: #e8efff; }
+  .istCubuk { flex: 1; display: flex; align-items: flex-end; justify-content: center; gap: 2px; width: 100%; }
+  .istCubuk span { width: 42%; max-width: 22px; border-radius: 4px 4px 0 0; position: relative; min-height: 0; }
+  .istCubuk span em { position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); font-style: normal; font-size: 10px; font-weight: 700; color: #33415c; white-space: nowrap; padding-bottom: 1px; }
+  .istEt { font-size: 11px; color: #6b7488; padding: 5px 0 4px; white-space: nowrap; text-align: center; line-height: 1.2; }
+  .istLejant { display: flex; gap: 14px; flex-wrap: wrap; font-size: 12px; color: #5b6475; margin: 8px 0 4px; align-items: center; }
+  .istLejant i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 5px; vertical-align: -1px; }
+  .istIpucu { margin-left: auto; color: #8a93a6; }
+  .istDetayBas { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; flex-wrap: wrap; margin: 14px 0 6px; }
+  .istDetayBas b { font-size: 15px; } .istDetayBas small { color: #6b7488; }
+  .istTablo { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .istTablo th { text-align: left; font-size: 11px; color: #6b7488; font-weight: 600; padding: 6px 8px; border-bottom: 1px solid #e3e8f0; }
+  .istTablo td { padding: 7px 8px; border-bottom: 1px solid #eef1f6; vertical-align: top; }
+  .istTablo .s { text-align: right; white-space: nowrap; font-weight: 700; }
+  .istTablo small { color: #6b7488; display: block; font-size: 11px; }
+  .istDepo { font-size: 12px; color: #5b6475; }
+  @media (max-width: 700px) { .istKutular { grid-template-columns: repeat(2, minmax(0, 1fr)); } .istIpucu { margin-left: 0; width: 100%; } .istGrafik { height: 160px; } }
   .spUst { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
   .spUst .btn { width: auto; margin: 0; padding: 9px 14px; }
   .spFiltre { display: grid; grid-template-columns: 1fr 190px; gap: 8px; }
@@ -482,6 +513,14 @@
       <button class="pKutu" data-yetki="rapor" style="--c:#ef8a00" onclick="panelRapor('stok')"><svg class="ikon" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 16V8l-9-5-9 5v8l9 5 9-5z"/><path d="M3.3 7L12 12l8.7-5M12 22V12"/></svg><span>Stok sorgula</span></button>
       <button class="pKutu" data-yetki="okut_transfer" style="--c:#1f55d6" onclick="panelOkut('TRANSFER')"><svg class="ikon" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h15M15 4l4 4-4 4M20 16H5M9 12l-4 4 4 4"/></svg><span>Transfer</span></button>
       <button class="pKutu" data-yetki="rapor" style="--c:#4a5568" onclick="panelRapor('hareket')"><svg class="ikon" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg><span>İşlem geçmişi</span></button>
+    </div>
+    <div class="kart istKart gizli" id="pIst">
+      <div class="istUst"><b>Giriş / çıkış özeti</b>
+        <div class="istSekme" role="tablist"><button data-p="gun" class="secili" onclick="istDonemSec('gun')">Günlük</button><button data-p="hafta" onclick="istDonemSec('hafta')">Haftalık</button><button data-p="ay" onclick="istDonemSec('ay')">Aylık</button></div></div>
+      <div class="istKutular" id="istKutular"></div>
+      <div class="istGrafik" id="istGrafik"><div class="bos">Yükleniyor…</div></div>
+      <div class="istLejant"><span><i style="background:#1e8e3e"></i>Giriş (montaj)</span><span><i style="background:#d32f2f"></i>Çıkış</span><span class="istIpucu">Bir sütuna ya da kutuya dokunun: o dönemin ürün dökümü açılır</span></div>
+      <div id="istDetay"></div>
     </div>
     <div class="kart sonIslem" id="pSon">
       <div class="sonBaslik"><b>Son işlemler</b><button onclick="panelRapor('hareket')">Tümü <svg class="ikon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button></div>
@@ -2311,6 +2350,7 @@
     var bugun = ymd(new Date()), d = new Date(); d.setDate(d.getDate() - 6);
     Promise.all([panelGet('?islem=rapor&tur=stok'), panelGet('?islem=rapor&tur=hareket&bas=' + ymd(d) + '&bit=' + bugun), panelGet('?islem=rapor&tur=sayim&bas=' + bugun + '&bit=' + bugun)])
       .then(function (r) { panelVeri = { stok: r[0].rapor, hareket: r[1].rapor, sayim: r[2].rapor, bugun: bugun }; panelCiz(); })
+      .then(function () { istYukle(); })
       .catch(function (e) { el('pSonListe').innerHTML = '<div class="bos">Özet alınamadı: ' + kacir(e.message) + '</div>'; });
   }
   function kacir(t) { return String(t == null ? '' : t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
@@ -2835,6 +2875,96 @@
   var cikisYapSp = cikisYap;
   cikisYap = function (m) { el('siparisEkran').classList.add('gizli'); spVeri = null; return cikisYapSp(m); };
   navGuncelle();
+</script>
+
+<script>
+  /* ===== Ana sayfa: günlük / haftalık / aylık giriş-çıkış özeti ===== */
+  var istVeri = null, istDonem = 'gun', istSecim = null, istTum = false;
+  var IST_AY = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
+  function istGun(d) { return new Date(d.getFullYear(), d.getMonth(), d.getDate()); }
+  function istEkle(d, n) { var x = istGun(d); x.setDate(x.getDate() + n); return x; }
+  function istPzt(d) { var x = istGun(d); x.setDate(x.getDate() - (x.getDay() + 6) % 7); return x; }
+  function istTr(k) { var p = k.split('-'); return p[2] + '.' + p[1] + '.' + p[0]; }
+  function istTopla(bas, bit) {
+    var t = { g: 0, c: 0 }, gn = (istVeri && istVeri.gun) || {};
+    Object.keys(gn).forEach(function (k) { if (k >= bas && k <= bit) { t.g += gn[k].g; t.c += gn[k].c; } });
+    return t;
+  }
+  function istYukle() {
+    var k = el('pIst');
+    if (!durum.ben || !yetkiVar('rapor')) { k.classList.add('gizli'); return; }
+    k.classList.remove('gizli');
+    var b = new Date(); b = new Date(b.getFullYear(), b.getMonth() - 5, 1);
+    var b2 = istEkle(new Date(), -70); if (b2 < b) b = b2;
+    return panelGet('?islem=istatistik&bas=' + ymd(b) + '&_=' + Date.now()).then(function (j) {
+      istVeri = j.istatistik;
+      if (!istSecim) { var t = ymd(new Date()); istSecim = { bas: t, bit: t, ad: 'Bugün' }; }
+      istCiz(); istDetayYukle();
+    }).catch(function (e) { el('istGrafik').innerHTML = '<div class="bos">Özet alınamadı: ' + kacir(e.message) + '</div>'; });
+  }
+  function istDonemler() {
+    var bugun = new Date(), l = [], i, b, e;
+    if (istDonem === 'gun') for (i = 13; i >= 0; i--) {
+      b = istEkle(bugun, -i); var k = ymd(b);
+      l.push({ bas: k, bit: k, et: b.toLocaleDateString('tr-TR', { weekday: 'short' }) + '<br>' + ('0' + b.getDate()).slice(-2) + '.' + ('0' + (b.getMonth() + 1)).slice(-2), ad: i === 0 ? 'Bugün' : i === 1 ? 'Dün' : istTr(k) });
+    }
+    if (istDonem === 'hafta') { var p = istPzt(bugun); for (i = 7; i >= 0; i--) {
+      b = istEkle(p, -7 * i); e = istEkle(b, 6);
+      l.push({ bas: ymd(b), bit: ymd(e), et: ('0' + b.getDate()).slice(-2) + '.' + ('0' + (b.getMonth() + 1)).slice(-2) + '<br>hafta', ad: i === 0 ? 'Bu hafta' : istTr(ymd(b)) + ' – ' + istTr(ymd(e)) });
+    } }
+    if (istDonem === 'ay') for (i = 5; i >= 0; i--) {
+      b = new Date(bugun.getFullYear(), bugun.getMonth() - i, 1); e = new Date(bugun.getFullYear(), bugun.getMonth() - i + 1, 0);
+      l.push({ bas: ymd(b), bit: ymd(e), et: IST_AY[b.getMonth()].slice(0, 3) + '<br>' + b.getFullYear(), ad: i === 0 ? 'Bu ay' : IST_AY[b.getMonth()] + ' ' + b.getFullYear() });
+    }
+    return l.map(function (x) { var t = istTopla(x.bas, x.bit); x.g = t.g; x.c = t.c; return x; });
+  }
+  function istCiz() {
+    if (!istVeri) return;
+    var bugun = new Date(), t = ymd(bugun), dn = ymd(istEkle(bugun, -1));
+    var kutular = [
+      { ad: 'Bugün', bas: t, bit: t }, { ad: 'Dün', bas: dn, bit: dn },
+      { ad: 'Bu hafta', bas: ymd(istPzt(bugun)), bit: t }, { ad: 'Bu ay', bas: ymd(new Date(bugun.getFullYear(), bugun.getMonth(), 1)), bit: t }];
+    el('istKutular').innerHTML = kutular.map(function (k, i) {
+      var s = istTopla(k.bas, k.bit), sec = istSecim && istSecim.bas === k.bas && istSecim.bit === k.bit;
+      return '<button class="istKutu' + (sec ? ' secili' : '') + '" onclick="istSec(' + "'" + k.bas + "','" + k.bit + "','" + k.ad + "'" + ')"><small>' + k.ad + '</small><span class="g">' + sayiYaz(s.g) + '</span><span class="c">' + sayiYaz(s.c) + ' çıkış</span></button>';
+    }).join('');
+    var l = istDonemler(), mx = 1;
+    l.forEach(function (x) { mx = Math.max(mx, x.g, x.c); });
+    el('istGrafik').innerHTML = l.map(function (x) {
+      var sec = istSecim && istSecim.bas === x.bas && istSecim.bit === x.bit;
+      var cb = function (v, renk) { return '<span style="height:' + (v ? Math.max(2, v / mx * 100) : 0) + '%;background:' + renk + '">' + (v ? '<em>' + sayiYaz(v) + '</em>' : '') + '</span>'; };
+      return '<div class="istSutun' + (sec ? ' secili' : '') + '" title="' + kacir(x.ad) + ': ' + x.g + ' giriş, ' + x.c + ' çıkış" onclick="istSec(' + "'" + x.bas + "','" + x.bit + "','" + kacir(x.ad) + "'" + ')"><div class="istCubuk">' + cb(x.g, '#1e8e3e') + cb(x.c, '#d32f2f') + '</div><div class="istEt">' + x.et + '</div></div>';
+    }).join('');
+    var g = el('istGrafik'); g.scrollLeft = g.scrollWidth;
+    document.querySelectorAll('.istSekme button').forEach(function (b) { b.classList.toggle('secili', b.dataset.p === istDonem); });
+  }
+  function istDonemSec(p) { istDonem = p; istCiz(); }
+  function istSec(bas, bit, ad) { istSecim = { bas: bas, bit: bit, ad: ad }; istTum = false; istCiz(); istDetayYukle(); }
+  function istDetayYukle() {
+    if (!istSecim) return;
+    var s = istSecim, k = el('istDetay');
+    k.innerHTML = '<div class="istDetayBas"><b>' + kacir(s.ad) + ' — ürün bazında</b><small>Yükleniyor…</small></div>';
+    panelGet('?islem=istatistik&bas=' + s.bas + '&bit=' + s.bas + '&dbas=' + s.bas + '&dbit=' + s.bit + '&_=' + Date.now()).then(function (j) {
+      if (istSecim !== s) return;
+      s.urunler = j.istatistik.urunler || []; istDetayCiz();
+    }).catch(function (e) { k.innerHTML = '<div class="bos">' + kacir(e.message) + '</div>'; });
+  }
+  function istDetayCiz() {
+    var s = istSecim, u = s.urunler || [], tg = 0, tc = 0;
+    u.forEach(function (x) { tg += x.g; tc += x.c; });
+    var goster = istTum ? u : u.slice(0, 12);
+    var depo = function (x, tip) { return Object.keys(x.depo).filter(function (k) { return k.indexOf(tip + ':') === 0; }).map(function (k) { return k.slice(2) + ' ' + x.depo[k]; }).join(' · '); };
+    el('istDetay').innerHTML = '<div class="istDetayBas"><b>' + kacir(s.ad) + ' — ürün bazında</b><small>' + (s.bas === s.bit ? istTr(s.bas) : istTr(s.bas) + ' – ' + istTr(s.bit)) + ' · ' + sayiYaz(tg) + ' giriş · ' + sayiYaz(tc) + ' çıkış · ' + u.length + ' ürün</small></div>' +
+      (u.length ? '<div class="spSarma"><table class="istTablo"><thead><tr><th>Ürün</th><th class="s" style="color:#1e8e3e">Giriş</th><th>Girdiği depo</th><th class="s" style="color:#c62828">Çıkış</th><th>Çıktığı depo</th></tr></thead><tbody>' +
+        goster.map(function (x) {
+          return '<tr><td><b>' + kacir(x.kod) + '</b><small>' + kacir(x.ad) + '</small></td><td class="s" style="color:#1e8e3e">' + (x.g ? sayiYaz(x.g) : '—') + '</td><td class="istDepo">' + kacir(depo(x, 'g')) +
+            '</td><td class="s" style="color:#c62828">' + (x.c ? sayiYaz(x.c) : '—') + '</td><td class="istDepo">' + kacir(depo(x, 'c')) + '</td></tr>';
+        }).join('') + '</tbody></table></div>' +
+        (u.length > goster.length ? '<button class="btn ikincil" style="margin-top:8px" onclick="istTum=true;istDetayCiz()">Tümünü göster (' + u.length + ' ürün)</button>' : '')
+        : '<div class="bos">Bu dönemde montaj girişi ya da çıkış yok.</div>');
+  }
+  var cikisYapIst = cikisYap;
+  cikisYap = function (m) { istVeri = null; istSecim = null; el('pIst').classList.add('gizli'); return cikisYapIst(m); };
 </script>
 </body>
 </html>
