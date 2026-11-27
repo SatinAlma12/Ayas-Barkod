@@ -1588,7 +1588,7 @@
     return '';
   }
   function teslimSatiri(s) {
-    if (s.teslim === 'ALINDI') return '<div class="tslm">✓ Teslim alındı · ' + esc(s.teslimAlan || '') + ' · ' + esc(s.teslimTarih || '') + '</div>';
+    if (s.teslim === 'ALINDI') return '<div class="tslm">✓ Depo teslim aldı · ' + esc(s.teslimTarih || '') + '</div>';
     if (s.teslim === 'BEKLİYOR') return '<div class="tslm bek">⏳ Teslim bekleniyor</div>';
     return '';
   }
@@ -2426,7 +2426,7 @@
       var yon = x.kaynak && x.hedef ? x.kaynak + ' → ' + x.hedef : (x.hedef || x.kaynak || '');
       return '<div class="sonSatir" style="--c:' + g.c + '"><svg class="ikon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + g.d + '</svg>' +
         '<div><b>' + kacir(x.kod) + '</b><small>' + kacir(x.tarih) + ' · ' + kacir(x.tur === 'TESLİM' ? 'TESLİM ALINDI' : x.tur) + (yon ? ' · ' + kacir(yon) : '') + (x.tur === 'TESLİM' ? ' · ' + kacir(x.okutan) : '') + '</small>' +
-          (x.teslim === 'ALINDI' ? '<small class="tslmP">✓ Teslim alındı · ' + kacir(x.teslimAlan || '') + '</small>' : x.teslim === 'BEKLİYOR' ? '<small class="tslmP bek">⏳ Teslim bekleniyor</small>' : '') + '</div>' +
+          (x.teslim === 'ALINDI' ? '<small class="tslmP">✓ Depo teslim aldı</small>' : x.teslim === 'BEKLİYOR' ? '<small class="tslmP bek">⏳ Teslim bekleniyor</small>' : '') + '</div>' +
         '<span class="adet">' + g.isaret + sayiYaz(x.adet) + '</span></div>';
     }).join('') : '<div class="bos">Son 7 günde işlem yok.</div>';
   }
@@ -2593,7 +2593,9 @@
     fetch(API_URL, { method: 'POST', body: JSON.stringify({ pin: durum.pin, islem: 'teslimAl', fis: fis, not: notEl ? notEl.value : '' }) })
       .then(function (r) { return r.json(); }).then(function (j) {
         if (!j.ok) { oturumHatasi(j.hata); throw new Error(j.hata); }
-        b.textContent = 'Teslim alındı ✓'; return zilYukle();
+        b.textContent = 'Teslim alındı ✓';
+        setTimeout(function () { if (!el('anaPanel').classList.contains('gizli')) panelYukle(true); else if (!el('raporlar').classList.contains('gizli') && raporTuru === 'hareket') raporYukle(); }, 300);
+        return zilYukle();
       }).catch(function (e) { b.disabled = false; b.textContent = 'Teslim aldım'; alert('Kaydedilemedi: ' + e.message); });
   }
   // Uygulama açıkken her dakika ve öne gelince yenile
@@ -3267,6 +3269,39 @@
       .observe(document.body, { childList: true, subtree: true, characterData: true });
     bbUygula();
   })();
+</script>
+
+<div id="surumBant" class="surumBant gizli"><span>Programın yeni sürümü yüklendi.</span><button onclick="surumYenile()">Şimdi Yenile</button></div>
+<style>
+  .surumBant { position: fixed; left: 50%; bottom: 84px; transform: translateX(-50%); z-index: 300; background: #1f55d6; color: #fff; border-radius: 12px; padding: 10px 12px 10px 16px; display: flex; gap: 12px; align-items: center; box-shadow: 0 10px 30px rgba(18,34,74,.3); font-size: 14px; max-width: calc(100% - 24px); }
+  .surumBant button { border: 0; background: #fff; color: #1f55d6; font-weight: 700; border-radius: 8px; padding: 8px 12px; cursor: pointer; font: inherit; font-weight: 700; white-space: nowrap; }
+  .surumBant.gizli { display: none; }
+</style>
+<script>
+  var UYG_SURUM = '20261127170937';
+  var surumYeni = '', surumSon = 0;
+  function surumMesgul() {   // kullanıcı bir şey yazıyor / okutuyor mu?
+    var acikForm = el('spForm') && !el('spForm').classList.contains('gizli');
+    return (durum && durum.liste && durum.liste.length) || acikForm || (el('paletModal') && !el('paletModal').classList.contains('gizli'));
+  }
+  function surumYenile() {
+    // Sayfayı önbelleği atlayarak indir (önbellek de yenilenir), sonra yeniden aç
+    fetch(location.pathname, { cache: 'reload' }).catch(function () {}).then(function () { location.reload(); });
+  }
+  function surumKontrol() {
+    if (Date.now() - surumSon < 60000 || document.hidden) return;
+    surumSon = Date.now();
+    fetch(location.pathname + '?surum=' + Date.now(), { cache: 'no-store' }).then(function (r) { return r.text(); }).then(function (t) {
+      var m = t.match(/UYG_SURUM = '(\d+)'/); if (!m || m[1] === UYG_SURUM) return;
+      surumYeni = m[1];
+      if (!surumMesgul()) surumYenile();
+      else el('surumBant').classList.remove('gizli');
+    }).catch(function () {});
+  }
+  setInterval(surumKontrol, 5 * 60000);
+  window.addEventListener('focus', surumKontrol);
+  document.addEventListener('visibilitychange', function () { if (!document.hidden) surumKontrol(); });
+  setTimeout(surumKontrol, 3000);
 </script>
 </body>
 </html>
